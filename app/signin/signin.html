@@ -1,0 +1,61 @@
+<div class="well well-lg">
+    <h2>Sign me In <small>I want to get into my account</small></h2>
+</div>
+
+<hr class="colorgraph">
+
+<form name="form" role="form">
+    <div class="well well-lg">
+        <!-- EMAIL OR USER ID -->
+		<div class="form-group">
+            <input ng-model="vm.user.id" type="text" name="id" id="id" class="form-control input-lg" placeholder="User Name or E-Mail address" tabindex="10" required>
+    		<span ng-show="form.id.$dirty && form.id.$error.required" class="help-block">User Name or E-Mail address required</span>
+		</div>
+        <!-- PASWORD -->
+		<div class="form-group" ng-hide="vm.forgotpwd">
+			<input ng-model="vm.user.pwd" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="20" required/>
+    		<span ng-show="form.password.$dirty && form.password.$error.required && vm.forgotpwd == false" class="help-block">Password is required</span>
+		</div>
+        <!-- FORGOT PASSWORD CHECKBOX -->
+        <div class="form-group">
+            <label class="chk-button" ng-class="{true:'btn btn-success', false:'btn btn-default'}[vm.forgotpwd]">
+                <i class="glyphicon glyphicon-chk" ng-class="{true:'glyphicon-check', false:'glyphicon-unchecked'}[vm.forgotpwd]"></i>
+                <input type="checkbox" class="hidden" ng-model="vm.forgotpwd"> Oops, Forgot my password 
+                <i class="fa fa-key">  </i><i class="fa fa-question-circle"></i>
+            </label>
+        </div>
+    </div><!-- .well -->
+
+    <hr class="colorgraph">
+
+	<div class="row">
+        <!-- SIGN IN BUTTON -->
+		<div class="col-xs-12 col-sm-6 col-md-6">
+            <button ng-click="vm.login()" ng-disabled="form.$invalid" class="btn btn-primary btn-lg btn-block" ng-hide="vm.forgotpwd" busy>
+                Yay, let's go!  <i class="fa fa-sign-in"></i></span>
+                <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+            </button>
+            <!-- PASSWORD RETRIEVE BUTTON -->
+            <button ng-click="vm.retrievePassword()" ng-disabled="form.id.$dirty && form.id.$error.required" class="btn btn-info btn-lg btn-block"  ng-show="vm.forgotpwd" busy>
+                Retrieve my password  <i class="fa fa-unlock-alt"></i></span>
+                <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+            </button>
+        </div>
+
+        <!-- SIGNUP BUTTON -->
+		<div class="col-xs-12 col-sm-6 col-md-6">
+<!--
+            <button type="button" class="btn btn-lg btn-success btn-lg btn-block" data-animation="am-fade-and-slide-top" data-template-url="signin/matoot_validation.html" bs-modal="modal"><small >hmm, first I will </small>Sign Up<small ><i class="fa fa-user-plus"></i>
+            </button>
+-->
+
+            <a class="btn btn-lg btn-success btn-lg btn-block" ng-href="#/signup"><small >hmm, first I will </small>Sign Up<small >  <i class="fa fa-user-plus"></i></a>
+		</div>
+	</div>
+
+	<!--div class="row"> <--- GOOGLE SIGN IN
+		<div class="col-xs-12 col-md-12">
+            <div class="g-signin2 btn btn-primary btn-block"" data-onsuccess="onSignIn" data-theme="dark"></div>
+		</div>
+	</div-->
+</form>

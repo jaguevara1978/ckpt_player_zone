@@ -1,0 +1,28 @@
+/* @import must be at top of file, otherwise CSS will not work */
+/*@import url("//hello.myfonts.net/count/2e2a97");*/
+
+/*  
+@font-face {font-family: 'GrimCounter-Rounded';src: url('../fonts/2E2A97_0_0.eot');src: url('../fonts/2E2A97_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2E2A97_0_0.woff2') format('woff2'),url('../fonts/2E2A97_0_0.woff') format('woff'),url('../fonts/2E2A97_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'PFBagueRoundPro-Medium';src: url('../fonts/2E2A97_1_0.eot');src: url('../fonts/2E2A97_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2E2A97_1_0.woff2') format('woff2'),url('../fonts/2E2A97_1_0.woff') format('woff'),url('../fonts/2E2A97_1_0.ttf') format('truetype');}
+ 
+  */
+
+@font-face {font-family: 'PFBagueRoundPro-Black';src: url('../fonts/2E2A97_2_0.woff2') format('woff2')}
+ 
+  /*
+@font-face {font-family: 'PFBagueRoundPro-Light';src: url('../fonts/2E2A97_3_0.eot');src: url('../fonts/2E2A97_3_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2E2A97_3_0.woff2') format('woff2'),url('../fonts/2E2A97_3_0.woff') format('woff'),url('../fonts/2E2A97_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'PFBagueRoundPro-LightItalic';src: url('../fonts/2E2A97_4_0.eot');src: url('../fonts/2E2A97_4_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2E2A97_4_0.woff2') format('woff2'),url('../fonts/2E2A97_4_0.woff') format('woff'),url('../fonts/2E2A97_4_0.ttf') format('truetype');}
+ */
+ 
+ @font-face {
+     font-family: 'Londrina Sketch';src: url('../fonts/LondrinaSketch-Regular.ttf');
+ }
+ 
+  
+ @font-face {
+     font-family: 'Londrina Solid';src: url('../fonts/LondrinaSolid-Regular.ttf');
+ }

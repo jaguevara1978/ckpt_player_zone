@@ -1,0 +1,9 @@
+# robotstxt.org
+
+User-agent: Google
+Disallow: /
+
+User-agent: *
+Disallow: /cache/
+Disallow: /tmp/
+Disallow: /~joe/

@@ -1,0 +1,38 @@
+<!-- Add your site or application content here -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button ng-if="loggedIn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-id">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#/profile">
+                <i class="fa fa-arrow-left"></i>  Back to Member <span class="light">Zone</span> 
+            </a>
+        </div>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div  ng-if="loggedIn" class="collapse navbar-collapse navbar-main-collapse" id="navbar-collapse-id">
+            <ul class="nav navbar-nav">
+                <li >
+                    <a type="button" class="btn btn-lg btn-danger" data-template-url="trivia/tpl/question.aside.tpl.html" data-placement="right" data-animation="am-fade-and-slide-right" bs-aside="aside" data-container="body" data-show="true">
+                        Raise points! <i class="fa fa-play-circle"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul ng-if="loggedIn" class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-href="#/signin">
+                    Sign Out <i class="fa fa-sign-out"></i>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>   
+
+<!--iframe class="embed-responsive-item trivia-iframe" src="http://shop.lululemon.com/"></iframe-->
+<!-- 16:9 aspect ratio style="border:groove"-->
+<div class="iframe-custom embed-responsive embed-responsive-16by9 fill">
+    <iframe class="embed-responsive-item trivia-iframe" ng-src="{{vm.trustSrc(vm.data.site)}}"></iframe>
+</div>

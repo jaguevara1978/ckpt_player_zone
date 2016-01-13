@@ -1,0 +1,82 @@
+<!-- Page Heading -->
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">My Rewards
+            </h1>
+        </div>
+    </div><!-- /.row -->
+</div>
+
+<!-- Page Content -->
+<div class="well well-lg">
+    <div class="row text-center">    
+        <!-- PRIZES -->
+        <div class="col-md-2 col-sm-3 col-lg-3">
+            <h3>My points: 85.400</h3>
+            <h3>Earn 14.600 more points to win this car</h3>
+            <div class="thumbnail">
+                <img src="content/images/grandprize.jpg">
+            </div>
+            <h3>Prize-O-meter <i class="fa fa-tachometer"></i></h3>
+            <p >
+                <div class="thumbnail">
+                    <img  style="max-height: inherit;" border="0" src="http://thermometer.fund-raising-ideas-center.com/thermometer.php?currency=none&goal=100000&current=85400&color=red&size=large">
+                </div>
+                <h3>Keep pushing for the big prize !</h3>
+            </p>
+        </div>
+    
+        <!-- COUPONS -->
+        <div class="col-md-10 col-sm-9 col-lg-9">
+            <span ng-repeat="data in vm.data" class="help-block">{{ data.language_label }}</span>
+
+            <div  ng-repeat="coupon in vm.coupons">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+                    <div class="thumbnail">
+                        <img ng-src="content/images/coupon_logos/{{coupon.sponsor_logo}}"  class="img-responsive" alt="">
+                        <div class="caption">
+                            <h3 ng-bind="coupon.description"></h3>
+                            <p ng-bind="coupon.details"></p>
+                            <p>
+                                <a href="" class="btn btn-{{coupon.button.style}} btn-lg btn-block" ng-bind='coupon.button.text'></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Pagination -->
+            <div class="row text-center" >
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#/rewards">&laquo;</a>
+                        </li>
+                        <li class="active">
+                            <a href="#/rewards">1</a>
+                        </li>
+                        <li>
+                            <a href="#/rewards">2</a>
+                        </li>
+                        <li>
+                            <a href="#/rewards">3</a>
+                        </li>
+                        <li>
+                            <a href="#/rewards">4</a>
+                        </li>
+                        <li>
+                            <a href="#/rewards">5</a>
+                        </li>
+                        <li>
+                            <a href="#/rewards">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /.row -->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.row -->
+
+</div><!-- /.well -->

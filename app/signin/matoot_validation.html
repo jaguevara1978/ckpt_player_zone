@@ -1,0 +1,42 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title"> <i class="fa fa-user-secret"></i> Exclusive partners only. <small > For now! </small>
+
+</h4>
+      </div>
+      <div class="modal-body">
+
+        <h4>For now, this is an exclusive zone. <i class="fa fa-frown-o"></i> Sorry about that buddy.</h4>
+        <p>
+            If you have an entrance <i class="fa fa-key fa-spin"></i> VIP key  <i class="fa fa-key fa-spin"></i> just put it right down here.
+        </p>
+
+        <form name="form" ng-submit="vm.validateVIPKey()" role="form">
+            <div class="well well-lg">
+        		<div class="form-group">
+        			<input ng-model="vm.user.pwd" type="password" name="password" id="password" class="form-control input-lg" placeholder="VIP Key" tabindex="10" required/>
+            		<span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">If You don't have one, ask for it to admin@matoot.com</span>
+        		</div>
+            </div><!-- .well -->
+
+        	<div class="row">
+        		<div class="col-xs-12 col-sm-6 col-md-6">
+                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-lg btn-block" busy>
+                        Validate Key! <i class="fa fa-key"></i></span>
+                        <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+                    </button>
+                </div>
+        
+        		<div class="col-xs-12 col-sm-6 col-md-6">
+                    <button type="button" class="btn btn-lg btn-success btn-lg btn-block" ng-click="$hide()"><small >hmm, I'll </small>Be Back<small > <i class="fa fa-arrow-circle-o-left"></i>
+                    </button>
+        		</div>
+        	</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

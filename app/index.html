@@ -1,0 +1,179 @@
+<!doctype html>
+<html data-ng-app="app" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) content/css/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-additions/dist/bootstrap-additions.css" />
+    <link rel="stylesheet" href="../bower_components/angular-motion/dist/angular-motion.css" />
+    <link rel="stylesheet" href="../bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="../bower_components/angularjs-toaster/toaster.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,app}) content/css/custom.css -->
+    <link rel="stylesheet" href="content/css/custom.css" />
+    <link rel="stylesheet" href="content/css/webfonts.css" />
+    <link rel="stylesheet" href="content/css/animate.css" />
+    <link rel="stylesheet" href="content/css/nga.all.css" />
+    <link rel="stylesheet" href="trivia/tpl/css/cool.css" />
+    <link rel="stylesheet" href="trivia/tpl/css/feedback.css" />
+    <!-- endbuild -->
+    
+</head>
+<body class="fill">
+    <div class="fill" data-ng-include="'layout/shell.html'"></div>
+    <!--div id="splash-page" data-ng-show="false">
+        <div class="page-splash">
+            <div class="page-splash-message">
+                Welcome to the Member Zone
+            </div>
+            <div class="progress progress-striped active page-progress-bar">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div-->
+
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/ng-busy/build/angular-busy.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
+    <script src="../bower_components/ng-password-strength/dist/scripts/ng-password-strength.js"></script>
+    <script src="../bower_components/toastr/toastr.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angularjs-toaster/toaster.js"></script>
+    <script src="../bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+    <script src="../bower_components/ngFx/dist/ngFx.js"></script>
+    <script src="../bower_components/spin.js/spin.js"></script>
+    <script src="../bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+    <script src="../bower_components/angular-translate/angular-translate.js"></script>
+    <script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="../bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="../bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+    <script src="../bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+    <!—- activate -->
+    <script src="activate/activate.module.js"></script>
+    <script src="activate/activate.js"></script>
+    <script src="activate/config.route.js"></script>
+
+    <!-- Reusable Blocks/Modules -->
+    <script src="blocks/exception/exception.module.js"></script>
+    <script src="blocks/exception/exception-handler.provider.js"></script>
+    <script src="blocks/exception/exception.js"></script>
+    <script src="blocks/logger/logger.module.js"></script>
+    <script src="blocks/logger/logger.js"></script>
+    <script src="blocks/router/router.module.js"></script>
+    <script src="blocks/router/routehelper.js"></script>
+
+    <!-- core module -->
+    <script src="core/app.module.js"></script>
+    <script src="core/core.module.js"></script>
+    <script src="core/constants.js"></script>
+    <script src="core/config.js"></script>
+    <script src="core/services/authentication.service.js"></script>
+    <script src="core/services/flash.service.js"></script>
+    <script src="core/services/http.interceptor.service.js"></script>
+    <script src="core/services/api.service.js"></script>
+    <script src="core/services/user.service.js"></script>
+    <script src="core/services/trivia.service.js"></script>
+    <script src="core/services/celebration.service.js"></script>
+    <script src="core/services/sorry.service.js"></script>
+    <script src="core/services/locale.service.js"></script>
+    <script src="core/directives/language.select.directive.js"></script>
+
+    <!-- layout -->
+    <script src="layout/layout.module.js"></script>
+    <script src="layout/shell.js"></script>
+    <script src="layout/sidebar.js"></script>
+
+    <!--widgets-->
+    <script src="widgets/widgets.module.js"></script>
+    <script src="widgets/ccSidebar.js"></script>
+    <script src="widgets/ccSpinner.js"></script>
+    <script src="widgets/ccWidgetClose.js"></script>
+    <script src="widgets/ccWidgetHeader.js"></script>
+    <script src="widgets/ccWidgetMinimize.js"></script>
+
+    <!-- SignIn -->
+    <script src="signin/signin.module.js"></script>
+    <script src="signin/signin.js"></script>
+    <script src="signin/config.route.js"></script>
+
+    <!-- SignUp -->
+    <script src="signup/signup.module.js"></script>
+    <script src="signup/signup.js"></script>
+    <script src="signup/config.route.js"></script>
+
+    <!—- welcome -->
+    <script src="welcome/welcome.module.js"></script>
+    <script src="welcome/welcome.js"></script>
+    <script src="welcome/config.route.js"></script>
+
+    <!—- rewards -->
+    <script src="rewards/rewards.module.js"></script>
+    <script src="rewards/rewards.js"></script>
+    <script src="rewards/config.route.js"></script>
+
+    <!—- suconf -->
+    <script src="suconf/suconf.module.js"></script>
+    <script src="suconf/suconf.js"></script>
+    <script src="suconf/config.route.js"></script>
+
+    <!—- profile -->
+    <script src="profile/profile.module.js"></script>
+    <script src="profile/profile.js"></script>
+    <script src="profile/config.route.js"></script>
+
+    <!—- trivia -->
+    <script src="trivia/trivia.module.js"></script>
+    <script src="trivia/trivia.js"></script>
+    <script src="trivia/config.route.js"></script>
+
+    <!—- contests -->
+    <script src="contests/contests.module.js"></script>
+    <script src="contests/contests.js"></script>
+    <script src="contests/config.route.js"></script>
+
+    <!—- tradings -->
+    <script src="tradings/tradings.module.js"></script>
+    <script src="tradings/tradings.js"></script>
+    <script src="tradings/config.route.js"></script>
+
+    <!—- presignin -->
+    <script src="presignin/presignin.module.js"></script>
+    <script src="presignin/presignin.js"></script>
+    <script src="presignin/config.route.js"></script>
+
+    <script src="content/js/EasePack.min.js"></script>
+    <script src="content/js/TweenLite.min.js"></script>
+    <script src="content/js/commons.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
