@@ -18,7 +18,7 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
     vm.trustSrc = trustSrc;
     vm.goToRewards = goToRewards;
 
-    getQuestion();
+    getQuestion( );
 /*
 // Main
 initHeader( );
@@ -30,72 +30,45 @@ initAnimation( );
     }
 
     function getQuestion( ) {
-        console.log( 'entro' );
+        vm.feedback = false;
         ApiService.get( 'challenge', 0 )
             .then( function( response ) {
                 if ( response.success ) {
                     vm.data = response.data;
-                    vm.aside = response.data;
-                    CelebrationService.stopAnimation();
-                    vm.feedback = false;
-                    
+
+                    console.log( 'Get Question:' );
                     console.log(vm.data);
-                    $timeout(function() {
-                        vm.question = true;
-                    }, 600);
                 } else {
                     FlashService.Error( response.message );
                 }
             }
         );
-/*
-        TriviaService.getQuestion( $rootScope.globals.currentUser.id )
-            .then(function (response) {
-                    if (response.success) {
-                        vm.aside = response.data;
-                            CelebrationService.stopAnimation();
-                        vm.feedback = false;
-                        $timeout(function() {
-                            vm.question = true;
-                        }, 600);
-                    } else {
-                        FlashService.Error(response.message);
-                    }
-                }
-            );
-*/
-}
+    }
 
-    function validateAnswer(option) {
-/*
-		$scope.$broadcast('busy.begin');
-		$timeout(function() {
-			$scope.$broadcast('busy.end');
-		}, 5000);
-*/      vm.aside.option = option;
-        TriviaService.validateAnswer(vm.aside)
-            .then(function (response) {
-                    if (response.success) {
-                        vm.aside = response.data;
-                        if (vm.aside.correct) {
-                            // Celebration
-                            CelebrationService.initHeader();
-                            CelebrationService.initAnimation();
-                        } else {
-                            // Sorry about that
-                            SorryService.initHeader();
-                            //SorryService.initAnimation();
-                        }
-                        
-                        vm.question = false;
-                        $timeout(function() {
-                            vm.feedback = true;
-                		}, 600);
-                    } else {
-                        FlashService.Error(response.message);
-                    }
+    function validateAnswer( option ) {
+        //vm.aside.option = option;
+        var data = {
+            tr_id: option
+        }        
+        ApiService.post( 'challenge_process', data )
+            .then( function( response ) {
+                if ( response.success ) {
+                    vm.data = response.data;
+                   
+                    console.log( 'After Validation:' );
+                    console.log(vm.data);
+
+                    // To show hide Feedback object
+                    vm.feedback = true;
+                    $timeout(function() {
+                        vm.feedback = false;
+                    }, 2000);
+                } else {
+                    console.log(response);
+                    FlashService.Error( response.message );
                 }
-            );
+            }
+        );
     }
     
     function goToRewards() {
