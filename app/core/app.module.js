@@ -136,17 +136,23 @@
                 }
 
                 if ( !$rootScope.loggedIn ) {    
-                    if ( $rootScope.globals.currentUser.user ) {
-                        $rootScope.loggedIn = true;
+                    try {
+                        if ( $rootScope.globals.currentUser.user ) {
+                            $rootScope.loggedIn = true;
+                        }
+                    } catch ( error ) {
+                        $rootScope.loggedIn = false;
                     }
                 }
 
+                // console.log( 'entro' );
                 if ( restrictedPage && !$rootScope.loggedIn ) {
                     $location.path( '/signin' );
                 }
 
                 $rootScope.showMainNavBar = $location.path( ) !== "/trivia";
             } catch( error ) {
+                // console.log( 'error' );
                 $location.path( '/signin' );
             }
         });
