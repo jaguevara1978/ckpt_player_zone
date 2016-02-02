@@ -29,12 +29,12 @@
  }
 
   .home-ckpt  {
-    width:7%;
+    width:8%;
     top:-5px;
     }
 
   .point-ckpt  {
-    width:70%;
+    width:68%;
     height:20px;
   }
 
@@ -75,12 +75,33 @@
 }
 
 .trivia-right, .trivia-wrong {
-width:90%;
-height:200px;
+  width:90%;
+  height:200px;
+}
+
+.right-answer-text {
+  font: normal 90px/1 "aclonica", Helvetica, sans-serif;
+}
+
+.wrong-answer-text {
+  font: normal 90px/1 "aclonica", Helvetica, sans-serif;
 }
 
 #trivia-box h1 {
   font-size: 1.2em;
+  line-height:1em;
+}
+
+.btn-trivia {
+  font-size:1em;
+}
+
+.point-ckpt .progress-value {
+font-size: .7em;
+}
+
+.reward-ckpt .progress-value {
+font-size: .7em;
 }
 
 @media (min-width: 600px) {
@@ -93,9 +114,9 @@ height:200px;
   }
 
   #timer-bar progress {
-  height: 3px;
+    height: 3px;
   }
-    #score-bar-ckpt {
+  #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
@@ -103,12 +124,37 @@ height:200px;
   }
 
   .home-ckpt  {
-  width:7%;
-  top:-5px;
+    width:7%;
+    top:-5px;
   }
   
   #trivia-box {
     padding:10px 10px 10px;
+  }
+
+  .right-answer-text {
+  font: normal 110px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  .wrong-answer-text {
+    font: normal 110px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  #trivia-box h1 {
+    font-size: 1.3em;
+    line-height:1.1em;
+  }
+ 
+  .btn-trivia {
+    font-size:1.1em;
+  }
+
+  .point-ckpt .progress-value {
+    font-size: .7em;
+  }
+
+  .reward-ckpt .progress-value {
+    font-size: .7em;
   }
 
 }
@@ -119,31 +165,108 @@ height:200px;
     bottom:-500px;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 350px;
+    width: 370px;
   }
 
   #timer-bar progress {
-  height: 3px;
+    height: 3px;
   }
-    #score-bar-ckpt {
+
+  #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
-    width:350px;
+    width:370px;
   }
 
   .home-ckpt  {
-  width:7%;
-  top:-5px;
+    width:8%;
+    top:-5px;
   }
+
+  .point-ckpt  {
+      width:65%;
+      height:20px;
+    }
+
+  .reward-ckpt  {
+      width:20%;
+      height:20px;
+      margin-left:5px;
+    }
+
+  .point-ckpt .icon,
+  .reward-ckpt .icon{
+      position:relative;
+      top:-8px;
+      right:0;
+    }
+
+  .point-ckpt progress {
+      width: 95%;
+      height: 20px;
+    }
+
+  .reward-ckpt progress {
+      width: 80%;
+      height: 20px;
+    }
   
   #trivia-box {
     padding:10px 10px 10px;
   }
 
+  .reward-img img{
+    max-width: 350px;
+    max-height: 250px;
+  }
+
+
+ #reward-dialog {
+    width: 300px;
+  }
+
+ .trivia-right, .trivia-wrong {
+    width:100%;
+    height:250px;
+  }
+
+  .right-answer-text {
+  font: normal 100px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  .wrong-answer-text {
+    font: normal 100px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  #trivia-box h1 {
+    font-size: 1.3em;
+    line-height:1.1em;
+  }
+ 
+  .btn-trivia {
+    font-size:1.1em;
+  }
+
+  .point-ckpt .progress-value {
+    font-size: .8em;
+  }
+
+  .reward-ckpt .progress-value {
+    font-size: .8em;
+  }
+
+
 }
 
 @media (min-width: 1366px) {
+
+  #trivia-container {
+        bottom:-500px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      width: 420px;
+    }
 
   #timer-bar progress {
   height: 3px;
@@ -156,32 +279,48 @@ height:200px;
   }
 
   .home-ckpt  {
-  width:7%;
+  width:8%;
   top:-5px;
   }
+  .point-ckpt  {
+      width:68%;
+      height:20px;
+    }
 
+  .reward-ckpt  {
+      width:20%;
+      height:20px;
+      margin-left:5px;
+    }
 
-  #trivia-container {
-    bottom:-500px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 420px;
-  }
+  .point-ckpt .icon,
+  .reward-ckpt .icon{
+      position:relative;
+      top:-8px;
+      right:0;
+    }
+
+  .point-ckpt progress {
+      width: 95%;
+      height: 20px;
+    }
+
+  .reward-ckpt progress {
+      width: 80%;
+      height: 20px;
+    }
   #trivia-box {
     padding:10px 10px 10px;
   }
 
 
  .reward-img img{
-    -webkit-box-sizing: border-box; /* Safari, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
     max-width: 450px;
     max-height: 250px;
   }
 
  .reward-img img{
-    max-width: 450px;
+    max-width: 380px;
     max-height: 250px;
   }
 
@@ -193,87 +332,131 @@ height:200px;
     width:100%;
     height:250px;
   }
+    .right-answer-text {
+  font: normal 110px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  .wrong-answer-text {
+    font: normal 110px/1 "aclonica", Helvetica, sans-serif;
+  }
+
+  #trivia-box h1 {
+    font-size: 1.4em;
+    line-height:1.2em;
+  }
+ 
+  .btn-trivia {
+    font-size:1.2em;
+  }
+
+  .point-ckpt .progress-value {
+    font-size: .8em;
+  }
+
+  .reward-ckpt .progress-value {
+    font-size: .8em;
+  }
 
 
 }
 
 @media (min-width: 1920px) {
 
-#timer-bar progress {
-  height: 5px;
-}
+  #timer-bar progress {
+    height: 5px;
+  }
+
   #score-bar-ckpt {
-    top:20px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width:500px;
- }
-
-  .home-ckpt  {
-    width:7%;
-    top:-5px;
-    }
-
-  .point-ckpt  {
-    width:70%;
-    height:20px;
-  }
-
-  .reward-ckpt  {
-    width:20%;
-    height:20px;
-    margin-left:5px;
-  }
-
-  .point-ckpt .icon,
-  .reward-ckpt .icon{
-    position:relative;
-    top:-8px;
-    right:0;
-  }
-
-  .point-ckpt progress {
-    width: 95%;
-    height: 20px;
-  }
-
-  .reward-ckpt progress {
-    width: 80%;
-    height: 20px;
-  }
-
-  #trivia-container {
-      bottom:-500px;
+      top:20px;
       left: 50%;
       transform: translate(-50%, 0);
-    width: 500px;
+      width:500px;
+   }
+
+    .home-ckpt  {
+      width:7%;
+      top:-5px;
+      }
+
+    .point-ckpt  {
+      width:70%;
+      height:20px;
+    }
+
+    .reward-ckpt  {
+      width:20%;
+      height:20px;
+      margin-left:5px;
+    }
+
+    .point-ckpt .icon,
+    .reward-ckpt .icon{
+      position:relative;
+      top:-8px;
+      right:0;
+    }
+
+    .point-ckpt progress {
+      width: 95%;
+      height: 20px;
+    }
+
+    .reward-ckpt progress {
+      width: 80%;
+      height: 20px;
+    }
+
+    #trivia-container {
+        bottom:-500px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      width: 500px;
+    }
+
+    #trivia-box {
+    padding:15px 10px 10px;
+    }
+
+  .reward-img img{
+    max-width: 450px;
+    max-height: 250px;
+    }
+
+  #reward-dialog {
+    width: 300px;
+    }
+
+  .trivia-right, .trivia-wrong {
+    width:100%;
+    height:300px;
+    }
+
+  .right-answer-text {
+  font: normal 120px/1 "aclonica", Helvetica, sans-serif;
   }
 
-  #trivia-box {
-  padding:15px 10px 10px;
-}
-
-.reward-img img{
-  -webkit-box-sizing: border-box; /* Safari, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-  max-width: 450px;
-  max-height: 250px;
+  .wrong-answer-text {
+    font: normal 120px/1 "aclonica", Helvetica, sans-serif;
   }
 
-.reward-img img{
-  max-width: 450px;
-  max-height: 250px;
+  #trivia-box h1 {
+    font-size: 1.5em;
+    line-height:1.2em;
+  }
+ 
+  .btn-trivia {
+    font-size:1.2em;
   }
 
-#reward-dialog {
-  width: 300px;
+  .point-ckpt .progress-value {
+    font-size: .8em;
   }
 
-.trivia-right, .trivia-wrong {
-  width:100%;
-  height:300px;
+  .reward-ckpt .progress-value {
+    font-size: .8em;
   }
+
+
 
 
 }
@@ -414,7 +597,6 @@ box-shadow: 0px 6px 22px 2px rgba(0,0,0,0.35);
 }
 .point-ckpt .progress-value {
   line-height: 20px;
-  font-size: .8em;
   color: #93C8CC;
   float: left;
 }
@@ -443,9 +625,9 @@ box-shadow: 0px 6px 22px 2px rgba(0,0,0,0.35);
   background: #B5C258;
   border-radius: 1px;
 }
+
 .reward-ckpt .progress-value {
 line-height: 20px;
-font-size: .8em;
 color: #C7CE67;
 float: left;
 }
@@ -588,7 +770,6 @@ text-decoration:none;
 	display: block;
 	background: #ffffff;
 	color: #C8525E;
-	font-size: 1.5em;
   line-height:1.3em;
 	padding: 10px;
 	margin:0 0 12px 0;
@@ -608,7 +789,6 @@ text-decoration:none;
   border:1px solid #cccccc;
   cursor:pointer;
   color:#ffffff;
-  font-size:1.2em;
   font-weight: 300;
   padding:10px 7px;
   margin:8px 0 3px 0;
@@ -733,24 +913,28 @@ overflow: hidden;
 .right-answer-text {
   padding: 20px;
   border: none;
-  font: normal 140px/1 "aclonica", Helvetica, sans-serif;
   color: rgba(255,255,255,1);
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   background: #34A6C1;
   text-shadow: 0 0 10px rgb(255,255,255) , 0 0 20px rgb(255,255,255) , 0 0 30px rgb(255,255,255) , 0 0 35px #EAB505 , 0 0 54px #EAB505 , 0 0 71px #EAB505 , 0 0 79px #EAB505 ;
+  display:block;
+  margin:0 auto;
+  text-align: center;
+
 }
 
 .wrong-answer-text {
   width:100%;
   padding: 20px;
   border: none;
-  font: normal 140px/1 "aclonica", Helvetica, sans-serif;
   color: rgba(255,255,255,1);
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   background: #34A6C1;
   text-shadow: 0 0 10px rgb(255,255,255) , 0 0 20px rgb(255,255,255) , 0 0 30px rgb(255,255,255) , 0 0 35px #EAB505 , 0 0 54px #EAB505 , 0 0 71px #EAB505 , 0 0 79px #EAB505 ;
+text-align:center;
+
 }
 
 
