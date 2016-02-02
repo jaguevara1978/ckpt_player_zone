@@ -44,17 +44,42 @@
 
 .point-number {
   float:left;
-  width:20%;
+  width:23%;
 }
 
 .point-bar {
   float:left;
-  width:80%;
+  width:77%;
 }
 
 .reward {
   float:left;
   width: 35%;
+}
+
+.account-panel {
+    height:120px;
+}
+
+.account-panel .user-name {
+  font-size:1em;
+}
+
+.account-panel .image-cropper {
+    width: 80px;
+    height: 80px;
+    width:80px;
+}
+
+.prize img{
+  width:150px;
+}
+
+.prize {
+  position:absolute;
+  top:-30px;
+  right:0;
+  width:180px;
 }
 
 @media (min-width: 600px) {
@@ -78,18 +103,31 @@
 @media (min-width: 900px) {
     .user{
         float:left;
-        width: 20%;
+        width: 18%;
     }
 
     .point {
         float:left;
-        width: 65%;
+        width: 62%;
     }
 
     .reward {
         float:left;
         width: 15%;
     }
+
+    .point-number {
+      float:left;
+      width:25%;
+    }
+
+   .point-bar {
+      float:left;
+      width:75%;
+   }
+   .prize img{
+    width:180px;
+   }
 }
 
 @media (min-width: 1366px) {
@@ -98,6 +136,34 @@
     width: 1366px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .account-panel {
+    height:140px;
+  }
+
+  .account-panel .user-name {
+  font-size:1.2em;
+  }
+
+  .account-panel .image-cropper {
+    width: 100px;
+    height: 100px;
+    width:100px;
+  }
+
+  .point-number {
+    float:left;
+    width:20%;
+  }
+
+  .point-bar {
+    float:left;
+    width:80%;
+  }
+
+  .prize img{
+  width:200px;
   }
 }
 
@@ -165,16 +231,12 @@ text-align:right;
 
 .account-panel .user-name {
   font-weight:400;
-  font-size:1.2em;
 }
 .account-panel .image-cropper {
-    width: 100px;
-    height: 100px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
     float:left;
-    width:100px;
 }
 
 .account-panel .image-cropper img {
@@ -231,16 +293,6 @@ text-align:right;
   margin-right:5px;
 }
 
-.prize {
-  position:absolute;
-  top:-30px;
-  right:0;
-  width:200px;
-}
-
-.prize img{
-  width:200px;
-}
 
 .point-left {
 position:absolute;
