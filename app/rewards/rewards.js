@@ -17,15 +17,17 @@ function Rewards( TriviaService, $rootScope, ApiService, FlashService ) {
     initController();
 
     function initController( ) {
-        ApiService.get( 'language' )
-            .then( function( response ) {
-                if (response.success) {
-                    vm.data = response.data;
-                } else {
-                    FlashService.Error( response.message );
-                }
-            }
-        );
+        // ApiService.get( 'language' )
+        //     .then( function( response ) {
+        //         if (response.success) {
+        //             vm.data = response.data;
+        //         } else {
+        //             FlashService.Error( response.message );
+        //         }
+        //     }
+        // );
+
+        getRewards();
 
 /*
         TriviaService.getCoupons($rootScope.globals.currentUser.id)
@@ -38,6 +40,18 @@ function Rewards( TriviaService, $rootScope, ApiService, FlashService ) {
                 }
             );
 */
+    }
+function getRewards( ) {
+        ApiService.get( 'contact_rewards' )
+            .then( function( response ) {
+                if (response.success) {
+                    vm.data = response.data;
+                    console.log( vm.data );
+                } else {
+                    FlashService.Error( response.message );
+                }
+            }
+        );
     }
 }
 })();

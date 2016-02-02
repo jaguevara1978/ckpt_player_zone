@@ -1,33 +1,12 @@
-﻿<!--div data-ng-controller="Shell as vm">
-    <div id="splash-page" data-ng-show="vm.showSplash" class="dissolve-animation">
-        <div class="page-splash">
-            <div class="page-splash-message">
-                Modular Demo
-            </div>
-        </div>
-    </div>
+﻿
 
-    <header class="clearfix">
-        <div data-ng-include="'layout/topnav.html'"></div>
-    </header>
-    <section id="content" class="content">
-        <div data-ng-include="layout/sidebar.html"></div>
+<div class="container">
 
-        <div data-ng-view class="shuffle-animation"></div>
+<div class="topnav clearfix vertical-middle" ng-if="showMainNavBar" data-ng-include="'layout/topnav.html'">
+</div>
 
-        <div ngplus-overlay
-             ngplus-overlay-delay-in="50"
-             ngplus-overlay-delay-out="700"
-             ngplus-overlay-animation="dissolve-animation">
-            <img src="../../content/images/busy.gif"/>
+<div class="content">
 
-            <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
-        </div>
-    </section>
-</div-->
-<div data-ng-include="'layout/topnav.html'"></div>
-
-<div class="container fill">
     <toaster-container toaster-options="{
         'close-button':true,
         'animation-class': 'toast-top-full-width',
@@ -38,4 +17,7 @@
     <div data-ng-view class="fill"></div>
 </div>
 
-<!--div data-ng-include="'layout/footer.html'"></div-->
+
+<footer data-ng-include="'layout/footer.html'"></footer>
+
+</div>

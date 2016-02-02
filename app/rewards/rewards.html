@@ -1,82 +1,68 @@
-<!-- Page Heading -->
-<div class="well well-lg">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">My Rewards
-            </h1>
+<!--Account Panel-->
+<div class="account-panel clearfix vertical-middle">
+    <!--profile-->
+    <div class="user">
+        <div class="image-cropper">
+            <img src="http://www.electricvelocity.com.au/Upload/Blogs/smart-e-bike-side_2.jpg" class="rounded" />
         </div>
-    </div><!-- /.row -->
+        <div class="user-info">
+            <div class="user-name">Mark White</div>
+            <div class="user-level">Level 2</div>
+            <div class="user-level2">Beginner</div>
+        </div>
+    </div>
+    <!--Points-->
+    <div class="point">
+        <div class="point-number"><span class="point-text">4190</span> Points</div>
+        <div class="point-bar">
+            <progress max="2000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
+            <div class="prize"><img src="content/images/prize.png" /></div>
+            <span class="point-left">{{vm.data.player_stats.accumulated_points}} more points left to win Toyota Scion</span>
+        </div>
+    </div>
+    <!--rewards-->
+    <div class="reward">
+        <div class="reward-number"><span class="reward-text">{{vm.data.player_stats.accumulated_rewards}}</span> Rewards</div>
+    </div>
 </div>
-
-<!-- Page Content -->
-<div class="well well-lg">
-    <div class="row text-center">    
-        <!-- PRIZES -->
-        <div class="col-md-2 col-sm-3 col-lg-3">
-            <h3>My points: 85.400</h3>
-            <h3>Earn 14.600 more points to win this car</h3>
-            <div class="thumbnail">
-                <img src="content/images/grandprize.jpg">
-            </div>
-            <h3>Prize-O-meter <i class="fa fa-tachometer"></i></h3>
-            <p >
+<!-- vm.data.plyaer_stats
+<div class="reward-panel clearfix">
+    <h1>My Rewards</h1>
+    <div ng-repeat="reward in vm.data.rewards">
+        <div class="reward-item">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="thumbnail">
-                    <img  style="max-height: inherit;" border="0" src="http://thermometer.fund-raising-ideas-center.com/thermometer.php?currency=none&goal=100000&current=85400&color=red&size=large">
-                </div>
-                <h3>Keep pushing for the big prize !</h3>
-            </p>
-        </div>
-    
-        <!-- COUPONS -->
-        <div class="col-md-10 col-sm-9 col-lg-9">
-            <span ng-repeat="data in vm.data" class="help-block">{{ data.language_label }}</span>
-
-            <div  ng-repeat="coupon in vm.coupons">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                    <div class="thumbnail">
-                        <img ng-src="content/images/coupon_logos/{{coupon.sponsor_logo}}"  class="img-responsive" alt="">
-                        <div class="caption">
-                            <h3 ng-bind="coupon.description"></h3>
-                            <p ng-bind="coupon.details"></p>
-                            <p>
-                                <a href="" class="btn btn-{{coupon.button.style}} btn-lg btn-block" ng-bind='coupon.button.text'></a>
-                            </p>
-                        </div>
+                    <img ng-src="{{reward.img_uri}}" class="img-responsive" alt="">
+                    <div class="caption">
+                        <h3 ng-bind="reward.description"></h3>
+                        <p ng-bind="reward.details"></p>
+                        <p>
+                            <a href="" class="btn btn-default btn-lg btn-block" ng-bind='reward.button_text'></a>
+                        </p>
                     </div>
                 </div>
             </div>
-    
-            <!-- Pagination -->
-            <div class="row text-center" >
-                <div class="col-lg-12">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#/rewards">&laquo;</a>
-                        </li>
-                        <li class="active">
-                            <a href="#/rewards">1</a>
-                        </li>
-                        <li>
-                            <a href="#/rewards">2</a>
-                        </li>
-                        <li>
-                            <a href="#/rewards">3</a>
-                        </li>
-                        <li>
-                            <a href="#/rewards">4</a>
-                        </li>
-                        <li>
-                            <a href="#/rewards">5</a>
-                        </li>
-                        <li>
-                            <a href="#/rewards">&raquo;</a>
-                        </li>
-                    </ul>
+        </div>
+    </div> -->
+
+    <div class="reward-panel clearfix">
+    <h1>My Rewards</h1>
+        <div ng-repeat="reward in vm.data.rewards">
+            <div class="reward-item">
+                <h4 ng-bind="reward.description"></h4>
+                <div class="reward-img vertical-middle">
+                <img src="{{reward.img_uri}}" alt="{{reward.description}}">
                 </div>
-            </div><!-- /.row -->
+                <div id="reward-detail"><a id="btn-reward-detail" href="#" title="Reward details">Details</a>
+                </div>
+                <div id="reward-dialog">
+                    <h4>{{reward.description}}</h4>
+                    <p ng-bind="reward.details">{{reward.reward_detail}}</p>
+                </div>
+                 <a href="" class="btn-redeem" ng-bind='reward.button_text'></a>
+            </div>
+        </div>
+    </div>
 
-        </div><!-- /.row -->
 
-    </div><!-- /.row -->
-
-</div><!-- /.well -->
+    </script>

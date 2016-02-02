@@ -1,57 +1,15 @@
-﻿<!--nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-header">
-        <a href="/" class="navbar-brand"><span class="brand-title">{{vm.title}}</span></a>
-        <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-    </div>
-    <div class="navbar-collapse collapse">
-        <div class="pull-right navbar-logo">
-            <ul class="nav navbar-nav pull-right">
-            </ul>
-        </div>
-    </div>
-</nav-->
+﻿<div class="logo"><img src="content/images/logo-CKPT.png" /></div>
 
-<nav id="main-navbar" ng-if="showMainNavBar" class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button ng-if="loggedIn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-id">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a ng-if="loggedIn==false" class="navbar-brand page-scroll" href="http://www.checkpointchallenge.com">
-                <i class="fa fa-play-circle"></i>  CheckPoint <span class="light">Challenge</span> 
-            </a>
-            <a ng-if="loggedIn" class="navbar-brand page-scroll" href="#/">
-                <i class="fa fa-play-circle"></i>  Member <span class="light">Zone</span> 
-            </a>
-        </div>
-        
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div ng-if="loggedIn" class="navbar-main-collapse collapse navbar-collapse" id="navbar-collapse-id">
-            <ul class="nav navbar-nav">
-                <!--li data-match-route="/$"><a href="#/">Home</a></li-->
-                <li data-match-route="/rewards"><a ng-href="#/rewards"><i class="fa fa-trophy"></i> My Rewards</a></li>
-                <li data-match-route="/profile"><a ng-href="#/profile"><i class="fa fa-user"></i> Profile</a></li>
-                <li data-match-route="/trivia"><a ng-href="#/trivia"><i class="fa fa-gamepad"></i> Play</a></li>
-                <li data-match-route="/contests"><a ng-href="#/contests"><i class="fa fa-gamepad"></i> Contests</a></li>
-                <li data-match-route="/tradingzone"><a ng-href="#/tradings"><i class="fa fa-exchange"></i> Trading Zone</a></li>
-            </ul>
-            <ul ng-if="loggedIn" class="nav navbar-nav navbar-right">
-<!--
-                <li>
-                    <div ng-translate-language-select></div>
-                </li>
--->
-                <li>
-                    <a ng-href="#/signin">
-                    Sign Out <i class="fa fa-sign-out"></i>
-                    </a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+<nav>
+<ul class="navbar"  role="navigation">
+    <!--li data-match-route="/$"><a href="#/">Home</a></li-->
+    <li data-match-route="/rewards"><a ng-href="#/contests">How it works</a></li>
+    <li data-match-route="/profile"><a ng-href="#/rewards">Rewards</a></li>
+    <li data-match-route="/trivia" class="btn-play"><a ng-href="#/trivia">Play to earn</a></li>
+    <li data-match-route="/contests"><a ng-href="#/contests">Contests</a></li>
+    <li data-match-route="/tradingzone"><a ng-href="#/tradings">Trading Zone</a></li>
+    <li data-match-route="/about"><a ng-href="#/about">About</a></li>
+</ul>
 </nav>
+
+<div class="account"><i class="fa fa-user fa-2x"></i></div>

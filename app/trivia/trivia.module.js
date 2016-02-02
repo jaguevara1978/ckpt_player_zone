@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.trivia', []);
+    angular.module('app.trivia', [ 'timer' ]);
 })();

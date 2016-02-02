@@ -1,38 +1,193 @@
-<!-- Add your site or application content here -->
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button ng-if="loggedIn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-id">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand page-scroll" href="#/profile">
-                <i class="fa fa-arrow-left"></i>  Back to Member <span class="light">Zone</span> 
-            </a>
+<div class="container-ckpt">
+    <!--Timer-->
+    <div id="timer-bar">
+        <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress>
+    </div>
+    <!--Scores Panel-->
+    <div id="score-bar-ckpt" class="clearfix">
+        <div class="home-ckpt">
+            <a ng-href="#/rewards" title="My Rewards"><i class="fa fa-home fa-2x"></i></a>
         </div>
-        
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div  ng-if="loggedIn" class="collapse navbar-collapse navbar-main-collapse" id="navbar-collapse-id">
-            <ul class="nav navbar-nav">
-                <li >
-                    <a type="button" class="btn btn-lg btn-danger" data-template-url="trivia/tpl/question.aside.tpl.html" data-placement="right" data-animation="am-fade-and-slide-right" bs-aside="aside" data-container="body" data-show="true">
-                        Raise points! <i class="fa fa-play-circle"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul ng-if="loggedIn" class="nav navbar-nav navbar-right">
-                <li>
-                    <a ng-href="#/signin">
-                    Sign Out <i class="fa fa-sign-out"></i>
-                    </a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>   
+        <div class="point-ckpt">
+            <progress class="pointBar" max="2000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
+            <div class="icon"><img src="content/images/icon-coin.png" /></div>
+            <span class="progress-value">Points: {{vm.data.player_stats.accumulated_points}}</span>
+        </div>
+        <div class="reward-ckpt">
+            <progress class="rewardBar" max="80" value="{{vm.data.player_stats.accumulated_rewards}}"></progress>
+            <div class="icon"><img src="content/images/icon-rewards.png" /></div>
+            <span class="progress-value">Rewards: {{vm.data.player_stats.accumulated_rewards}}</span>
+        </div>
+    </div>
+    <!--Background Disable-->
+    <!--Bg Disable-->
+    <div id="grey-out"></div>
+    <!--Trivia Box-->
+    <div id="trivia-container">
+        <div id="trivia-toggle">
+            <button id="btn-toggle" class="btn chevron-down" onClick="toggleTrivia()"></button>
+        </div>
+        <div id="trivia-box">
+            <!--Rewards-->
+            <div class="trivia-reward" ng-show="vm.showReward">
+                <h3>Congratulations! You just won</h3>
+                <h2>{{vm.data.reward.reward_title}}</a></h2>
+                <div class="reward-img">
+                    <img src="{{vm.data.reward.img_uri}}" alt="{{vm.data.reward.reward_title}}">
+                </div>
+                <div id="reward-detail"><a id="btn-reward-detail" href="#" title="Reward details">Details</a>
+                </div>
+                <div id="reward-dialog">
+                    <h4>{{vm.data.reward.reward_title}}</h4>
+                    <p>{{vm.data.reward.reward_detail}}</p>
+                </div>
+                <div class="btn-continue"><a class="btn-trivia" ng-click="vm.getQuestion()">Continue</a>
+                </div>
+            </div>
 
-<!--iframe class="embed-responsive-item trivia-iframe" src="http://shop.lululemon.com/"></iframe-->
-<!-- 16:9 aspect ratio style="border:groove"-->
-<div class="iframe-custom embed-responsive embed-responsive-16by9 fill">
-    <iframe class="embed-responsive-item trivia-iframe" ng-src="{{vm.trustSrc(vm.data.site)}}"></iframe>
-</div>
+            <!-- Feedback -->
+            <div ng-show="vm.feedback == true">
+                <!--Correct answer-->
+                <div class="trivia-right" ng-show="vm.data.correct == 1 && vm.feedback == true">
+                    <div class="animation-right-answer">
+                        <div class="right-answer-text">Good Job!</div>
+                    </div>
+                </div>
+                <!--Wrong answer-->
+                <div class="trivia-wrong" ng-show="vm.data.correct == 0 && vm.feedback == true">
+                    <div class="animation-wrong-answer">
+                        <div class="wrong-answer-text clearfix">Opps!</div>
+                    </div>
+                </div>
+                <div class="btn-continue" ng-show="vm.data.reward == null"><a class="btn-trivia" ng-click="vm.getQuestion()">Continue</a>
+                </div>
+            </div>
+            <!--Q&A-->
+            <!-- ng-show="vm.feedback == false" -->
+            <div class="trivia-game" ng-show="vm.feedback == false && vm.showReward == false">
+                <h1 ng-bind="vm.data.description"></h1>
+                <a class="trivia-options" ng-class="vm.questionOptionClass(opt.value)" ng-repeat="opt in vm.data.options" value="{{opt.value}}" ng-click="vm.validateAnswer(opt.value)">
+                {{opt.option}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--iframe-->
+    <div class="iframe-custom">
+        <iframe ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="no"></iframe>
+    </div>
+    <script type="application/javascript">
+    var greyOut = document.getElementById("grey-out");
+    var triviaContainer = document.getElementById("trivia-container");
+    var triviaBox = document.getElementById("trivia-box");
+    var btnToggle = document.getElementById("btn-toggle");
+    var scoreBarCKPT = document.getElementById("score-bar-ckpt");
+    var rewardDialog = document.getElementById("reward-dialog");
+
+
+    //Trivia Box and greyOut come up
+
+    TweenMax.to(triviaContainer, 0.5, {
+        bottom: "0",
+        delay: 2
+    });
+
+    TweenMax.to(greyOut, 0.5, {
+        opacity: "0.5",
+        delay: 2
+    });
+
+    TweenMax.to(scoreBarCKPT, 0.5, {
+        opacity: "1",
+        delay: 2
+    });
+
+
+    //Grey out hover 
+    $(triviaBox).hover(function() {
+        $(greyOut).css("display", "block");
+
+    }, function() {
+        $(greyOut).css("display", "none");
+    });
+
+
+
+    function toggleTrivia(id) {
+        if (triviaBox.style.display == 'none') {
+            triviaBox.style.display = 'block';
+            greyOut.style.display = 'block';
+            scoreBarCKPT.style.display = 'block';
+            btnToggle.id = 'btn-toggle';
+            btnToggle.className = 'btn chevron-down';
+        } else {
+            triviaBox.style.display = 'none';
+            greyOut.style.display = 'none';
+            scoreBarCKPT.style.display = 'none';
+            btnToggle.id = 'btn-toggle-up';
+            btnToggle.className = 'btn chevron-up fa-2x';
+
+        }
+    }
+
+
+    //Pop-up Dialog
+
+    $(function() {
+        var moveLeft = 15;
+        var moveUp = $(rewardDialog).outerHeight();
+
+        $('a#btn-reward-detail').hover(function(e) {
+            $(rewardDialog).show()
+                .css('top', e.pageY - moveUp + 10)
+                .css('left', e.pageX + moveLeft)
+                .appendTo('body');
+        }, function() {
+            $(rewardDialog).hide();
+        });
+    });
+
+
+
+    //F;y tp Cart animation
+
+    // $('.add-to-cart').on('click', function () {
+    //         var cart = $('.shopping-cart');
+    //         var imgtodrag = $(this).parent('.item').find("img").eq(0);
+    //         if (imgtodrag) {
+    //             var imgclone = imgtodrag.clone()
+    //                 .offset({
+    //                 top: imgtodrag.offset().top,
+    //                 left: imgtodrag.offset().left
+    //             })
+    //                 .css({
+    //                 'opacity': '0.5',
+    //                     'position': 'absolute',
+    //                     'height': '150px',
+    //                     'width': '150px',
+    //                     'z-index': '100'
+    //             })
+    //                 .appendTo($('body'))
+    //                 .animate({
+    //                 'top': cart.offset().top + 10,
+    //                     'left': cart.offset().left + 10,
+    //                     'width': 75,
+    //                     'height': 75
+    //             }, 1000, 'easeInOutExpo');
+
+    //             setTimeout(function () {
+    //                 cart.effect("shake", {
+    //                     times: 2
+    //                 }, 200);
+    //             }, 1500);
+
+    //             imgclone.animate({
+    //                 'width': 0,
+    //                     'height': 0
+    //             }, function () {
+    //                 $(this).detach()
+    //             });
+    //         }
+    //     });
+
+    </script>
