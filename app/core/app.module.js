@@ -34,9 +34,10 @@
         ,'mgcrea.ngStrap.popover'
         ,'ngPasswordStrength'
         ,'toaster'
-        ,'pascalprecht.translate' // angular-translate
-        ,'tmh.dynamicLocale' // angular-dynamic-locale
-                /*
+        // ,'pascalprecht.translate' // Bower: angular-translate-handler-log, angular-translate-loader-static-files, angular-translate-storage-cookie, angular-translate-storage-local depends on angular-translate
+        // ,'tmh.dynamicLocale' // angular-dynamic-locale
+
+        /*
          * Everybody has access to these.
          * We could place these under every feature area,
          * but this is easier to maintain.
@@ -63,7 +64,9 @@
     .run( run );
 
     /*@ngInject*/
-    function config( $routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, config ) {
+        // ******** i18n Stuff - it is working but better use it later, Not Yet **********
+//     function config( $routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, config ) {
+    function config( $routeProvider, $httpProvider, config ) {
         $routeProvider
           .otherwise( {
             redirectTo: '/signin'
@@ -72,6 +75,9 @@
         $httpProvider.interceptors.push( 'HttpInterceptorService' );
 
         // Adding asynchronous loading for the translations
+/*
+        // ******** i18n Stuff - it is working but better use it later, Not Yet **********
+
         $translateProvider.useMissingTranslationHandlerLog( );
         $translateProvider.useStaticFilesLoader( {
             prefix: 'content/resources/locale-',// path to translations files
@@ -92,14 +98,19 @@
 
         // Enable escaping of HTML - Security
         $translateProvider.useSanitizeValueStrategy( 'escapeParameters' );
+*/
 
         // Direction of where to load the $locale settings files for angular-dynamic-locale
-        tmhDynamicLocaleProvider.localeLocationPattern( 'bower_components/angular-i18n/angular-locale_{{locale}}.js' );
+//         tmhDynamicLocaleProvider.localeLocationPattern( 'bower_components/angular-i18n/angular-locale_{{locale}}.js' );
 
     }
 
     /*@ngInject*/
-    function run( $rootScope, $location, $cookies, $http, config, $injector, $translate, $window ) {
+//     function run( $rootScope, $location, $cookies, $http, config, $injector, $translate, $window ) {
+    function run( $rootScope, $location, $cookies, $http, config, $injector, $window ) {
+        
+/*
+        // ******** i18n Stuff - it is working but better use it later, Not Yet **********
         // Set Browser language by default      
         var lang = $window.navigator.language || $window.navigator.userLanguage; 
         // Apply the browsers language
@@ -113,6 +124,7 @@
             }
         }
         // Set Browser language by default      
+*/
 
         //When url is /activate
         if ( $location.path( ) == '/activate' ) {

@@ -41,7 +41,7 @@ initAnimation( );
                     try {
                         vm.data.correct_answer_id = null;
                         vm.data.player_answer_id = null;
-                        countDownClass();
+                        // countDownClass();
                    } catch( error ) { }
                     vm.data = response.data;
 
@@ -58,9 +58,11 @@ initAnimation( );
                         validateAnswer(-1);
                     }, vm.data.display_time * 1000)
 
+/*
                     console.log( 'Get Question:' );
                     console.log(vm.data);
-                   
+*/
+
                 } else {
                     FlashService.Error( response.message );
                 }
@@ -88,7 +90,7 @@ initAnimation( );
         $timeout.cancel( vm.timeout_promise );
         var data = {
             tr_id: option
-        }        
+        }
         ApiService.post( 'challenge_process', data )
             .then( function( response ) {
                 if ( response.success ) {
@@ -98,8 +100,8 @@ initAnimation( );
                     console.log(vm.data);
 */
                     vm.feedback = false;
-                    
-                    $timeout(function() {
+
+                    $timeout( function( ) {
                         //To show hide Feedback object
                         vm.feedback = true;
 
@@ -113,9 +115,7 @@ initAnimation( );
                         } else {}
 
                     }, 2000);
-                    console.log(vm.feedback);
                 } else {
-                   console.log(response);
                    FlashService.Error( response.message );
                 }
             }
@@ -123,25 +123,25 @@ initAnimation( );
     }
 
     /*
-    * Recursively merge properties of two objects 
+    * Recursively merge properties of two objects
     */
     function MergeRecursive(obj1, obj2) {
-    
+
       for (var p in obj2) {
         try {
           // Property in destination object set; update its value.
           if ( obj2[p].constructor==Object ) {
             obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-    
+
           } else {
             obj1[p] = obj2[p];
-    
+
           }
-    
+
         } catch(e) {
           // Property in destination object not set; create it and set its value.
           obj1[p] = obj2[p];
-    
+
         }
       }
       return obj1;
@@ -151,7 +151,7 @@ initAnimation( );
         $location.path( '/rewards' );
     }
 
-/*    
+/*
     //Validate iFrame
     function isAvailable(url, callback, timeout) {
         if (!+(timeout)||+(timeout)<0) {
