@@ -11,7 +11,7 @@
             appVersion: 0.1,
             // apiUrl: 'http://api.matoot.com/',
             // apiUrl: 'https://api.checkpointchallenge.com/',
-            apiUrl: 'http://api.checkpointchallenge.com/',
+            apiUrl: 'http://api.checkpointchallenge.com:81/',
             // apiUrl: 'http://localhost/matoot/api/api_cloned/public/',
             expiredTokenErrorKey: 'expired_token',
             cookie: {
