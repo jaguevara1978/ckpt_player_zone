@@ -56,7 +56,7 @@
                 <!--Wrong answer-->
                 <div class="trivia-wrong" ng-show="vm.data.correct == 0 && vm.feedback == true">
                     <div class="animation-wrong-answer">
-                        <div class="wrong-answer-text clearfix">Opps!</div>
+                        <div class="wrong-answer-text clearfix">Oops!</div>
                     </div>
                 </div>
                 <div class="btn-continue" ng-show="vm.data.reward == null"><a class="btn-trivia" ng-click="vm.getQuestion()">Continue</a>
@@ -74,7 +74,7 @@
     </div>
     <!--iframe-->
     <div class="iframe-custom">
-        <iframe ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="no"></iframe>
+        <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="no"></iframe>
     </div>
     <script type="application/javascript">
     var greyOut = document.getElementById("grey-out");
@@ -83,25 +83,7 @@
     var btnToggle = document.getElementById("btn-toggle");
     var scoreBarCKPT = document.getElementById("score-bar-ckpt");
     var rewardDialog = document.getElementById("reward-dialog");
-
-
-    //Trivia Box and greyOut come up
-
-    TweenMax.to(triviaContainer, 0.5, {
-        bottom: "0",
-        delay: 2
-    });
-
-    TweenMax.to(greyOut, 0.5, {
-        opacity: "0.5",
-        delay: 2
-    });
-
-    TweenMax.to(scoreBarCKPT, 0.5, {
-        opacity: "1",
-        delay: 2
-    });
-
+    var iframeSites = document.getElementById("iframe-sites");
 
     //Grey out hover 
     $(triviaBox).hover(function() {
@@ -115,12 +97,14 @@
 
     function toggleTrivia(id) {
         if (triviaBox.style.display == 'none') {
+             console.log("show");
             triviaBox.style.display = 'block';
             greyOut.style.display = 'block';
             scoreBarCKPT.style.display = 'block';
             btnToggle.id = 'btn-toggle';
             btnToggle.className = 'btn chevron-down';
         } else {
+             console.log("hide");
             triviaBox.style.display = 'none';
             greyOut.style.display = 'none';
             scoreBarCKPT.style.display = 'none';
@@ -147,6 +131,31 @@
         });
     });
 
+
+// Click outside
+
+// $(triviaBox).mousedown(function(e) {
+//     var clicked = $(e.target);  get the element clicked
+//     if (clicked.is(btnToggle) || clicked.parents().is('.modal')) {
+//         return;  click happened within the dialog, do nothing here
+//    } else {  click was outside the dialog, so close it
+//      $(triviaBox).hide();
+//    }
+// });
+
+// $(document).on('click', function(e) {
+//     var $container = $("#trivia-box");
+
+//     if (!$container.is(e.target) && $container.has(e.target).length === 0) {
+//         triviaBox.style.display = 'none';
+//             greyOut.style.display = 'none';
+//             scoreBarCKPT.style.display = 'none';
+//             btnToggle.id = 'btn-toggle-up';
+//             btnToggle.className = 'btn chevron-up fa-2x'; 
+//         }
+
+
+// });
 
 
     //F;y tp Cart animation

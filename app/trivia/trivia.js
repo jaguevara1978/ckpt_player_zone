@@ -35,6 +35,10 @@ initAnimation( );
         vm.showReward = false;
         vm.feedback = false;
 
+        TweenMax.to(triviaContainer, 0.1, {bottom: "-500px",});
+        TweenMax.to(greyOut, 0.1, {opacity: "0",});
+        TweenMax.to(scoreBarCKPT, 0.1, {opacity: "0",});
+
         ApiService.get( 'challenge', 0 )
             .then( function( response ) {
                 if ( response.success ) {
@@ -45,18 +49,27 @@ initAnimation( );
                    } catch( error ) { }
                     vm.data = response.data;
 
+                    TweenMax.to(triviaContainer, 0.5, {bottom: "0",delay: 2});
+                    TweenMax.to(greyOut, 0.5, {opacity: "0.5",delay: 2});
+                    TweenMax.to(scoreBarCKPT, 0.5, {opacity: "1",delay: 2});
 
                     vm.data.actual_time = vm.data.display_time;
+                    
+                    $timeout( function() {
                     vm.countdown_promise = $interval( function( ) {
                          vm.data.actual_time--;
                          if ( vm.data.actual_time == 0 ) {
                             $interval.cancel( vm.countdown_promise );
                          }
                     }, 1000 );
+                }, 2000 );
 
                     vm.timeout_promise = $timeout( function() {
                         validateAnswer(-1);
                     }, vm.data.display_time * 1000)
+
+
+
 
 /*
                     console.log( 'Get Question:' );
