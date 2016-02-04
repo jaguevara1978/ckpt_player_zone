@@ -49,9 +49,9 @@ initAnimation( );
                    } catch( error ) { }
                     vm.data = response.data;
 
-                    TweenMax.to(triviaContainer, 0.5, {bottom: "0",delay: 2});
-                    TweenMax.to(greyOut, 0.5, {opacity: "0.5",delay: 2});
-                    TweenMax.to(scoreBarCKPT, 0.5, {opacity: "1",delay: 2});
+                    TweenMax.to(triviaContainer, 0.5, {bottom: "0",delay: 5});
+                    TweenMax.to(greyOut, 0.5, {opacity: "0.5",delay: 5});
+                    TweenMax.to(scoreBarCKPT, 0.5, {opacity: "1",delay: 5});
 
                     vm.data.actual_time = vm.data.display_time;
                     
