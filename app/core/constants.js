@@ -9,10 +9,8 @@
         .constant( 'config', {
             appName: 'app',
             appVersion: 0.1,
-            // apiUrl: 'http://api.matoot.com/',
-            // apiUrl: 'https://api.checkpointchallenge.com/',
             apiUrl: 'http://api.checkpointchallenge.com:81/',
-            // apiUrl: 'http://localhost/matoot/api/api_cloned/public/',
+            // apiUrl: 'http://localhost/matoot/api/api/public/',
             expiredTokenErrorKey: 'expired_token',
             cookie: {
                 name: 'CKPTMembers',
