@@ -19,18 +19,16 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
     $rootScope.showMainNavBar = false;
 
     //For testing purposes only
-/*
     vm.user = {
         data: {
             fname: 'Alex',
             lname: 'Guevara',
-            primary_email: 'jaguevara1978@gmail.com',
+            primary_email: 'aguevara@matoot.com',
         }, 
         extra: {
             password: 'pass'
         }
     };
-*/
    //For testing purposes only
 
     vm.signup = signup;
@@ -52,7 +50,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
                     $location.path( '/suconf' );
                 } else {
                     FlashService.Error( response.message );
-                    $location.path( '/suconf' );
+                    //$location.path( '/suconf' );
                 }
             });
     }
