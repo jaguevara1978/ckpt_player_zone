@@ -34,9 +34,11 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
             ApiService.get( 'auth', 'activate' )
                 .then( function( response ) {
                     // Just for testing, REMOVE
+/*
                     vm.data = {
                         siteKey: '6Lc1bg4TAAAAACYCPRXQa6p2FfAG0RNpe3Z2ECBs'
                     }
+*/
 
                     if ( response.success ) {
                         vm.data = response.data;

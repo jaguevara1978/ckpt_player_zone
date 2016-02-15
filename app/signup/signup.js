@@ -19,6 +19,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
     $rootScope.showMainNavBar = false;
 
     //For testing purposes only
+/*
     vm.user = {
         data: {
             fname: 'Alex',
@@ -29,6 +30,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
             password: 'pass'
         }
     };
+*/
    //For testing purposes only
 
     vm.signup = signup;
