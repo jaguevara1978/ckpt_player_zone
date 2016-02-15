@@ -423,7 +423,7 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
 
     function getAnimation() {
         var element = document.createElement( 'div' );
-        element.className += "coin";
+        element.className += "flying-coin";
         container.appendChild( element );
         TweenLite.set( element, { x:rectButtonToggle.left, y:rectButtonToggle.bottom } );
         //create a semi-random tween 
@@ -468,7 +468,7 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
         TweenLite.from( rewardBox, 2, { scale: 0, ease: Elastic.easeOut.config( 1, 0.3 ) } );
 
         var element = document.createElement( 'div' );
-        element.className += "reward";
+        element.className += "flying-reward";
         container.appendChild( element );
         TweenLite.set( element, { x:rectButtonToggle.left, y:rectButtonToggle.bottom } );
         //create a semi-random tween 
@@ -714,11 +714,11 @@ var FireworkExplosions = {
     // set up how many points the firework
     // should have as well as the velocity
     // of the exploded particles etc
-    var points          = 6 + Math.round(Math.random() * 15);
-    var jump            = 3 + Math.round(Math.random() * 7);
+    var points          = 6 + Math.round( Math.random( ) * 15 );
+    var jump            = 3 + Math.round( Math.random( ) * 7 );
     var subdivisions    = 10;
     var radius          = 80;
-    var randomVelocity  = -(Math.random() * 3 - 6);
+    var randomVelocity  = -( Math.random( ) * 3 - 6 );
 
     var start           = 0;
     var end             = 0;

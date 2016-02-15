@@ -957,14 +957,14 @@ text-align:center;
   background: #34A6C1;
 }
 
-.coin {
+.flying-coin {
     background:url(../images/icon-points.png);
     width:27px;
     height:29px;
     position:absolute;
 }
 
-.reward {
+.flying-reward {
     background:url(../images/icon-rewards.png);
     width:27px;
     height:29px;
