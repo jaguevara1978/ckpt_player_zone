@@ -1,0 +1,29 @@
+
+<script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+<div class="container">
+    <h1>{{ 'activate.title' | translate }} <small>{{ 'activate.subtitle' | translate }}</small></h1>
+    <p>{{ 'activate.text.followinstructions' | translate }}</p>
+</div>
+
+<form name="form" role="form">
+    <div vc-recaptcha theme="light" key="vm.data.siteKey"></div>
+
+    <hr class="colorgraph">
+
+	<div class="row">
+        <!-- SIGN IN BUTTON -->
+		<div class="col-xs-12 col-sm-12 col-md-12">
+            <button ng-click="vm.confirmSignUp( )" ng-disabled="form.$invalid" class="btn btn-primary btn-lg btn-block" busy>
+                Confirm Signup!  <i class="fa fa-sign-in"></i></span>
+                <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+            </button>
+        </div>
+	</div>
+
+
+	<!--div class="row"> <--- GOOGLE SIGN IN
+		<div class="col-xs-12 col-md-12">
+            <div class="g-signin2 btn btn-primary btn-block"" data-onsuccess="onSignIn" data-theme="dark"></div>
+		</div>
+	</div-->
+</form>
