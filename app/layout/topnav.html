@@ -1,15 +1,20 @@
 ﻿<div class="logo"><img src="content/images/logo-CKPT.png" /></div>
 
 <nav>
-<ul class="navbar"  role="navigation">
-    <!--li data-match-route="/$"><a href="#/">Home</a></li-->
-    <li data-match-route="/rewards"><a ng-href="#/contests">How it works</a></li>
-    <li data-match-route="/profile"><a ng-href="#/rewards">Rewards</a></li>
-    <li data-match-route="/trivia" class="btn-play"><a ng-href="#/trivia">Play to earn</a></li>
-    <li data-match-route="/contests"><a ng-href="#/contests">Contests</a></li>
-    <li data-match-route="/tradingzone"><a ng-href="#/tradings">Trading Zone</a></li>
-    <li data-match-route="/about"><a ng-href="#/about">About</a></li>
-</ul>
+    <ul class="navbar"  role="navigation">
+        <!--li data-match-route="/$"><a href="#/">Home</a></li-->
+<!--         <li data-match-route="/rewards"><a ng-href="#/contests">How it works</a></li> -->
+        <li data-match-route="/profile"><a ng-href="#/rewards">Rewards</a></li>
+        <li data-match-route="/trivia" class="btn-play"><a ng-href="#/trivia">Play to earn</a></li>
+<!--         <li data-match-route="/contests"><a ng-href="#/contests">Contests</a></li> -->
+<!--         <li data-match-route="/tradingzone"><a ng-href="#/tradings">Trading Zone</a></li> -->
+<!--         <li data-match-route="/about"><a ng-href="#/about">About</a></li> -->
+        <li ng-if="loggedIn" class="nav navbar-nav navbar-right">
+            <a ng-href="#/signin">
+            Sign Out <i class="fa fa-sign-out"></i>
+            </a>
+        </li>
+    </ul>
 </nav>
 
 <div class="account"><i class="fa fa-user fa-2x"></i></div>

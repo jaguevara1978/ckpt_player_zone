@@ -1,35 +1,55 @@
-<div class="container-ckpt">
+<style>
+canvas {
+    -webkit-transform: translateZ(0);
+}
+</style>
+
+<div id="container-ckpt" class="container-ckpt">
     <!--Timer-->
     <div id="timer-bar">
-        <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress>
+		    <div class="count_down_bar" id="count_down_bar"></div>
+            <!-- <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress> -->
     </div>
+
     <!--Scores Panel-->
     <div id="score-bar-ckpt" class="clearfix">
         <div class="home-ckpt">
             <a ng-href="#/rewards" title="My Rewards"><i class="fa fa-home fa-2x"></i></a>
         </div>
         <div class="point-ckpt">
-            <progress class="pointBar" max="2000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
+<!-- 		    <div class="points_bar" id="points_bar"></div> -->
+            <progress id="points_bar" class="pointBar" max="{{vm.data.player_stats.max_points}}"></progress>
             <div class="icon"><img src="content/images/icon-coin.png" /></div>
             <span class="progress-value">Points: {{vm.data.player_stats.accumulated_points}}</span>
         </div>
         <div class="reward-ckpt">
-            <progress class="rewardBar" max="80" value="{{vm.data.player_stats.accumulated_rewards}}"></progress>
+            <progress id="rewards_bar" class="rewardBar" max="80"></progress>
             <div class="icon"><img src="content/images/icon-rewards.png" /></div>
             <span class="progress-value">Rewards: {{vm.data.player_stats.accumulated_rewards}}</span>
         </div>
     </div>
     <!--Background Disable-->
     <!--Bg Disable-->
-    <div id="grey-out"></div>
+    <div id="grey-out">
+        
+        <!-- Hiding library elements in the DOM is fun -->
+        <aside id="library">
+<!--             <img src="content/images/nightsky.png" id="nightsky" /> -->
+            <img src="content/images/big-glow.png" id="big-glow" />
+            <img src="content/images/small-glow.png" id="small-glow" />
+        </aside>
+
+        
+    </div>
     <!--Trivia Box-->
     <div id="trivia-container">
+<!--         <div id="container"></div> -->
         <div id="trivia-toggle">
-            <button id="btn-toggle" class="btn chevron-down" onClick="toggleTrivia()"></button>
+            <button id="btn-toggle" class="btn btn-toggle chevron-down" ng-click="vm.toggleTrivia( )"></button>
         </div>
         <div id="trivia-box">
             <!--Rewards-->
-            <div class="trivia-reward" ng-show="vm.showReward">
+            <div id="reward-box" class="trivia-reward" ng-show="vm.showReward">
                 <h3>Congratulations! You just won</h3>
                 <h2>{{vm.data.reward.reward_title}}</a></h2>
                 <div class="reward-img">
@@ -46,15 +66,15 @@
             </div>
 
             <!-- Feedback -->
-            <div ng-show="vm.feedback == true">
+            <div id="feedback-box" ng-show="vm.feedback == true">
                 <!--Correct answer-->
-                <div class="trivia-right" ng-show="vm.data.correct == 1 && vm.feedback == true">
+                <div id="feedback-good" class="trivia-right" ng-show="vm.data.correct == 1 && vm.feedback == true">
                     <div class="animation-right-answer">
                         <div class="right-answer-text">Good Job!</div>
                     </div>
                 </div>
                 <!--Wrong answer-->
-                <div class="trivia-wrong" ng-show="vm.data.correct == 0 && vm.feedback == true">
+                <div id="feedback-bad" class="trivia-wrong" ng-show="vm.data.correct == 0 && vm.feedback == true">
                     <div class="animation-wrong-answer">
                         <div class="wrong-answer-text clearfix">Oops!</div>
                     </div>
@@ -64,58 +84,26 @@
             </div>
             <!--Q&A-->
             <!-- ng-show="vm.feedback == false" -->
-            <div class="trivia-game" ng-show="vm.feedback == false && vm.showReward == false">
-                <h1 ng-bind="vm.data.description"></h1>
+            <div id="" class="trivia-game" ng-show="vm.feedback == false && vm.showReward == false">
+                <h1 id="challenge_text" ng-bind="vm.data.description"></h1>
                 <a class="trivia-options" ng-class="vm.questionOptionClass(opt.value)" ng-repeat="opt in vm.data.options" value="{{opt.value}}" ng-click="vm.validateAnswer(opt.value)">
-                {{opt.option}}
+                    {{opt.option}}
                 </a>
             </div>
         </div>
     </div>
     <!--iframe-->
     <div class="iframe-custom">
-        <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="no"></iframe>
+        <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="yes"></iframe>
     </div>
-    <script type="application/javascript">
-    var greyOut = document.getElementById("grey-out");
-    var triviaContainer = document.getElementById("trivia-container");
-    var triviaBox = document.getElementById("trivia-box");
-    var btnToggle = document.getElementById("btn-toggle");
-    var scoreBarCKPT = document.getElementById("score-bar-ckpt");
+
+<script type="application/javascript">
+</script>
+
+<script type="application/javascript">
+    //Pop-up Dialog
     var rewardDialog = document.getElementById("reward-dialog");
     var iframeSites = document.getElementById("iframe-sites");
-
-    //Grey out hover 
-    $(triviaBox).hover(function() {
-        $(greyOut).css("display", "block");
-
-    }, function() {
-        $(greyOut).css("display", "none");
-    });
-
-
-
-    function toggleTrivia(id) {
-        if (triviaBox.style.display == 'none') {
-             console.log("show");
-            triviaBox.style.display = 'block';
-            greyOut.style.display = 'block';
-            scoreBarCKPT.style.display = 'block';
-            btnToggle.id = 'btn-toggle';
-            btnToggle.className = 'btn chevron-down';
-        } else {
-             console.log("hide");
-            triviaBox.style.display = 'none';
-            greyOut.style.display = 'none';
-            scoreBarCKPT.style.display = 'none';
-            btnToggle.id = 'btn-toggle-up';
-            btnToggle.className = 'btn chevron-up fa-2x';
-
-        }
-    }
-
-
-    //Pop-up Dialog
 
     $(function() {
         var moveLeft = 15;
@@ -130,73 +118,4 @@
             $(rewardDialog).hide();
         });
     });
-
-
-// Click outside
-
-// $(triviaBox).mousedown(function(e) {
-//     var clicked = $(e.target);  get the element clicked
-//     if (clicked.is(btnToggle) || clicked.parents().is('.modal')) {
-//         return;  click happened within the dialog, do nothing here
-//    } else {  click was outside the dialog, so close it
-//      $(triviaBox).hide();
-//    }
-// });
-
-// $(document).on('click', function(e) {
-//     var $container = $("#trivia-box");
-
-//     if (!$container.is(e.target) && $container.has(e.target).length === 0) {
-//         triviaBox.style.display = 'none';
-//             greyOut.style.display = 'none';
-//             scoreBarCKPT.style.display = 'none';
-//             btnToggle.id = 'btn-toggle-up';
-//             btnToggle.className = 'btn chevron-up fa-2x'; 
-//         }
-
-
-// });
-
-
-    //F;y tp Cart animation
-
-    // $('.add-to-cart').on('click', function () {
-    //         var cart = $('.shopping-cart');
-    //         var imgtodrag = $(this).parent('.item').find("img").eq(0);
-    //         if (imgtodrag) {
-    //             var imgclone = imgtodrag.clone()
-    //                 .offset({
-    //                 top: imgtodrag.offset().top,
-    //                 left: imgtodrag.offset().left
-    //             })
-    //                 .css({
-    //                 'opacity': '0.5',
-    //                     'position': 'absolute',
-    //                     'height': '150px',
-    //                     'width': '150px',
-    //                     'z-index': '100'
-    //             })
-    //                 .appendTo($('body'))
-    //                 .animate({
-    //                 'top': cart.offset().top + 10,
-    //                     'left': cart.offset().left + 10,
-    //                     'width': 75,
-    //                     'height': 75
-    //             }, 1000, 'easeInOutExpo');
-
-    //             setTimeout(function () {
-    //                 cart.effect("shake", {
-    //                     times: 2
-    //                 }, 200);
-    //             }, 1500);
-
-    //             imgclone.animate({
-    //                 'width': 0,
-    //                     'height': 0
-    //             }, function () {
-    //                 $(this).detach()
-    //             });
-    //         }
-    //     });
-
-    </script>
+</script>

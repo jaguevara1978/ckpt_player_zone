@@ -24,7 +24,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
         data: {
             fname: 'Alex',
             lname: 'Guevara',
-            primary_email: 'jaguevara1978@gmail.com',
+            primary_email: 'aguevara@matoot.com',
         }, 
         extra: {
             password: 'pass'
@@ -52,7 +52,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
                     $location.path( '/suconf' );
                 } else {
                     FlashService.Error( response.message );
-                    $location.path( '/suconf' );
+                    //$location.path( '/suconf' );
                 }
             });
     }

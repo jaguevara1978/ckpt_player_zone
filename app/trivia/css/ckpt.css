@@ -55,12 +55,12 @@
   }
 
 
-#btn-toggle {
+.btn-toggle {
   width: 70px;
   height:25px;
 }
 
-#btn-toggle-up {
+.btn-toggle-up {
   width: 160px;
   height:40px;
 }
@@ -668,7 +668,7 @@ width:100%;}
   background:transparent;
 }
 
-#btn-toggle {
+.btn-toggle {
   display:block;
   margin-left:auto;
   margin-right:auto;
@@ -687,11 +687,11 @@ box-shadow:         0px -1px 20px 1px rgba(0, 0, 0, 0.75);*/
   
 }
 
-#btn-toggle:hover{
+.btn-toggle:hover{
   background:#eee;
 }
 
-#btn-toggle-up:hover {
+.btn-toggle-up:hover {
   background:#4EBAC4;
 }
 
@@ -706,7 +706,7 @@ text-decoration:none;
   }
 
 
-#btn-toggle-up {
+.btn-toggle-up {
   display:block;
   margin-left:auto;
   margin-right:auto;
@@ -936,8 +936,37 @@ text-align:center;
 
 }
 
+/*Alex - 12-Feb-2016*/
+.count_down_bar {
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:100;
+  width:100%;
+  height:5px;
+  background: #C8525E;
+}
 
+.points_bar {
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:100;
+  width:95%;
+  height:20px;
+  background: #34A6C1;
+}
 
+.flying-coin {
+    background:url(../images/icon-points.png);
+    width:27px;
+    height:29px;
+    position:absolute;
+}
 
-
-
+.flying-reward {
+    background:url(../images/icon-rewards.png);
+    width:27px;
+    height:29px;
+    position:absolute;
+}

@@ -10,7 +10,7 @@
             appName: 'app',
             appVersion: 0.1,
             apiUrl: 'http://api.checkpointchallenge.com:81/',
-            // apiUrl: 'http://localhost/matoot/api/api/public/',
+            //apiUrl: 'http://localhost/matoot/api/api/public/',
             expiredTokenErrorKey: 'expired_token',
             cookie: {
                 name: 'CKPTMembers',
