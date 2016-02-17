@@ -25,7 +25,7 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
                 .then(function ( response ) {
                     if ( response.success ) {
                         setCredentials( response.data );
-                        $location.path( '/profile' );
+                        $location.path( '/rewards' );
                     } else {
                         FlashService.Error( response.message );
                     }
