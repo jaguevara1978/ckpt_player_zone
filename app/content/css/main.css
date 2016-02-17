@@ -20,7 +20,7 @@
 /*Reward*/
 .logo{
   float:left;
-  width: 25%;
+  width: 20%;
 }
 
 .topnav nav {
@@ -83,6 +83,9 @@
 }
 
 @media (min-width: 600px) {
+    .content {
+      height:500px;
+    }
     .user{
         float:left;
         width: 35%;
@@ -101,6 +104,9 @@
 }
 
 @media (min-width: 900px) {
+   .content {
+      height:500px;
+    }
     .user{
         float:left;
         width: 18%;
@@ -132,7 +138,6 @@
 
 @media (min-width: 1366px) {
   .container {
-    display:block;
     width: 1366px;
     margin-left: auto;
     margin-right: auto;
@@ -183,7 +188,8 @@ margin-bottom:10px;
 
 .content {
   color: #ddd;
-  background-color: #0062d2;
+  background-color: #655643;
+  position:relative;
 }
 
 footer {
@@ -469,3 +475,574 @@ nav ul ul ul li {
 /* Change this in order to change the Dropdown symbol */
 li > a:after { content:  ' +'; }
 li > a:only-child:after { content: ''; }
+
+
+
+
+
+/*Sign up*/
+.signin-wrap{
+  width: 56%;
+  margin: 0 auto;
+  margin-top:7%;
+  color:#fef0e3;
+}
+.signin-form{
+  background:#B5C258;
+  padding: 3%;
+  margin: 5% 0;
+  position: relative;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  overflow:hidden;
+}
+
+
+.signin_form {
+  width: 43%;
+  float: left;
+  position: relative;
+}
+.sign-or {
+  width: 12%;
+  float: left;
+  position: relative;
+  padding-top:8%;
+}
+.account{
+  float:left;
+  width: 45%;
+}
+
+.or {
+  width:30px;
+  height:30px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 50%;
+  background:#999;
+  font-size:0.8em;
+  padding:6px;
+}
+
+/*start-signin-form*/
+.signin-form h1{
+  font-size: 1.3em;
+  text-align:left;
+  margin-bottom:0;
+}
+.signin_form ul {
+  list-style-type:none;
+  list-style-position:outside;
+  margin:0px;
+  padding:0px;
+}
+.signin_form li{
+  position:relative;
+} 
+  /* form element visual styles */
+  .signin_form li{ 
+    float: left;
+    outline: none;
+    border: 1px solid #DDDDDD;
+    font-size: 1.2em;
+    color: #B6B6B6;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 5%;
+    position: relative;
+    height: 35px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    background:#fef0e3;
+  }
+  .signin_form li:hover{ 
+    border: 1px solid #79B42B;
+    color:#79B42B;
+  }
+  .signin_form input {
+    float: left;
+    font-size: 0.9em;
+    padding: 7px 14px;
+    width: 75%;
+    border: none;
+    outline: none;
+    color:#B6B6B6;
+    background:#fef0e3;
+  }
+  .signin_form p {
+    float: right;
+    padding: 8px 7px;
+    width: 9.3%;
+    cursor: pointer;
+  }
+  .signin_form input[type="submit"] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background: #C8525E;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    letter-spacing:1px;
+    margin: 5% 0 2%;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+  } 
+.signin_form input[type="submit"]:hover {
+  background:#34A6C1;
+} 
+.signin_form input[type="checkbox"] {
+  width: 21px;
+  vertical-align: middle;
+  padding: 5px;
+  float:left;
+}
+.signin_form i{
+  font-size: 1.2em;
+  color:#666;
+  width: 40%;
+  float: left;
+}
+.forgot{
+  float: right;
+  width: 35%;
+  margin-top: 4px;
+}
+.forgot a{
+  color:#333;
+  font-size: 0.9em;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.forgot a:hover{ 
+  text-decoration:none;
+}
+/* === Form hints === */
+.form_hint {
+  color: #fff;
+  text-align: center;
+  background:#333;
+  border-radius: 3px 3px 3px 3px;
+  font-size:0.7em;
+  margin-left: 8px;
+  padding: 6px;
+  z-index: 999;
+  position: absolute;
+  right:-50px;
+  font-weight:100;
+  display: none;
+}
+.form_hint::before {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: -9px;
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #333;
+  border-top: 10px solid transparent;
+}
+.signin_form input:focus + .form_hint {display: inline;}
+.signin_form input:required:valid + .form_hint {color: #fff;
+  background: #D1572E;}
+.signin_form input:required:valid + .form_hint::before {color:#28921f;}
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fef0e3 inset;
+    -webkit-text-fill-color: #999 !important;
+}
+/*end-signin-form*/
+/*start-account*/
+.account h2 {
+  color:#79801e;
+  display: block;
+  font-size: 1.2em;
+  font-weight:500;
+  margin-bottom:10%;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.account h2 a{
+  color:#79801e;
+  text-decoration:underline;
+}
+.account h2 a:hover{
+  color:#79B42B;
+   text-decoration:none;
+}
+.span {
+  display: block;
+  width: 100%;
+  background: #3B5998;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.span img {
+  background:#354F88;
+  float: left;
+}
+.span img, .span1 img, .span2 img {
+    width:35px;
+    padding: 5px;
+}
+.span i {
+  color: #fff;
+  padding: 9px 14px;
+  float: left;
+  font-size: 1.1em;
+  font-weight: 400;
+  font-style:normal;
+}
+.span:hover {
+  background:#354F88;
+}
+.span1 {
+  margin-top: 3%;
+  width: 100%;
+  background: #45B0E3;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.span1 img {
+  background: #40A2D1;
+  padding: 7px;
+  float: left;
+}
+.span1 i {
+  color: #fff;
+  padding: 9px 20px;
+  float: left;
+  font-size: 1.1em;
+  font-weight: 400;
+  font-style:normal
+}
+.span1:hover {
+  background:#40A2D1;
+}
+.span2 {
+  margin-top: 3%;
+  width: 100%;
+  background: #DE4C34;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.span2 img {
+  background: #CE3E26;
+  padding: 7px;
+  float: left;
+}
+.span2 i {
+  color: #fff;
+  padding: 9px 17px;
+  float: left;
+  font-size: 1.1em;
+  font-weight: 400;
+  font-style:normal;
+}
+.span2:hover {
+  background: #CE3E26;
+}
+/*end-account*/
+/*start-checkbox*/
+.checkbox {
+  margin-bottom: 4px;
+  padding-left: 20px;
+  font-size: 0.9em;
+  line-height: 27px;
+  color: #333;
+  cursor: pointer;
+}
+ .checkbox:last-child {
+  margin-bottom: 0;
+}
+.checkbox input {
+  position: absolute;
+  left: -9999px;
+}
+
+.checkbox i {
+  position: absolute;
+  bottom: 11px;
+  left: 0;
+  display: block;
+  width: 13px;
+  height: 13px;
+  outline: none;
+  border: 2px solid #fff;
+  background: #fff;
+}
+.checkbox input + i:after {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.1s;
+  -o-transition: opacity 0.1s;
+  -ms-transition: opacity 0.1s;
+  -moz-transition: opacity 0.1s;
+  -webkit-transition: opacity 0.1s;
+}
+.checkbox input + i:after {
+  content: '';
+  top: -1px;
+  left: -1px;
+  width: 15px;
+  height: 15px;
+  font: normal 12px/16px FontAwesome;
+  text-align: center;
+}
+
+.checkbox input:checked + i:after {
+  opacity: 1;
+}
+.checkbox {
+  float: left;
+  margin-right: 30px;
+}
+.checkbox:last-child {
+  margin-bottom: 4px;
+}
+/*end-checkbox*/
+
+/*-----responsive sign up form------*/
+@media only screen and (max-width: 1440px){
+  .signin-wrap{
+    width:56%;
+  }
+  .signin_form p {
+    padding: 8px 7px;
+  }
+}
+@media only screen and (max-width: 1366px){
+  .signin_form li{ 
+    margin-top: 5%;
+  }
+  .signin-wrap{
+    width:59%;
+  }
+  .signin_form p {
+    padding: 8px 3px;
+  }
+}
+@media only screen and (max-width: 1280px){
+  .signin-wrap{
+    width:63%;
+  }
+}
+@media only screen and (max-width: 1024px){
+  .signin-wrap{
+    width:79%;
+  }
+  .signin_form input {
+    width: 77%;
+  }
+  .forgot a {
+    font-size: 0.8em;
+  }
+  .checkbox {
+    margin-right: 0px;
+  }
+}
+@media only screen and (max-width: 800px){
+  .signin-wrap{
+    width:95%;
+  }
+  .span i {
+    padding: 14px 12px;
+    font-size: 1em;
+  }
+  .span1 i {
+    font-size: 1em;
+    padding: 13px 20px;
+  }
+  .span2 i {
+    font-size: 1em;
+    padding: 13px 20px;
+  }
+  .forgot {
+    margin-right: 65px;
+    width: 38%;
+  }
+  .checkbox {
+    margin-right: 0px;
+  }
+}
+@media only screen and (max-width: 640px){
+  .signin-wrap{
+    width:95%;
+  }
+  .signin-form h1 {
+    font-size: 1.1em;
+  }
+  .signin_form li {
+    height: 32px;
+    margin-top: 7.3%;
+  }
+  .signin_form input {
+    font-size: 1em;
+    padding: 5px 14px;
+  }
+  .signin_form input[type="submit"] {
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 22px 0 30px;
+  }
+  
+  .span i {
+    padding: 11px 6px;
+    font-size: 1em;
+  }
+  .span img {
+    padding: 2px;
+  }
+  .span1 img {
+    padding: 2px;
+  }
+  .span1 i {
+    padding: 11px 6px;
+    font-size: 1em;
+  }
+  .span2 img {
+    padding: 2px;
+  }
+  .span2 i {
+    padding: 11px 6px;
+    font-size: 1em;
+  }
+  .forgot {
+    margin-right: 27px;
+    width: 39%;
+    margin-top: 6px;
+  }
+  .account h2 a {
+    font-size: 0.9em;
+  }
+  .checkbox i {
+    bottom: 10px;
+  }
+
+}
+@media only screen and (max-width: 480px){
+  .signin-wrap{
+    width:95%;
+  }
+  .signin_form {
+    width: 100%;
+    background:none;
+  }
+  .signin_form li {
+    width: 99.5%;
+  }
+  .signin_form input[type="submit"] {
+    width: 100%;
+    margin: 22px 0 13px;
+  }
+  .forgot {
+    width: 82%;
+    margin-top: 7px;
+    margin-right: 41px;
+  }
+  .account {
+    width: 100%;
+  }
+  .account h2 a {
+    text-align: left;
+    margin-top: 15px;
+  }
+  .span {
+    margin-top: 3.4%;
+  }
+  .form_hint {
+    font-size: 0.8em;
+    padding: 6px 5px;
+    right: -128px;
+    bottom: 6px;
+  }
+  .form_hint::before {
+    bottom: 5px;
+  }
+  .checkbox i {
+    bottom: 34px;
+  }
+  .footer p {
+    font-size: 1.1em;
+  }
+}
+@media only screen and (max-width: 320px){
+  .signin-wrap{
+    width:85%;
+  }
+  .signin_form {
+    width: 100%;
+    background:none;
+  }
+  .signin_form li {
+    width: 99.5%;
+  }
+  .signin_form input[type="submit"] {
+    width: 100%;
+    margin: 22px 0 13px;
+  }
+  .forgot {
+    width: 82%;
+    margin-top: 7px;
+    margin-right: 41px;
+  }
+  .account {
+    width: 100%;
+  }
+  .account h2 a {
+    text-align: left;
+    margin-top: 15px;
+  }
+  .span {
+    margin-top: 3.4%;
+  }
+  .form_hint {
+    font-size: 0.8em;
+    padding: 6px 5px;
+    right: -128px;
+    bottom: 6px;
+  }
+  .form_hint::before {
+    bottom: 5px;
+  }
+  .checkbox i {
+    bottom: 34px;
+  }
+  .footer p {
+    font-size: 1em;
+  }
+}
