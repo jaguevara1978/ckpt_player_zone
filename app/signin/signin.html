@@ -1,9 +1,19 @@
-<div class="signin-wrap">
+<div class="sign-wrap">
 <!-- strat-contact-form --> 
-<div class="signin-form">
+<div class="sign-form">
 <!-- start-form -->
-    <form class="signin_form" name="form" role="form">
-        <h1>Sign In</h1>
+    <form class="sign_form" name="form" role="form">
+        <h1>Log In or <a href="#/signup">Sign Up</a></h1>
+        <div class="social-buttons">
+            <div><a href="#"><i class="fa fa-facebook 2x"></i></a></div>    
+            <div><a href="#"><i class="fa fa-twitter 2x"></i></a></div>
+            <div><a href="#"><i class="fa fa-google-plus 2x"></i></a></div>
+        </div>  
+    
+       <div class="sign-or">
+            <div class="or">OR</div>
+       </div>
+
         <ul>
             <li>
                 <input ng-model="vm.user.id" type="text" class="textbox1" name="id" id="id" class="form-control input-lg" placeholder="User Name or E-Mail address" tabindex="10" required />
@@ -29,15 +39,6 @@
 
 <!-- end-form -->
 <!-- start-account -->
-    <div class="account">
-        <h2>Don' have an account? <a href="#/signup">Sign Up!</a></h2>
-        <div class="sign-or">
-            <div class="or">OR</div>
-        </div>
-        <div class="span"><a href="#"><i class="fa fa-facebook"></i><i>Sign In with Facebook</i><div class="clearfix"></div></a></div>    
-        <div class="span1"><a href="#"><i class="fa fa-twitter"></i><i>Sign In with Twitter</i><div class="clearfix"></div></a></div>
-        <div class="span2"><a href="#"><i class="fa fa-google-plus"></i><i>Sign In with Google+</i><div class="clearfix"></div></a></div>
-    </div>  
 
 
 </div>

@@ -81,7 +81,9 @@
   right:0;
   width:180px;
 }
-
+.sign-wrap{
+  width: 95%;
+}
 @media (min-width: 600px) {
     .content {
       height:500px;
@@ -134,6 +136,9 @@
    .prize img{
     width:180px;
    }
+   .sign-wrap{
+    width: 55%;
+   }
 }
 
 @media (min-width: 1366px) {
@@ -169,6 +174,9 @@
 
   .prize img{
   width:200px;
+  }
+  .sign-wrap{
+  width: 45%;
   }
 }
 
@@ -481,13 +489,12 @@ li > a:only-child:after { content: ''; }
 
 
 /*Sign up*/
-.signin-wrap{
-  width: 56%;
+.sign-wrap{
   margin: 0 auto;
-  margin-top:7%;
+  margin-top:2%;
   color:#fef0e3;
 }
-.signin-form{
+.sign-form{
   background:#B5C258;
   padding: 3%;
   margin: 5% 0;
@@ -500,21 +507,10 @@ li > a:only-child:after { content: ''; }
 }
 
 
-.signin_form {
-  width: 50%;
+.sign_form {
+  width: 100%;
   float: left;
   position: relative;
-  padding-right:5%;
-  border-right:1px solid #cccc99;
-}
-.sign-or {
-  width: 100%;
-  padding:3%;
-}
-.account{
-  float:left;
-  width: 50%;
-  padding-left:5%;
 }
 
 .or {
@@ -529,24 +525,25 @@ li > a:only-child:after { content: ''; }
   padding:6px;
 }
 
-/*start-signin-form*/
-.signin-form h1{
+/*start-sign-form*/
+.sign-form h1{
   font-size: 1.3em;
   text-align:left;
   margin-bottom:0;
   color:#666;
+  text-align:center;
 }
-.signin_form ul {
+.sign_form ul {
   list-style-type:none;
   list-style-position:outside;
   margin:0px;
   padding:0px;
 }
-.signin_form li{
+.sign_form li{
   position:relative;
 } 
   /* form element visual styles */
-  .signin_form li{ 
+  .sign_form li{ 
     float: left;
     outline: none;
     border: 1px solid #DDDDDD;
@@ -554,7 +551,7 @@ li > a:only-child:after { content: ''; }
     color: #B6B6B6;
     width: 100%;
     font-weight: 600;
-    margin-top: 5%;
+    margin-top: 3%;
     position: relative;
     height: 35px;
     border-radius: 3px;
@@ -568,11 +565,11 @@ li > a:only-child:after { content: ''; }
     -o-transition: all 0.5s ease-out;
     background:#fef0e3;
   }
-  .signin_form li:hover{ 
+  .sign_form li:hover{ 
     border: 1px solid #79B42B;
     color:#79B42B;
   }
-  .signin_form input {
+  .sign_form input {
     float: left;
     font-size: 0.9em;
     padding: 7px 14px;
@@ -582,13 +579,13 @@ li > a:only-child:after { content: ''; }
     color:#B6B6B6;
     background:#fef0e3;
   }
-  .signin_form p {
+  .sign_form p {
     float: right;
     padding: 8px 7px;
     width: 9.3%;
     cursor: pointer;
   }
-  .signin_form input[type="submit"] {
+  .sign_form input[type="submit"] {
     border: none;
     outline: none;
     cursor: pointer;
@@ -598,7 +595,7 @@ li > a:only-child:after { content: ''; }
     padding: 10px;
     font-size: 1.1em;
     letter-spacing:1px;
-    margin: 5% 0 2%;
+    margin: 3% 0 2%;
     transition: all 0.5s ease-out;
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
@@ -609,16 +606,16 @@ li > a:only-child:after { content: ''; }
     -moz-border-radius: 2px;
     -o-border-radius: 2px;
   } 
-.signin_form input[type="submit"]:hover {
+.sign_form input[type="submit"]:hover {
   background:#34A6C1;
 } 
-.signin_form input[type="checkbox"] {
+.sign_form input[type="checkbox"] {
   width: 21px;
   vertical-align: middle;
   padding: 5px;
   float:left;
 }
-.signin_form i{
+.sign_form i{
   font-size: 1.2em;
   color:#666;
   width: 40%;
@@ -626,7 +623,7 @@ li > a:only-child:after { content: ''; }
 }
 .forgot{
   float: right;
-  width: 35%;
+  width: 25%;
   margin-top: 4px;
 }
 .forgot a{
@@ -666,110 +663,17 @@ li > a:only-child:after { content: ''; }
   border-right: 10px solid #333;
   border-top: 10px solid transparent;
 }
-.signin_form input:focus + .form_hint {display: inline;}
-.signin_form input:required:valid + .form_hint {color: #fff;
+.sign_form input:focus + .form_hint {display: inline;}
+.sign_form input:required:valid + .form_hint {color: #fff;
   background: #D1572E;}
-.signin_form input:required:valid + .form_hint::before {color:#28921f;}
+.sign_form input:required:valid + .form_hint::before {color:#28921f;}
 /* Change the white to any color ;) */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fef0e3 inset;
     -webkit-text-fill-color: #999 !important;
 }
-/*end-signin-form*/
-/*start-account*/
-.account h2 {
-  color:#666;
-  display: block;
-  font-size: 1.2em;
-  font-weight:500;
-  transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-}
-.account h2 a{
-  color:#666;
-  text-decoration:underline;
-}
-.account h2 a:hover{
-  color:#79B42B;
-   text-decoration:none;
-}
-.span {
-  display: block;
-  width: 100%;
-  background: #3B5998;
-  transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-}
-.span i {
-  color: #fff;
-  padding: 9px 14px;
-  float: left;
-  font-size: 1em;
-  font-weight: 400;
-  font-style:normal;
-}
-.span:hover {
-  background:#354F88;
-}
-.span1 {
-  margin-top: 3%;
-  width: 100%;
-  background: #45B0E3;
-  transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-}
-.span1 img {
-  background: #40A2D1;
-  padding: 7px;
-  float: left;
-}
-.span1 i {
-  color: #fff;
-  padding: 9px 20px;
-  float: left;
-  font-size: 1.1em;
-  font-weight: 400;
-  font-style:normal
-}
-.span1:hover {
-  background:#40A2D1;
-}
-.span2 {
-  margin-top: 3%;
-  width: 100%;
-  background: #DE4C34;
-  transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-}
-.span2 img {
-  background: #CE3E26;
-  padding: 7px;
-  float: left;
-}
-.span2 i {
-  color: #fff;
-  padding: 9px 17px;
-  float: left;
-  font-size: 1.1em;
-  font-weight: 400;
-  font-style:normal;
-}
-.span2:hover {
-  background: #CE3E26;
-}
-/*end-account*/
+/*end-sign-form*/
+
 /*start-checkbox*/
 .checkbox {
   margin-bottom: 4px;
@@ -819,7 +723,6 @@ input:-webkit-autofill {
 
 .checkbox input:checked + i:after {
   opacity: 1;
-  color:#333;
 }
 .checkbox {
   float: left;
@@ -830,217 +733,15 @@ input:-webkit-autofill {
 }
 /*end-checkbox*/
 
-/*-----responsive sign up form------*/
-@media only screen and (max-width: 1440px){
-  .signin-wrap{
-    width:56%;
-  }
-  .signin_form p {
-    padding: 8px 7px;
-  }
+/*social but6tons on sign form*/
+.social-buttons {
+  text-align:center;
+  margin:3% 0;
 }
-@media only screen and (max-width: 1366px){
-  .signin_form li{ 
-    margin-top: 5%;
-  }
-  .signin-wrap{
-    width:59%;
-  }
-  .signin_form p {
-    padding: 8px 3px;
-  }
-}
-@media only screen and (max-width: 1280px){
-  .signin-wrap{
-    width:63%;
-  }
-}
-@media only screen and (max-width: 1024px){
-  .signin-wrap{
-    width:79%;
-  }
-  .signin_form input {
-    width: 77%;
-  }
-  .forgot a {
-    font-size: 0.8em;
-  }
-  .checkbox {
-    margin-right: 0px;
-  }
-}
-@media only screen and (max-width: 800px){
-  .signin-wrap{
-    width:95%;
-  }
-  .span i {
-    padding: 14px 12px;
-    font-size: 1em;
-  }
-  .span1 i {
-    font-size: 1em;
-    padding: 13px 20px;
-  }
-  .span2 i {
-    font-size: 1em;
-    padding: 13px 20px;
-  }
-  .forgot {
-    
-    width: 38%;
-  }
-   .forgot a {
-    font-size: 0.8em;
-  }
-  .checkbox {
-    margin-right: 0px;
-  }
-}
-@media only screen and (max-width: 640px){
-  .signin-wrap{
-    width:95%;
-  }
-  .signin-form h1 {
-    font-size: 1.1em;
-  }
-  .signin_form li {
-    height: 32px;
-    margin-top: 7.3%;
-  }
-  .signin_form input {
-    font-size: 1em;
-    padding: 5px 14px;
-  }
-  .signin_form input[type="submit"] {
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 22px 0 30px;
-  }
-  
-  .span i {
-    padding: 11px 6px;
-    font-size: 1em;
-  }
-  .span img {
-    padding: 2px;
-  }
-  .span1 img {
-    padding: 2px;
-  }
-  .span1 i {
-    padding: 11px 6px;
-    font-size: 1em;
-  }
-  .span2 img {
-    padding: 2px;
-  }
-  .span2 i {
-    padding: 11px 6px;
-    font-size: 1em;
-  }
-  .forgot {
- 
-    width: 39%;
-    margin-top: 6px;
-  }
-   .forgot a {
-    font-size: 0.8em;
-  }
-  .account h2 a {
-    font-size: 0.9em;
-  }
-  .checkbox i {
-    bottom: 10px;
-  }
-
-}
-@media only screen and (max-width: 480px){
-  .signin-wrap{
-    width:95%;
-  }
-  .signin_form {
-    width: 100%;
-    background:none;
-  }
-  .signin_form li {
-    width: 99.5%;
-  }
-  .signin_form input[type="submit"] {
-    width: 100%;
-    margin: 22px 0 13px;
-  }
-  .forgot {
-    width: 82%;
-    margin-top: 7px;
-  }
-  .account {
-    width: 100%;
-  }
-  .account h2 a {
-    text-align: left;
-    margin-top: 15px;
-  }
-  .span {
-    margin-top: 3.4%;
-  }
-  .form_hint {
-    font-size: 0.8em;
-    padding: 6px 5px;
-    right: -128px;
-    bottom: 6px;
-  }
-  .form_hint::before {
-    bottom: 5px;
-  }
-  .checkbox i {
-    bottom: 34px;
-  }
-  .footer p {
-    font-size: 1.1em;
-  }
-}
-@media only screen and (max-width: 320px){
-  .signin-wrap{
-    width:85%;
-  }
-  .signin_form {
-    width: 100%;
-    background:none;
-  }
-  .signin_form li {
-    width: 99.5%;
-  }
-  .signin_form input[type="submit"] {
-    width: 100%;
-    margin: 22px 0 13px;
-  }
-  .forgot {
-    width: 82%;
-    margin-top: 7px;
-  }
-  .account {
-    width: 100%;
-  }
-  .account h2 a {
-    text-align: left;
-    margin-top: 15px;
-  }
-  .span {
-    margin-top: 3.4%;
-  }
-  .form_hint {
-    font-size: 0.8em;
-    padding: 6px 5px;
-    right: -128px;
-    bottom: 6px;
-  }
-  .form_hint::before {
-    bottom: 5px;
-  }
-  .checkbox i {
-    bottom: 34px;
-  }
-  .footer p {
-    font-size: 1em;
-  }
+.social-buttons div {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin: 0 5%;
+    border: 3px solid #73AD21; 
 }
