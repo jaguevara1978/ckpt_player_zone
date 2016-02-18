@@ -501,19 +501,20 @@ li > a:only-child:after { content: ''; }
 
 
 .signin_form {
-  width: 43%;
+  width: 50%;
   float: left;
   position: relative;
+  padding-right:5%;
+  border-right:1px solid #cccc99;
 }
 .sign-or {
-  width: 12%;
-  float: left;
-  position: relative;
-  padding-top:8%;
+  width: 100%;
+  padding:3%;
 }
 .account{
   float:left;
-  width: 45%;
+  width: 50%;
+  padding-left:5%;
 }
 
 .or {
@@ -533,6 +534,7 @@ li > a:only-child:after { content: ''; }
   font-size: 1.3em;
   text-align:left;
   margin-bottom:0;
+  color:#666;
 }
 .signin_form ul {
   list-style-type:none;
@@ -629,7 +631,7 @@ li > a:only-child:after { content: ''; }
 }
 .forgot a{
   color:#333;
-  font-size: 0.9em;
+  font-size: 0.8em;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
@@ -676,11 +678,10 @@ input:-webkit-autofill {
 /*end-signin-form*/
 /*start-account*/
 .account h2 {
-  color:#79801e;
+  color:#666;
   display: block;
   font-size: 1.2em;
   font-weight:500;
-  margin-bottom:10%;
   transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
@@ -688,7 +689,7 @@ input:-webkit-autofill {
   -o-transition: all 0.5s ease-out;
 }
 .account h2 a{
-  color:#79801e;
+  color:#666;
   text-decoration:underline;
 }
 .account h2 a:hover{
@@ -705,19 +706,11 @@ input:-webkit-autofill {
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
 }
-.span img {
-  background:#354F88;
-  float: left;
-}
-.span img, .span1 img, .span2 img {
-    width:35px;
-    padding: 5px;
-}
 .span i {
   color: #fff;
   padding: 9px 14px;
   float: left;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 400;
   font-style:normal;
 }
@@ -781,7 +774,7 @@ input:-webkit-autofill {
 .checkbox {
   margin-bottom: 4px;
   padding-left: 20px;
-  font-size: 0.9em;
+  font-size: 0.8em;
   line-height: 27px;
   color: #333;
   cursor: pointer;
@@ -826,6 +819,7 @@ input:-webkit-autofill {
 
 .checkbox input:checked + i:after {
   opacity: 1;
+  color:#333;
 }
 .checkbox {
   float: left;
@@ -892,8 +886,11 @@ input:-webkit-autofill {
     padding: 13px 20px;
   }
   .forgot {
-    margin-right: 65px;
+    
     width: 38%;
+  }
+   .forgot a {
+    font-size: 0.8em;
   }
   .checkbox {
     margin-right: 0px;
@@ -942,9 +939,12 @@ input:-webkit-autofill {
     font-size: 1em;
   }
   .forgot {
-    margin-right: 27px;
+ 
     width: 39%;
     margin-top: 6px;
+  }
+   .forgot a {
+    font-size: 0.8em;
   }
   .account h2 a {
     font-size: 0.9em;
@@ -972,7 +972,6 @@ input:-webkit-autofill {
   .forgot {
     width: 82%;
     margin-top: 7px;
-    margin-right: 41px;
   }
   .account {
     width: 100%;
@@ -1018,7 +1017,6 @@ input:-webkit-autofill {
   .forgot {
     width: 82%;
     margin-top: 7px;
-    margin-right: 41px;
   }
   .account {
     width: 100%;
