@@ -1,97 +1,60 @@
-<form name="form"  ng-submit="vm.signup( )" class="form-horizontal" role="form">
-    <h2>Title</h2>
+<div class="sign-wrap">
+<!-- strat-contact-form --> 
+<div class="sign-form">
+<!-- start-form -->
+    <form class="sign_form" name="form" role="form">
+    <form name="form"  ng-submit="vm.signup( )" class="sign_form" role="form">
+        <h1>Sign Up or <a href="#/signin">Log In</a></h1>
+        <div class="social-buttons">
+            <div><a href="#"><i class="fa fa-facebook 2x"></i></a></div>    
+            <div><a href="#"><i class="fa fa-twitter 2x"></i></a></div>
+            <div><a href="#"><i class="fa fa-google-plus 2x"></i></a></div>
+        </div>  
+    
+       <div class="sign-or">
+            <div class="or">OR</div>
+       </div>
 
-    <hr class="colorgraph">
-
-    <!-- Fields -->
-    <!-- FIRST NAME -->
-	<div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <input ng-model='vm.user.data.fname' id="fname" name="fname" class="form-control input-lg" type="text" placeholder="First name" required>
-    		<span ng-show="form.fname.$dirty && form.fname.$error.required" class="help-block">First Name</span>
-        </div>
-    </div>
-
-    <!-- LAST NAME -->
-	<div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <input ng-model='vm.user.data.lname' id="lname" name="lname" class="form-control input-lg" type="text" placeholder="Last name" required>
-    		<span ng-show="form.lname.$dirty && form.lname.$error.required" class="help-block">Last Name</span>
-        </div>
-	</div>
-
-    <!-- EMAIL -->
-    <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-			<input ng-model="vm.user.data.primary_email" type="email" name="email" id="email" class="form-control input-lg" placeholder="E-Mail" required>
-    		<span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-Mail</span>
-        </div>
-	</div>
-
-    <!-- PASSWORD -->
-	<div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <input type="{{ vm.showPassword ? 'text' : 'password' }}" ng-model='vm.user.extra.password' id="password" name="password" class="form-control input-lg" type="text" placeholder="Password" required>
-            <div ng-password-strength="vm.user.extra.password" strength="vm.passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
-    	
-    	        <!-- PASSWORD STRENGTH -->
-                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password</span>
-            <!-- <span ng-show="form.password.$dirty" class="help-block">{{ passStrength }}</span> -->
-        </div>
-        <!-- SHOW PASSWORD CHECKBOX -->
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <label class="chk-button" ng-class="{true:'btn btn-success', false:'btn btn-default'}[vm.showPassword]">
-                <i class="glyphicon glyphicon-chk" ng-class="{true:'glyphicon-check', false:'glyphicon-unchecked'}[vm.showPassword]"></i>
-                <input type="checkbox" class="hidden" ng-model="vm.showPassword"> Show Password
-                <i class="fa fa-eye"></i>
-            </label>
-        </div>
-	</div>
-    <!-- End Fields -->
-
-    <!-- TERMS AND CONDITIONS WARNING -->
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-12 col-md-12">
-			By clicking <strong class="label label-primary"> Sign up now</strong>, Do you agree to the terms and conditions? <a href="" data-toggle="modal" data-target="#t_and_c_m">Terms and conditions</a>
-			Set out by this site
-		</div>
-	</div>
-
-    <!-- SUBMIT BUTTON -->
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-12 col-md-12">
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary btn-lg btn-block" busy>
-                Sign up now  <i class="fa fa-user-plus"></i>
+        <ul>
+            
+            <li id="firstname">
+                <input ng-model='vm.user.data.fname' id="fname" name="fname" class="form-control input-lg" type="text" placeholder="First name" required>
+                <span ng-show="form.fname.$dirty && form.fname.$error.required" class="form_hint">First Name is required</span>
+            </li>
+            
+            <li id="lastname">
+                <input ng-model='vm.user.data.lname' id="lname" name="lname" class="form-control input-lg" type="text" placeholder="Last name" required>
+                <span ng-show="form.lname.$dirty && form.lname.$error.required" class="form_hint">Last Name is required</span>
+                </li>
+            
+            <li>
+                <input ng-model="vm.user.data.primary_email" type="email" name="email" id="email" class="form-control input-lg" placeholder="E-Mail" required>
+                <span ng-show="form.email.$dirty && form.email.$error.required" class="form_hint">E-Mail is required</span>
+            </li>
+             <li>
+                <input type="{{ vm.showPassword ? 'text' : 'password' }}" ng-model='vm.user.extra.password' id="password" name="password" class="form-control input-lg" type="text" placeholder="Password" required>
+                 <!-- PASSWORD STRENGTH -->
+                <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="form_hint">Password</span>  -->
+                
+                <!-- <div ng-password-strength="vm.user.extra.password" strength="vm.passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div> -->
+               
+            </li>
+         </ul>
+         <div class="clearfix"></div> 
+         <div class="agree">By clicking on 'Sign Up' above, you agree to our <a href="#">Terms & Conditions</div>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" busy>
+                Sign Up
                 <busy-message>Validating information <i class="fa fa-refresh fa-spin"></i></busy-message>
             </button>
-		</div>
-    </div>
-
-    <hr class="colorgraph">
-
-    <!-- SIGN IN OPTION -->
-	<div class="form-group">
-		<div class="col-xs-12 col-sm-12 col-md-12">
-			Already a registered player <h4><a ng-href="#"><strong class="label label-primary">Sign in</strong></a></h4>
-		</div>
-	</div>
-</form>
+             <!-- <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message> -->
+            <div class="clearfix"></div> 
+    </form>
 
 
-<!-- Modal TODO WITH UI BOOTSTRAP-->
-<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title" id="myModalLabel">Terms and conditions</h4>
-			</div>
-			<div class="modal-body">
-				<p>We are working on it</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<!-- end-form -->
+<!-- start-account -->
+
+
+</div>
+<!-- end-contact-form -->
+</div>

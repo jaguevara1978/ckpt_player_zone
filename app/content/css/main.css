@@ -585,7 +585,7 @@ li > a:only-child:after { content: ''; }
     width: 9.3%;
     cursor: pointer;
   }
-  .sign_form input[type="submit"] {
+  .sign_form button[type="submit"] {
     border: none;
     outline: none;
     cursor: pointer;
@@ -606,10 +606,10 @@ li > a:only-child:after { content: ''; }
     -moz-border-radius: 2px;
     -o-border-radius: 2px;
   } 
-.sign_form input[type="submit"]:hover {
+.sign_form button[type="submit"]:hover {
   background:#34A6C1;
 } 
-.sign_form input[type="checkbox"] {
+.sign_form button[type="checkbox"] {
   width: 21px;
   vertical-align: middle;
   padding: 5px;
@@ -744,4 +744,11 @@ input:-webkit-autofill {
     height: 40px;
     margin: 0 5%;
     border: 3px solid #73AD21; 
+}
+
+/*agree*/
+.agree {
+  margin: 3% 0 1%;
+  font-size: 0.9em;
+  color: #333;
 }
