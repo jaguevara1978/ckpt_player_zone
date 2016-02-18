@@ -13,7 +13,7 @@
     function getRoutes() {
         return [
             {
-                url: '/',
+                url: '/welcome',
                 config: {
                     templateUrl: 'welcome/welcome.html',
                     controller: 'Welcome',

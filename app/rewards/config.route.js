@@ -24,7 +24,21 @@
                         content: '<i class="fa fa-lock"></i> SignUp'
                     }
                 }
+            },
+            {
+                url: '/',
+                config: {
+                    templateUrl: 'rewards/rewards.html',
+                    controller: 'Rewards',
+                    controllerAs: 'vm',
+                    title: 'rewards',
+                    settings: {
+                        nav: 2,
+                        content: '<i class="fa fa-lock"></i> SignUp'
+                    }
+                }
             }
+
         ];
     }
 

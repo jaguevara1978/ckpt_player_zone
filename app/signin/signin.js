@@ -13,10 +13,14 @@ angular.module('app.signin').controller('SignIn', SignIn);
 /*@ngInject*/
 function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashService, UserService, $routeParams, ApiService ) {
     var vm = this;
+    vm.loading = false;
+//     var loadingAnimation = document.getElementById( "loading-animation" );
 
     vm.login = login;
+/*
     vm.validateVIPKey = validateVIPKey;
     vm.retrievePassword = retrievePassword;
+*/
 
     vm.forgotpwd = false;
 
@@ -27,7 +31,7 @@ function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashServ
             id: $routeParams.id,
             pwd: $routeParams.pwd
         };
-        login();
+        login( );
     }
 
     function initController() {
@@ -35,40 +39,38 @@ function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashServ
         AuthenticationService.ClearCredentials();
     };
 
-    function validateVIPKey() {
-        UserService.expressEntry(vm.user)
-            .then(function (response) {
-                if (response.success) {
-                    FlashService.Success('Way to go!, Now you can be a part of the family!. How Cool is that?', true);
-                    $location.path('/signup');
-                } else {
-                    FlashService.Error(response.message);
-                }
-            }
-        );
-    }
-
-    function login() {
-        // simulate the busy event calls normally provided by the http interceptor provided with this module
-/*		$scope.$broadcast('busy.begin');
-		$timeout(function() {
-			$scope.$broadcast('busy.end');
-		}, 5000);
-*/
-        AuthenticationService.signIn( vm.user );
-    }
-
-    function retrievePassword(  ) {
-        UserService.retrievePassword( vm.user )
-            .then( function ( response ) {
+    function validateVIPKey( ) {
+/*
+        UserService.expressEntry( vm.user )
+            .then(function ( response ) {
                 if ( response.success ) {
-                    FlashService.Success( response.data.msg );
-                    vm.forgotpwd = false;
+                    FlashService.Success('Way to go!, Now you can be a part of the family!. How Cool is that?', true);
+                    $location.path( '/signup' );
                 } else {
                     FlashService.Error( response.message );
                 }
             }
         );
+*/
     }
+
+    function login( ) {
+        if ( !vm.loading ) {
+            vm.loading = true;
+            ApiService.post( 'auth', vm.user )
+                .then(function ( response ) {
+                    if ( response.success ) {
+                        AuthenticationService.setCredentials( response.data );
+                        $location.path( '/rewards' );
+                    } else {
+                        FlashService.Error( response.message );
+                    }
+                    vm.loading = false;
+                }
+            );
+        }
+    }
+
+    function retrievePassword(  ) { }
 }
 })();
