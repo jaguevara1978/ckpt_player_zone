@@ -97,9 +97,10 @@
                     <!-- <p><img src="../content/images/signup/lock.png" alt=""></p> -->
                 </li>
              </ul>
-                <button busy="Submitting.." type="submit" name="Sign In" value="Sign In" ng-click="vm.login()" ng-disabled="form.$invalid" ng-hide="vm.forgotpwd" busy/>
-                <!-- <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message> -->
-    
+                <button type="submit" name="Sign In" value="Sign In" ng-click="vm.login( )" ng-disabled="form.$invalid" ng-hide="vm.forgotpwd" busy>
+                    Sign In
+                    <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+                </button>
                 <div class="clear"></div> 
 
              <!--    <div class="rememeber">

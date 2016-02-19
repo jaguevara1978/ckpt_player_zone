@@ -8,15 +8,17 @@
  * # SignIn
  * Controller of the app
  */
-angular.module('app.signin').controller('SignIn', SignIn);
+angular.module( 'app.signin' ).controller( 'SignIn', SignIn );
 
 /*@ngInject*/
 function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashService, UserService, $routeParams, ApiService ) {
     var vm = this;
     vm.loading = false;
-//     var loadingAnimation = document.getElementById( "loading-animation" );
-
     vm.login = login;
+
+    // Unrestricted pages do not use navigation bar
+    $rootScope.showMainNavBar = false;
+
 /*
     vm.validateVIPKey = validateVIPKey;
     vm.retrievePassword = retrievePassword;
@@ -24,9 +26,7 @@ function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashServ
 
     vm.forgotpwd = false;
 
-    initController( );
-
-    if ($routeParams.id && $routeParams.pwd) {
+    if ( $routeParams.id && $routeParams.pwd ) {
         vm.user = {
             id: $routeParams.id,
             pwd: $routeParams.pwd
@@ -34,7 +34,10 @@ function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashServ
         login( );
     }
 
-    function initController() {
+    initController( );
+
+    function initController( ) {
+        console.log(vm.user);
         // reset login status
         AuthenticationService.ClearCredentials();
     };

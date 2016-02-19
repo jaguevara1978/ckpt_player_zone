@@ -67,8 +67,7 @@
         // ******** i18n Stuff - it is working but better use it later, Not Yet **********
 //     function config( $routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, config ) {
     function config( $routeProvider, $httpProvider, config ) {
-        $routeProvider
-          .otherwise( {
+        $routeProvider.otherwise( {
             redirectTo: '/signin'
           } );
           

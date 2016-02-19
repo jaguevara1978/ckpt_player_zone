@@ -63,7 +63,7 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
 
         function ClearCredentials() {
             $rootScope.loggedIn = false;
-            $rootScope.globals = {};
+            $rootScope.globals = { };
             $cookies.remove( config.cookie.name );
             //$http.defaults.headers.common.Authorization = 'Basic ';
         }

@@ -14,11 +14,14 @@ angular.module( 'app.activate' ).controller( 'Activate', Activate );
 function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaService, AuthenticationService, FlashService ) {
     var vm = this;
     vm.confirmSignUp = confirmSignUp;
+    vm.loading = false;
 
     initController( );
 
     function initController( ) {
         if ( $routeParams.token ) {
+            vm.loading = true;
+
             var token = Base64.encode( $routeParams.token );
     
             // I put the token here so it will be sent on the request's header
@@ -30,7 +33,7 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
 
             // Unrestricted pages do not use navigation bar
             $rootScope.showMainNavBar = false;
-    
+
             ApiService.get( 'auth', 'activate' )
                 .then( function( response ) {
                     // Just for testing, REMOVE
@@ -39,12 +42,10 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
                         siteKey: '6Lc1bg4TAAAAACYCPRXQa6p2FfAG0RNpe3Z2ECBs'
                     }
 */
-
                     if ( response.success ) {
                         vm.data = response.data;
                     } else {
-                        //console.log( response );
-                        FlashService.Error( response.message );
+                        FlashService.Error( response.message, 10000 );
                         // 1120 - Already activated account
                         if ( response.data.errorKey == 1120 ) {
                             $location.path( '/signin' );
@@ -54,8 +55,13 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
                         }
                         // TODO - If expired token, offer to send a new one
                         if ( response.data.errorKey == 'expired_token' ) {
+                            
                         }
+
+                        $location.path( '/signin' );
                     }
+
+                    vm.loading = false;
                 }
             );
         } else {
@@ -64,6 +70,7 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
     }
     
     function confirmSignUp( ) {
+        vm.loading = true;
         var response = vcRecaptchaService.getResponse( );
         if( response === '' ){ //if string is empty
             FlashService.Error( 'Please, resolve Captcha' );
@@ -76,10 +83,12 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
                 .then( function( response ) {
                     if ( response.success ) {
                         AuthenticationService.setCredentials( response.data );
-                        $location.path( '/profile' );
+                        $location.path( '/rewards' );
                     } else {
                         FlashService.Error( response.message );
                     }
+
+                    vm.loading = false;
                 }
             );
         }

@@ -14,12 +14,14 @@ angular.module( 'app.signup' ).controller( 'SignUp', SignUp );
 function SignUp( $location, $rootScope, ApiService, FlashService, $scope, AuthenticationService ) {
     var vm = this;
     vm.showPassword = false;
+    vm.loading = false;
 
     // Unrestricted pages do not use navigation bar
     $rootScope.showMainNavBar = false;
 
+    vm.user = null;
+
     //For testing purposes only
-/*
     vm.user = {
         data: {
             fname: 'Alex',
@@ -30,8 +32,9 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
             password: 'pass'
         }
     };
-*/
    //For testing purposes only
+
+
 
     vm.signup = signup;
 
@@ -43,16 +46,22 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
     AuthenticationService.setCredentials( data );
 
     function signup( ) {
+        vm.loading = true;
         ApiService.post( 'contact', vm.user )
             .then( function ( response ) {
+                $location.path( '/signup' );
+                console.log( response );
                 if ( response.success ) {
                     $rootScope.globals.name = vm.user.data.fname;
                     $rootScope.globals.email = vm.user.data.primary_email;
 
-                    $location.path( '/suconf' );
+                    vm.user = null;
+
+                    vm.loading = false;
+                    FlashService.Success( 'We have just sent you an e-mail confirmation. Please, take a look.', 20000 );
                 } else {
-                    FlashService.Error( response.message );
-                    //$location.path( '/suconf' );
+                    vm.loading = false;
+                    FlashService.Error( response.message, 20000 );
                 }
             });
     }

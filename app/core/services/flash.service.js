@@ -47,24 +47,29 @@ angular.module('app').factory('FlashService', FlashService);
         return service;
 
         function initService() {
-            $rootScope.$on('$locationChangeStart', function () {
-                clearFlashMessage();
+/*
+            $rootScope.$on( '$locationChangeStart', function ( ) {
+                clearFlashMessage( );
             });
+*/
 
-            function clearFlashMessage() {
-                toaster.clear();
+            function clearFlashMessage( ) {
+                toaster.clear( );
             }
         }
 
-        function Success(message, alertDuration) {
+        function Success( message, alertDuration ) {
+            if ( !alertDuration ) alertDuration = 1500;
             var alertTitle = 'Great!';
-            //toaster.pop( 'info', alertTitle, message, 1500 );
-            toaster.info(alertTitle, message);
+            toaster.pop( 'info', alertTitle, message, alertDuration );
+            //toaster.info(alertTitle, message);
         }
 
-        function Error(message, alertDuration) {
-            var alertTitle = 'Something weird happened!';
-            toaster.error(alertTitle, message);
+        function Error( message, alertDuration ) {
+            if ( !alertDuration ) alertDuration = 1500;
+            var alertTitle = 'Oops!';
+            toaster.pop( 'error', alertTitle, message, alertDuration );
+            // toaster.error(alertTitle, message);
         }
     }
 })();
