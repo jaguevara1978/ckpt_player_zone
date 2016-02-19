@@ -137,7 +137,7 @@
     width:180px;
    }
    .sign-wrap{
-    width: 55%;
+    width: 45%;
    }
 }
 
@@ -176,8 +176,8 @@
   width:200px;
   }
   .sign-wrap{
-  width: 45%;
-  }
+    width: 35%;
+   }
 }
 
 
@@ -491,7 +491,7 @@ li > a:only-child:after { content: ''; }
 /*Sign up*/
 .sign-wrap{
   margin: 0 auto;
-  margin-top:2%;
+  margin-top:5%;
   color:#fef0e3;
 }
 .sign-form{
@@ -505,14 +505,11 @@ li > a:only-child:after { content: ''; }
   -o-border-radius: 6px;
   overflow:hidden;
 }
-
-
 .sign_form {
   width: 100%;
   float: left;
   position: relative;
 }
-
 .or {
   width:30px;
   height:30px;
@@ -530,8 +527,20 @@ li > a:only-child:after { content: ''; }
   font-size: 1.3em;
   text-align:left;
   margin-bottom:0;
-  color:#666;
+  color:#fef0e3;
   text-align:center;
+  text-transform:uppercase;
+}
+.sign-form h1 a{
+  color:#34A6C1;
+}
+.sign-form h1 a:hover{
+  text-decoration:none;
+}
+.sign-form h1 span{
+  color:#666;
+  font-size:0.8em;
+  text-transform:lowercase;
 }
 .sign_form ul {
   list-style-type:none;
@@ -614,12 +623,6 @@ li > a:only-child:after { content: ''; }
   vertical-align: middle;
   padding: 5px;
   float:left;
-}
-.sign_form i{
-  font-size: 1.2em;
-  color:#666;
-  width: 40%;
-  float: left;
 }
 .forgot{
   float: right;
@@ -740,15 +743,110 @@ input:-webkit-autofill {
 }
 .social-buttons div {
     display: inline-block;
-    width: 100px;
-    height: 40px;
-    margin: 0 5%;
-    border: 3px solid #73AD21; 
+    width: 25%;
+    height: 40px; 
+    margin-right:1%;
+    text-align:center;
+    border-radius:6px;
+    -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   -o-border-radius: 6px;
+   position:relative;
 }
+.social-buttons .fa-2x {
+  font-size:1.6em;
+  color:#fff;
+  position:absolute;
+  left:50%;
+  margin-left:-10px;
+  top:50%;
+  margin-top:-10px;
+}
+.social-buttons div:hover {
+  background:#999;
+  cursor: pointer;
+}
+.social-buttons .facebook {
+   background:#3b5998;
+}
+.social-buttons .twitter {
+   background:#00aced;
+}
+.social-buttons .gplus {
+   background:#D84B37;
+}
+
+#firstname {
+  width:49%;
+  margin-right:2%;
+  display:inline-block;
+}
+#lastname {
+  width:49%;
+  display:inline-block;
+}
+
+/*activation*/
+.activation-form{
+  background:#B5C258;
+  padding: 3%;
+  margin: 5% 0;
+  position: relative;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  overflow:hidden;
+  height:350px;
+  margin-top:10%;
+  text-align:center;
+}
+.activation-form h2 {
+  font-size: 1.3em;
+  line-height:1.8em;
+  margin-bottom:3%;
+  color:#fef0e3;
+  font-weight:500;
+  text-align:center;
+}
+.activation-form button[type="submit"] {
+  display:inline-block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background: #C8525E;
+    width: 40%;
+    padding: 10px;
+    font-size: 1.1em;
+    letter-spacing:1px;
+    margin-top: 2% auto 0;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+} 
+.sign_form button[type="submit"]:hover {
+  background:#34A6C1;
+} 
+
 
 /*agree*/
 .agree {
   margin: 3% 0 1%;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #333;
+}
+.agree a{
+  color: #333;
+  text-decoration:underline;
+}
+.agree a:hover{
+  color: #333;
+  text-decoration:none;
 }

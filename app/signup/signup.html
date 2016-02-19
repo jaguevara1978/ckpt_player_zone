@@ -4,11 +4,11 @@
 <!-- start-form -->
     <form class="sign_form" name="form" role="form">
     <form name="form"  ng-submit="vm.signup( )" class="sign_form" role="form">
-        <h1>Sign Up or <a href="#/signin">Log In</a></h1>
+        <h1>Sign Up <span>or</span> <a href="#/signin">Log In</a></h1>
         <div class="social-buttons">
-            <div><a href="#"><i class="fa fa-facebook 2x"></i></a></div>    
-            <div><a href="#"><i class="fa fa-twitter 2x"></i></a></div>
-            <div><a href="#"><i class="fa fa-google-plus 2x"></i></a></div>
+            <div class="facebook"><a href="#" title="sign up with facebook"><i class="fa fa-facebook fa-2x"></i></a></div>    
+            <div class="twitter"><a href="#" title="sign up with twitter"><i class="fa fa-twitter fa-2x"></i></a></div>
+            <div class="gplus"><a href="#" title="sign up with Google Plus"><i class="fa fa-google-plus fa-2x"></i></a></div>
         </div>  
     
        <div class="sign-or">
@@ -35,7 +35,7 @@
                 <input type="{{ vm.showPassword ? 'text' : 'password' }}" ng-model='vm.user.extra.password' id="password" name="password" class="form-control input-lg" type="text" placeholder="Password" required>
                  <!-- PASSWORD STRENGTH -->
                 <!-- <span ng-show="form.password.$dirty && form.password.$error.required" class="form_hint">Password</span>  -->
-                
+
                 <!-- <div ng-password-strength="vm.user.extra.password" strength="vm.passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div> -->
                
             </li>

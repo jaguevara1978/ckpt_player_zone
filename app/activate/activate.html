@@ -1,29 +1,28 @@
 
+<div class="sign-wrap">
+
 <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
-<div class="container">
-    <h1>Please confirm your Signup <small>But first, we need to confirm you're not robot</small></h1>
-    <p>Follow the instructions below</p>
-</div>
 
-<form name="form" role="form">
-    <div vc-recaptcha theme="light" key="vm.data.siteKey"></div>
+<!-- strat-activation-form -->
 
-    <hr class="colorgraph">
+    <div class="activation-form">
+        <form name="form" role="form">
+            <div vc-recaptcha theme="light" key="vm.data.siteKey"></div>
 
-	<div class="row">
-        <!-- SIGN IN BUTTON -->
-		<div class="col-xs-12 col-sm-12 col-md-12">
-            <button ng-click="vm.confirmSignUp( )" ng-disabled="form.$invalid" class="btn btn-primary btn-lg btn-block" busy>
-                Confirm Signup!  <i class="fa fa-sign-in"></i></span>
-                <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
+           
+            <h2>Almost there! Confirm you're not a robot and activate the account.</h2>
+
+                <!-- ACTIVATION BUTTON -->
+            <button type="submit" ng-click="vm.confirmSignUp( )" ng-disabled="form.$invalid">
+                Activate
+                <!-- <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message> -->
             </button>
-        </div>
-	</div>
+            <!--div class="row"> <--- GOOGLE SIGN IN
+                <div class="col-xs-12 col-md-12">
+                    <div class="g-signin2 btn btn-primary btn-block"" data-onsuccess="onSignIn" data-theme="dark"></div>
+                </div>
+            </div-->
+        </form>
 
-
-	<!--div class="row"> <--- GOOGLE SIGN IN
-		<div class="col-xs-12 col-md-12">
-            <div class="g-signin2 btn btn-primary btn-block"" data-onsuccess="onSignIn" data-theme="dark"></div>
-		</div>
-	</div-->
-</form>
+    </div>
+</div>
