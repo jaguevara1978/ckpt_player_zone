@@ -84,6 +84,29 @@
 .sign-wrap{
   width: 95%;
 }
+@media (min-width: 480px) {
+    .content {
+      height:500px;
+    }
+    .user{
+        float:left;
+        width: 35%;
+    }
+
+    .point {
+        float:left;
+        width: 50%;
+    }
+
+    .reward {
+        float:left;
+        width: 15%;
+    }
+    .sign-wrap{
+       width: 75%;
+    }
+
+}
 @media (min-width: 600px) {
     .content {
       height:500px;
@@ -101,6 +124,9 @@
     .reward {
         float:left;
         width: 15%;
+    }
+    .sign-wrap{
+       width: 55%;
     }
 
 }
@@ -624,10 +650,10 @@ li > a:only-child:after { content: ''; }
   padding: 5px;
   float:left;
 }
-.forgot{
-  float: right;
-  width: 25%;
-  margin-top: 4px;
+.forgot {
+  float:right;
+  width:50%;
+  text-align:right;
 }
 .forgot a{
   color:#333;
@@ -651,7 +677,7 @@ li > a:only-child:after { content: ''; }
   padding: 6px;
   z-index: 999;
   position: absolute;
-  right:-50px;
+  left:50%;
   font-weight:100;
   display: none;
 }
@@ -668,7 +694,7 @@ li > a:only-child:after { content: ''; }
 }
 .sign_form input:focus + .form_hint {display: inline;}
 .sign_form input:required:valid + .form_hint {color: #fff;
-  background: #D1572E;}
+  background: #999;}
 .sign_form input:required:valid + .form_hint::before {color:#28921f;}
 /* Change the white to any color ;) */
 input:-webkit-autofill {
@@ -678,6 +704,10 @@ input:-webkit-autofill {
 /*end-sign-form*/
 
 /*start-checkbox*/
+.rememeber {
+  float:left;
+  width:50%;
+}
 .checkbox {
   margin-bottom: 4px;
   padding-left: 20px;
