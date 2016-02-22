@@ -37,7 +37,7 @@ function SignIn( $rootScope, $scope, $location, AuthenticationService, FlashServ
     initController( );
 
     function initController( ) {
-        console.log(vm.user);
+        //console.log(vm.user);
         // reset login status
         AuthenticationService.ClearCredentials();
     };

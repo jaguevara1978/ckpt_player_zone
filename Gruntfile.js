@@ -250,28 +250,28 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
-          html: {
-            steps: {
-              js: ['concat', 'uglifyjs'],
-              css: ['cssmin']
-            },
-            post: {}
-          }
+            html: {
+                steps: {
+                    js: ['concat', 'uglifyjs'],
+                    css: ['cssmin']
+                },
+                post: {}
+            }
         }
       }
     },
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-      options: {
-        assetsDirs: [
-          '<%= yeoman.dist %>',
-          '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
-        ]
-      }
+        html: ['<%= yeoman.dist %>/{,*/}*.html'],
+        css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+        options: {
+            assetsDirs: [
+                '<%= yeoman.dist %>',
+                '<%= yeoman.dist %>/images',
+                '<%= yeoman.dist %>/styles'
+            ]
+        }
     },
 
     // The following *-min tasks will produce minified files in the dist folder
@@ -406,6 +406,13 @@ module.exports = function (grunt) {
             dot: true,
             cwd: '<%= yeoman.app %>/content',
             src: ['fonts/*'],
+            dest: '<%= yeoman.dist %>/content'
+        }, {
+            // I have to coy no captcha js as it is because it was not minifying properly
+            expand: true,
+            dot: true,
+            cwd: '<%= yeoman.app %>/content',
+            src: ['js/angular-no-captcha.min.js'],
             dest: '<%= yeoman.dist %>/content'
         }]
       },
