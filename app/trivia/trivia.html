@@ -1,9 +1,9 @@
 <style>
+/*This is for the fireworks, let us find a better way later*/
 canvas {
     -webkit-transform: translateZ(0);
 }
 </style>
-
 <div id="container-ckpt" class="container-ckpt">
     <!--Timer-->
     <div id="timer-bar">
@@ -16,7 +16,7 @@ canvas {
         <div class="home-ckpt">
             <a ng-href="#/rewards" title="My Rewards"><i class="fa fa-home fa-2x"></i></a>
         </div>
-        <div class="point-ckpt">
+        <div id="point-ckpt" class="point-ckpt">
 <!-- 		    <div class="points_bar" id="points_bar"></div> -->
             <progress id="points_bar" class="pointBar" max="{{vm.data.player_stats.max_points}}"></progress>
             <div class="icon"><img src="content/images/icon-coin.png" /></div>
@@ -43,7 +43,6 @@ canvas {
     </div>
     <!--Trivia Box-->
     <div id="trivia-container">
-<!--         <div id="container"></div> -->
         <div id="trivia-toggle">
             <button id="btn-toggle" class="btn btn-toggle chevron-down" ng-click="vm.toggleTrivia( )"></button>
         </div>
@@ -94,7 +93,7 @@ canvas {
     </div>
     <!--iframe-->
     <div class="iframe-custom">
-        <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="yes"></iframe>
+<!--         <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="yes"></iframe> -->
     </div>
 
 <script type="application/javascript">

@@ -30,7 +30,7 @@
 
         var service = {};
         service.initialize = initialize;
-        service.createFirework = createFirework;
+        service.shoot = shoot;
 /*
         service.createFireworkPalette = createFireworkPalette;
         service.setMainCanvasDimensions = setMainCanvasDimensions;
@@ -225,14 +225,22 @@
             // and now we set off
             update( );
         } /* ********************* FIREWORKS *********************  */
+
         /**
          * Pass through function to create a
          * new firework on touch / click
          */
-
         function createFirework( ) {
             createParticle( );
         }
+
+        function shoot( howMany ) {
+            for ( var i = 0 ; i < howMany; i++ ){
+                createFirework( );
+            }
+        }
+
+
         /**
          * Creates a block of colours for the
          * fireworks to use as their colouring

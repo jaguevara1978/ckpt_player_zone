@@ -11,7 +11,7 @@
 angular.module( 'app.trivia' ).controller( 'Trivia', Trivia );
 
 /*@ngInject*/
-function Trivia( ApiService, CelebrationService, SorryService, $location, $rootScope, FlashService, $scope, $timeout, $interval, $sce ) {
+function Trivia( ApiService, FireworksService, $location, $rootScope, FlashService, $scope, $timeout, $interval, $sce ) {
     var vm = this;
     var pointsAux = 0;
     var validatingAnswer = false;
@@ -20,6 +20,7 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
     var progressBar = document.getElementById( "count_down_bar" );
     var countDownTween;
     var pointsBar = document.getElementById( "points_bar" );
+    //var pointsDiv = document.getElementById( "point-ckpt" );
     var rewardsBar = document.getElementById( "rewards_bar" );
     var container = document.getElementById( "container-ckpt" );
     var tl;
@@ -38,122 +39,6 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
     var rectRewardsBar = rewardsBar.getBoundingClientRect( );
     var rectTriviaBox = triviaBox.getBoundingClientRect( );
 
-    /* ********************* FIREWORKS *********************  */
-    /**
-     * Represents a single point, so the firework being fired up
-     * into the air, or a point in the exploded firework
-     */
-    var Particle = function( pos, target, vel, marker, usePhysics ) {
-        // properties for animation
-        // and colouring
-        this.GRAVITY  = 0.06;
-        this.alpha    = 1;
-        this.easing   = Math.random() * 0.02;
-        this.fade     = Math.random() * 0.1;
-        this.gridX    = marker % 120;
-        this.gridY    = Math.floor(marker / 120) * 12;
-        this.color    = marker;
-        
-        this.pos = {
-            x: pos.x || 0,
-            y: pos.y || 0
-        };
-        
-        this.vel = {
-            x: vel.x || 0,
-            y: vel.y || 0
-        };
-        
-        this.lastPos = {
-            x: this.pos.x,
-            y: this.pos.y
-        };
-        
-        this.target = {
-            y: target.y || 0
-        };
-        
-        this.usePhysics = usePhysics || false;
-    
-    };
-
-    /**
-     * Functions that we'd rather like to be
-     * available to all our particles, such
-     * as updating and rendering
-     */
-    Particle.prototype = {
-    
-      update: function() {
-    
-        this.lastPos.x = this.pos.x;
-        this.lastPos.y = this.pos.y;
-    
-        if(this.usePhysics) {
-          this.vel.y += this.GRAVITY;
-          this.pos.y += this.vel.y;
-    
-          // since this value will drop below
-          // zero we'll occasionally see flicker,
-          // ... just like in real life! Woo! xD
-          this.alpha -= this.fade;
-        } else {
-    
-          var distance = (this.target.y - this.pos.y);
-    
-          // ease the position
-          this.pos.y += distance * (0.03 + this.easing);
-    
-          // cap to 1
-          this.alpha = Math.min(distance * distance * 0.00005, 1);
-        }
-    
-        this.pos.x += this.vel.x;
-    
-        return (this.alpha < 0.005);
-      },
-    
-      render: function(context, fireworkCanvas) {
-    
-        var x = Math.round(this.pos.x),
-            y = Math.round(this.pos.y),
-            xVel = (x - this.lastPos.x) * -5,
-            yVel = (y - this.lastPos.y) * -5;
-    
-        context.save();
-        context.globalCompositeOperation = 'lighter';
-        context.globalAlpha = Math.random() * this.alpha;
-    
-        // draw the line from where we were to where
-        // we are now
-        context.fillStyle = "rgba(255,255,255,0.3)";
-        context.beginPath();
-        context.moveTo(this.pos.x, this.pos.y);
-        context.lineTo(this.pos.x + 1.5, this.pos.y);
-        context.lineTo(this.pos.x + xVel, this.pos.y + yVel);
-        context.lineTo(this.pos.x - 1.5, this.pos.y);
-        context.closePath();
-        context.fill();
-    
-        // draw in the images
-        context.drawImage( fireworkCanvas,
-          this.gridX, this.gridY, 12, 12,
-          x - 6, y - 6, 12, 12);
-        context.drawImage(Library.smallGlow, x - 3, y - 3);
-    
-        context.restore();
-      }
-    
-    };
-
-    /**
-     * Stores references to the images that
-     * we want to reference later on
-     */
-    var Library = {
-      bigGlow: document.getElementById('big-glow'),
-      smallGlow: document.getElementById('small-glow')
-    };
 
     // console.log( rectButtonToggle.top, rectButtonToggle.right, rectButtonToggle.bottom, rectButtonToggle.left);
     // console.log( rectTriviaBox );
@@ -164,53 +49,69 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
     vm.questionOptionClass = questionOptionClass;
     vm.toggleTrivia = toggleTrivia;
 
-  // declare the variables we need
-  var particles = [],
-      mainCanvas = null,
-      mainContext = null,
-      fireworkCanvas = null,
-      fireworkContext = null,
-      viewportWidth = 0,
-      viewportHeight = 0;
-    /* ********************* FIREWORKS *********************  */
+    //console.log( rectPointsBar );
+
+    // Flying objects parameters
+    var speed = 5,
+	winWidth = window.innerWidth,
+	winHeight = window.innerHeight,
+	start = { yMin:winHeight + 50, yMax:winHeight + 50, xMin:winWidth/2, xMax:winWidth/2, scaleMin:0.25, scaleMax:0.5, opacityMin:0.4, opacityMax:0.5 },
+	mid = { yMin:winHeight * 0.3, yMax:winHeight * 0.5, xMin:75, xMax:400, scaleMin:0.5, scaleMax:0.75, opacityMin:0.5, opacityMax:8 },
+	end = { yMin:rectPointsBar.top, yMax:rectPointsBar.top, xMin:rectPointsBar.left, xMax:rectPointsBar.left, scaleMin:0.75, scaleMax:1, opacityMin:0.8, opacityMax:1 },
+	colors = [ "#003ed9","#00e6d7","#fb8100","#ef0000","#e849e0","#c7e105","#1bd51b","#2044e0" ];
+    // Flying objects parameters
 
     initialize( );
-    
-    initializeFireworks( );
+ 
+ /* COINS FLYING TO THE POINTS BAR */
+    function getPosition( element ) {
+        var xPosition = 0;
+        var yPosition = 0;
+      
+        while(element) {
+            xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+            yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+            element = element.offsetParent;
+        }
+        return { x: xPosition, y: yPosition };
+    }
 
-  /**
-   * Create DOM elements and get your game on
-   */
-  function initializeFireworks( ) {
+	function range( map, prop ) {
+		var min = map[ prop + "Min" ],
+			max = map[ prop + "Max" ];
+		return min + ( max - min ) * Math.random( );
+	}
 
-    // start by measuring the viewport
-    onWindowResize( );
+	function spawn( particle ) {
+		var wholeDuration = ( 10 / speed ) * ( 0.7 + Math.random( ) * 0.4 ),
+			delay = wholeDuration * Math.random( ),
+			partialDuration = ( wholeDuration + 1 ) * ( 0.3 + Math.random( ) * 0.4 );
 
-    // create a canvas for the fireworks
-    mainCanvas = document.createElement( 'canvas' );
-    mainContext = mainCanvas.getContext( '2d' );
+		//set the starting values
+		TweenLite.set( particle, { y:range( start, "y" ), x:range( start, "x" ), scale:range( start, "scale" ), opacity:range( start, "opacity" ), visibility:"hidden", color:colors[ Math.floor( Math.random( ) * colors.length ) ] } );
 
-    // and another one for, like, an off screen buffer
-    // because that's rad n all
-    fireworkCanvas = document.createElement('canvas');
-    fireworkContext = fireworkCanvas.getContext( '2d' );
+		//the y tween should be continuous and smooth the whole duration
+		TweenLite.to( particle, wholeDuration, { delay:delay, y:range( end, "y" ), ease:Linear.easeNone } );
 
-    // set up the colours for the fireworks
-    createFireworkPalette( 12 );
+		//now tween the x independently so that it looks more randomized (rather than linking it with scale/opacity changes too)
+		TweenLite.to(particle, partialDuration, {delay:delay, x:range(mid, "x"), ease:Power1.easeOut});
+		TweenLite.to(particle, wholeDuration - partialDuration, {delay:partialDuration + delay, x:range(end, "x"), ease:Power1.easeIn});
 
-    // set the dimensions on the canvas
-    setMainCanvasDimensions( );
+		//now create some random scale and opacity changes
+		partialDuration = wholeDuration * (0.5 + Math.random() * 0.3);
+		TweenLite.to(particle, partialDuration, {delay:delay, scale:range(mid, "scale"), autoAlpha:range(mid, "opacity"), ease:Linear.easeNone});
+		TweenLite.to(particle, wholeDuration - partialDuration, {delay:partialDuration + delay, scale:range(end, "scale"), autoAlpha:range(end, "opacity"), ease:Linear.easeNone, onComplete:function( ) { particle.remove( ); }, onCompleteParams:[particle]});
+	}
 
-    // add the canvas in
-    greyOut.appendChild( mainCanvas );
-/*
-    document.addEventListener( 'mouseup', createFirework, true );
-    document.addEventListener( 'touchend', createFirework, true );
-*/
-
-    // and now we set off
-    update( );
-  }
+    function animate( howMany ) {
+        for ( var i = 0 ; i < howMany; i++ ){
+            var element = document.createElement( 'div' );
+            element.className += "flying-coin";
+            container.appendChild( element );
+    		spawn( element );
+        }
+    }
+ /* COINS FLYING TO THE POINTS BAR */
 
     function initialize( ) {
         getQuestion( );
@@ -218,6 +119,8 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
         greyOut.onclick = function( ) {
             toggleTrivia( );
         };
+        
+        FireworksService.initialize( greyOut );
     }
 
     function trustSrc( src ) {
@@ -281,9 +184,11 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
                         
                         // vm.data.display_time: after this number of seconds I will validate the 
                         // answer as -1, which means unaswered
+/*
                         vm.timeout_promise = $timeout( function( ) {
                             validateAnswer( -1 );
                         }, vm.data.display_time * 1000 )
+*/
                         
                         //// Count down
                         countDownTween = TweenLite.from( { }, vm.data.display_time, {
@@ -301,9 +206,11 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
                         //// Count down
 
                         validatingAnswer = false
-                    },  vm.data.delay * 1000 );//vm.data.delay * 1000
+                    },  0 );//vm.data.delay * 1000
+/*
                     console.log( 'Get Question:' );
                     console.log(vm.data);
+*/
                 } else {
                     FlashService.Error( response.message );
                 }
@@ -315,11 +222,11 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
 
     function questionOptionClass( value ) {
         var text = '';
-        if ( vm.data.correct_answer_id == value)  {
+        if ( vm.data.correct_answer_id == value )  {
             text = "btn-trivia btn-correct";
-        } else if (vm.data.correct_answer_id != value && vm.data.player_answer_id == value) {
+        } else if ( vm.data.correct_answer_id != value && vm.data.player_answer_id == value ) {
             text = "btn-trivia btn-wrong";
-        } else if (vm.data.correct_answer_id != value ) {
+        } else if ( vm.data.correct_answer_id != value ) {
             text = "btn-trivia";
         }
         return text;
@@ -339,8 +246,16 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
             tr_id: option
         }
 
+
+/*
+        // I wanted to make it samller before exploding but no time for now
+        tl = new TimelineLite( { } );
+        tl.to( triviaContainer, 1, { ease: Circ.easeOut, scale:0.7 } );
+        tl.fromTo( triviaContainer, vm.data.validation_time, { scale: 0.7 }, 
+            { scale: 0.75, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
+*/
         var shakeTween = TweenLite.fromTo( triviaContainer, vm.data.validation_time, { scale: 1 }, 
-            { scale: 1.1, ease:RoughEase.ease.config( { strength: 2, points: 20, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
+            { scale: 1.1, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
 
         ApiService.post( 'challenge_process', data )
             .then( function( response ) {
@@ -421,37 +336,12 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
         $location.path( '/rewards' );
     }
 
-    function getAnimation() {
-        var element = document.createElement( 'div' );
-        element.className += "flying-coin";
-        container.appendChild( element );
-        TweenLite.set( element, { x:rectButtonToggle.left, y:rectButtonToggle.bottom } );
-        //create a semi-random tween 
-        var bezTween = new TweenMax( element, 2, {
-            bezier:{
-                type:"soft", 
-                values:[ { x:rectPointsBar.left + getRandomArbitrary( -2, 2 ) * rectPointsBar.width, y:40 }, { x:rectPointsBar.left + getRandomArbitrary( 0, 1 ) * rectPointsBar.width, y:20 } ],
-                autoRotate:true
-            },
-            ease:Expo.easeOut
-            , onComplete:function( ) { container.removeChild( element ); }
-        } );
- 
-        return bezTween;
-    }
 
     function animatePoints( ) {
         if ( vm.data.earned_points > 0 ) {
-            tl = new TimelineLite( { } );
             var repeat = Math.floor( vm.data.earned_points / 100 );
-            
-            for ( var i = 0 ; i < repeat; i++ ){
-                createFirework( );
-               //start animation every 0.17 seconds
-                tl.add( getAnimation( ), i * 0.17 );
-//                 new TimelineMax({onComplete: function() {console.log('complete');}});
-
-            }
+            FireworksService.shoot( repeat );
+            animate( repeat );
         }
         TweenLite.to( pointsBar, 3, { delay:2, value: vm.data.player_stats.accumulated_points } );
         var tlpb = new TimelineLite( { } );
@@ -531,254 +421,5 @@ function Trivia( ApiService, CelebrationService, SorryService, $location, $rootS
     // Some Animation when good answer
     function goodFeedBack( ) {
     }
-
-
-    /* ********************* FIREWORKS *********************  */
-  /**
-   * Pass through function to create a
-   * new firework on touch / click
-   */
-  function createFirework() {
-    createParticle( );
-  }
-
-  /**
-   * Creates a block of colours for the
-   * fireworks to use as their colouring
-   */
-  function createFireworkPalette( gridSize ) {
-
-    var size = gridSize * 10;
-    fireworkCanvas.width = size;
-    fireworkCanvas.height = size;
-    fireworkContext.globalCompositeOperation = 'source-over';
-
-    // create 100 blocks which cycle through
-    // the rainbow... HSL is teh r0xx0rz
-    for( var c = 0; c < 100; c++ ) {
-
-      var marker = ( c * gridSize );
-      var gridX = marker % size;
-      var gridY = Math.floor( marker / size ) * gridSize;
-
-      fireworkContext.fillStyle = "hsl(" + Math.round( c * 3.6 ) + ",100%,60%)";
-      fireworkContext.fillRect( gridX, gridY, gridSize, gridSize );
-      fireworkContext.drawImage(
-        Library.bigGlow,
-        gridX,
-        gridY);
-    }
-  }
-
-  /**
-   * Update the canvas based on the
-   * detected viewport size
-   */
-  function setMainCanvasDimensions() {
-    mainCanvas.width = viewportWidth;
-    mainCanvas.height = viewportHeight;
-  }
-
-  /**
-   * The main loop where everything happens
-   */
-  function update( ) {
-    clearContext( );
-    requestAnimFrame( update );
-    drawFireworks( );
-  }
-
-  /**
-   * Clears out the canvas with semi transparent
-   * black. The bonus of this is the trails effect we get
-   */
-  function clearContext() {
-    mainContext.fillStyle = "rgba(0,0,0,0.2)";
-    mainContext.fillRect(0, 0, viewportWidth, viewportHeight);
-  }
-
-  /**
-   * Passes over all particles particles
-   * and draws them
-   */
-  function drawFireworks() {
-    var a = particles.length;
-
-    while(a--) {
-      var firework = particles[a];
-
-      // if the update comes back as true
-      // then our firework should explode
-      if( firework.update( ) ) {
-
-        // kill off the firework, replace it
-        // with the particles for the exploded version
-        particles.splice(a, 1);
-
-        // if the firework isn't using physics
-        // then we know we can safely(!) explode it... yeah.
-        if ( !firework.usePhysics ) {
-
-          if ( Math.random( ) < 0.8 ) {
-            FireworkExplosions.star( firework );
-          } else {
-            FireworkExplosions.circle( firework );
-          }
-        }
-      }
-
-      // pass the canvas context and the firework
-      // colours to the
-      firework.render( mainContext, fireworkCanvas );
-    }
-  }
-
-  /**
-   * Creates a new particle / firework
-   */
-  function createParticle(pos, target, vel, color, usePhysics) {
-    pos = pos || {};
-    target = target || {};
-    vel = vel || {};
-
-    particles.push(
-      new Particle(
-        // position
-        {
-          x: pos.x || viewportWidth * 0.5,
-          y: pos.y || viewportHeight + 10
-        },
-
-        // target
-        {
-          y: target.y || 150 + Math.random() * 100
-        },
-
-        // velocity
-        {
-          x: vel.x || Math.random() * 3 - 1.5,
-          y: vel.y || 0
-        },
-
-        color || Math.floor(Math.random() * 100) * 12,
-
-        usePhysics)
-    );
-  }
-
-  /**
-   * Callback for window resizing -
-   * sets the viewport dimensions
-   */
-  function onWindowResize() {
-    viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;
-  }
-
-/**
- * Stores a collection of functions that
- * we can use for the firework explosions. Always
- * takes a firework (Particle) as its parameter
- */
-var FireworkExplosions = {
-
-  /**
-   * Explodes in a roughly circular fashion
-   */
-  circle: function(firework) {
-
-    var count = 100;
-    var angle = (Math.PI * 2) / count;
-    while(count--) {
-
-      var randomVelocity = 4 + Math.random() * 4;
-      var particleAngle = count * angle;
-
-      createParticle(
-        firework.pos,
-        null,
-        {
-          x: Math.cos(particleAngle) * randomVelocity,
-          y: Math.sin(particleAngle) * randomVelocity
-        },
-        firework.color,
-        true);
-    }
-  },
-
-  /**
-   * Explodes in a star shape
-   */
-  star: function( firework ) {
-
-    // set up how many points the firework
-    // should have as well as the velocity
-    // of the exploded particles etc
-    var points          = 6 + Math.round( Math.random( ) * 15 );
-    var jump            = 3 + Math.round( Math.random( ) * 7 );
-    var subdivisions    = 10;
-    var radius          = 80;
-    var randomVelocity  = -( Math.random( ) * 3 - 6 );
-
-    var start           = 0;
-    var end             = 0;
-    var circle          = Math.PI * 2;
-    var adjustment      = Math.random() * circle;
-
-    do {
-
-      // work out the start, end
-      // and change values
-      start = end;
-      end = (end + jump) % points;
-
-      var sAngle = (start / points) * circle - adjustment;
-      var eAngle = ((start + jump) / points) * circle - adjustment;
-
-      var startPos = {
-        x: firework.pos.x + Math.cos(sAngle) * radius,
-        y: firework.pos.y + Math.sin(sAngle) * radius
-      };
-
-      var endPos = {
-        x: firework.pos.x + Math.cos(eAngle) * radius,
-        y: firework.pos.y + Math.sin(eAngle) * radius
-      };
-
-      var diffPos = {
-        x: endPos.x - startPos.x,
-        y: endPos.y - startPos.y,
-        a: eAngle - sAngle
-      };
-
-      // now linearly interpolate across
-      // the subdivisions to get to a final
-      // set of particles
-      for( var s = 0; s < subdivisions; s++ ) {
-
-        var sub = s / subdivisions;
-        var subAngle = sAngle + (sub * diffPos.a);
-
-        createParticle(
-          {
-            x: startPos.x + (sub * diffPos.x),
-            y: startPos.y + (sub * diffPos.y)
-          },
-          null,
-          {
-            x: Math.cos(subAngle) * randomVelocity,
-            y: Math.sin(subAngle) * randomVelocity
-          },
-          firework.color,
-          true);
-      }
-
-    // loop until we're back at the start
-    } while(end !== 0);
-
-  }
-};
-    /* ********************* FIREWORKS *********************  */
-
 }
 })();
