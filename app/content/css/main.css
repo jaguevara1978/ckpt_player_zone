@@ -84,9 +84,12 @@
 .sign-wrap{
   width: 95%;
 }
+.account-setting-wrap{
+  width: 95%;
+}
 @media (min-width: 480px) {
     .content {
-      height:500px;
+      min-height:500px;
     }
     .user{
         float:left;
@@ -105,11 +108,14 @@
     .sign-wrap{
        width: 75%;
     }
+    .account-setting-wrap{
+        width: 75%;
+    }
 
 }
 @media (min-width: 600px) {
     .content {
-      height:500px;
+      min-height:500px;
     }
     .user{
         float:left;
@@ -128,13 +134,13 @@
     .sign-wrap{
        width: 55%;
     }
+    .account-setting-wrap{
+       width: 65%;
+    }
 
 }
 
 @media (min-width: 900px) {
-   .content {
-      height:500px;
-    }
     .user{
         float:left;
         width: 18%;
@@ -160,11 +166,14 @@
       width:75%;
    }
    .prize img{
-    width:180px;
+      width:180px;
    }
    .sign-wrap{
-    width: 45%;
+     width: 45%;
    }
+    .account-setting-wrap{
+      width: 70%;
+    }
 }
 
 @media (min-width: 1366px) {
@@ -204,6 +213,9 @@
   .sign-wrap{
     width: 35%;
    }
+  .account-setting-wrap{
+    width: 60%;
+  }
 }
 
 
@@ -224,6 +236,7 @@ margin-bottom:10px;
   color: #ddd;
   background-color: #655643;
   position:relative;
+  height:auto;
 }
 
 footer {
@@ -514,7 +527,7 @@ li > a:only-child:after { content: ''; }
 
 
 
-/*Sign up*/
+/*Sign forms*/
 .sign-wrap{
   margin: 0 auto;
   margin-top:5%;
@@ -625,7 +638,7 @@ width: 100%;
     width: 75%;
     border: none;
     outline: none;
-    color:#B6B6B6;
+    color:#797779;
     background:#fef0e3;
   }
   .sign_form p {
@@ -713,7 +726,7 @@ width: 100%;
 /* Change the white to any color ;) */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fef0e3 inset;
-    -webkit-text-fill-color: #999 !important;
+    -webkit-text-fill-color: #797779 !important;
 }
 /*end-sign-form*/
 
@@ -878,9 +891,6 @@ input:-webkit-autofill {
 .sign_form button[type="submit"]:hover {
   background:#34A6C1;
 } 
-
-
-/*agree*/
 .agree {
   margin: 3% 0 1%;
   font-size: 0.8em;
@@ -894,3 +904,176 @@ input:-webkit-autofill {
   color: #333;
   text-decoration:none;
 }
+.captcha-form {
+  display:block;
+  background:#fff;
+  border-radius:5px;
+}
+
+/*Account Setting forms*/
+.account-setting-wrap{
+  margin: 0 auto;
+  margin-top:2%;
+  color:#fef0e3;
+}
+.account-setting-wrap h2 {
+  border-bottom:1px solid #fef0e3;
+  padding-bottom:3px;
+  margin-bottom:5px;
+  text-transform:uppercase;
+  font-size:1.4em;
+}
+.account-setting-form{
+  display:block;
+  background:#B5C258;
+  padding: 2% 4%;
+  margin: 5% 0;
+  position: relative;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  overflow:hidden;
+  clear:both;
+}
+.account-setting-form ul {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+.account-setting-form ul li {
+    list-style: none;
+    padding: 1% 0;
+    margin:0;
+}
+.account-setting-form li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    overflow: hidden;
+   /* border-top:1px solid #ccc;*/
+}
+.account-setting-form h3 {
+    display:inline-block;
+    width: 20%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 4px 10px 0 0;
+    text-transform:uppercase;
+}
+.account-setting-form .field-wrapper {
+    display:inline-block;
+    width:79%;
+}
+.account-setting-form label {
+    word-wrap: break-word;
+}
+.account-setting-form input[type="email"], .account-setting-form input[type="number"], .account-setting-form input[type="password"], .account-setting-form input[type="text"], .account-setting-form input[type="url"], .account-setting-form textarea {
+    background-color: #f3f3f3;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#f5f5f5));
+    background: -webkit-linear-gradient(#f0f0f0, #f5f5f5);
+    background: linear-gradient(#f0f0f0, #f5f5f5);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #d6d3ce;
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+    box-shadow: 0 0 3px rgba(0,0,0,0.12) inset;
+    color: #666;
+    font-size: 1em;
+    padding: 7px;
+}
+.account-setting-form select {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    border: 1px solid #d6d3ce;
+    color: #666;
+    cursor: pointer;
+    font-weight: bold;
+    height: 32px;
+    padding: 7px 7px 7px 14px;
+}
+.formInlineCheckedSet {
+  width:100%;
+  overflow: hidden
+}
+.formInlineCheckedSet ul li {
+  display:inline-block;
+  margin-right:3%;
+}
+.formInlineCheckedSet label {
+  padding-right:10%;
+}
+.formInlineCheckedSet input[type="radio"], 
+.formInlineCheckedSet input.radio {
+
+}
+.account-setting-form button {
+    background-color: #999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#999));
+    background: -webkit-linear-gradient(#fff, #999);
+    border: 1px solid #999;
+    color: #5f5f5f;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 0 1px #ccc;
+    white-space: nowrap;
+    padding: 7px 13px;
+    font-size:0.9em;
+}
+.account-setting-form input.first-name,
+.account-setting-form .city {
+    width:49%;
+    float:left;
+    margin-right:2%;
+}
+.account-setting-form input.last-name,
+.account-setting-form .country {
+    width:49%;
+    float:right;
+}
+.account-setting-form .month {
+    width:15%;
+    float:left;
+    margin-right:2%;
+}
+.account-setting-form .day {
+    width:15%;
+    float:left;
+    margin-right:2%;
+}
+.account-setting-form .year {
+    width:25%;
+    float:left;
+}
+ul.interest-list li {
+  float:left;
+  width:18%;
+  height:70px;
+  margin:0 2% 2% 0;
+  padding:2%;
+  text-align:center;
+  vertical-align: middle;
+  font-size:0.9em;
+  font-weight:300;
+}
+ul.interest-list li:last-child {
+  margin-right:0;
+}
+.interest-off {
+  color:#fff;
+  background: #9f9e9f;
+}
+.interest-on {
+  color:#fff;
+  background: #C8525E;
+}
+.footer-buttons {
+  text-align:right;
+}
+
+
