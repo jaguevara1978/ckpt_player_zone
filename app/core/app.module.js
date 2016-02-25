@@ -63,9 +63,9 @@
     .config( config )
     .run( run );
 
-    /*@ngInject*/
         // ******** i18n Stuff - it is working but better use it later, Not Yet **********
 //     function config( $routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, config ) {
+    /*@ngInject*/
     function config( $routeProvider, $httpProvider, config ) {
         $routeProvider.otherwise( {
             redirectTo: '/signin'

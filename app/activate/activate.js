@@ -11,7 +11,7 @@
 angular.module( 'app.activate' ).controller( 'Activate', Activate );
 
 /*@ngInject*/
-function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaService, AuthenticationService, FlashService ) {
+function Activate( $rootScope, $location, $routeParams, ApiService, AuthenticationService, FlashService ) {
     var vm = this;
     vm.confirmSignUp = confirmSignUp;
     vm.loading = false;
@@ -55,10 +55,8 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
                         }
                         // TODO - If expired token, offer to send a new one
                         if ( response.data.errorKey == 'expired_token' ) {
-                            
+                            $location.path( '/signin' );
                         }
-
-                        $location.path( '/signin' );
                     }
 
                     vm.loading = false;
@@ -70,14 +68,14 @@ function Activate( $rootScope, $location, $routeParams, ApiService, vcRecaptchaS
     }
     
     function confirmSignUp( ) {
-        vm.loading = true;
-        var response = vcRecaptchaService.getResponse( );
-        if( response === '' ){ //if string is empty
+        // console.log(vm.captcha_response);
+        if( vm.captcha_response === '' || !vm.captcha_response ){ //if string is empty
             FlashService.Error( 'Please, resolve Captcha' );
         } else {
+            vm.loading = true;
             //prepare payload for request
             //send g-captcah-reponse to our server
-            vm.data.g_recaptcha_response = response;
+            vm.data.g_recaptcha_response = vm.captcha_response;
     
             ApiService.post( 'confirm_signup', vm.data )
                 .then( function( response ) {

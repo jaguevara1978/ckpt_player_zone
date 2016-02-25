@@ -70,17 +70,22 @@
 </style>
 <div class="sign-wrap">
 
-<script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
-
-<!-- strat-activation-form -->
-
+    <!-- strat-activation-form -->
     <div class="activation-form">
         <form name="form" role="form">
             <h2>Almost there! Please, Confirm you're not a robot and activate your account.</h2>
 
-            <div align="center" style="margin-bottom: 20px" vc-recaptcha theme="light" key="vm.data.siteKey"></div>
+            <!-- ReCaptcha -->
+            <div align="center" style="margin-bottom: 20px">
+                <no-captcha 
+                    g-recaptcha-response="vm.captcha_response"
+                    theme='light'
+                    control="noCaptchaControl">
+                </no-captcha>
+            </div>
+            <!-- ReCaptcha -->
 
-                <!-- ACTIVATION BUTTON -->
+            <!-- ACTIVATION BUTTON -->
             <button type="submit" ng-click="vm.confirmSignUp( )" ng-disabled="form.$invalid" busy>
                 Activate
                 <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>

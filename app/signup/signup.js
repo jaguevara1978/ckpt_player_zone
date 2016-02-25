@@ -22,6 +22,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
     vm.user = null;
 
     //For testing purposes only
+/*
     vm.user = {
         data: {
             fname: 'Alex',
@@ -32,6 +33,7 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
             password: 'pass'
         }
     };
+*/
    //For testing purposes only
 
 
