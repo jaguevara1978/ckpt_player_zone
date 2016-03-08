@@ -1,160 +1,424 @@
-<style >
-#loading {
-  position: absolute;
-  left: calc(50% - 100px);
-  top: calc(50% - 25px);
-  z-index: 9999
-}
+<div class="signin_page_tittle">Checkpoint Challenge</div>
 
-.uil-ripple {
-  position: absolute;
-  left: calc(50% - 90px);
-  top: calc(50% - 90px);
-  opacity: .5;
-  z-index: 999
-}
+<!-- This is the sign in form -->
+<div id="signin_wrapper" class="signin_wrapper" ng-show="vm.signin">
+	<h1>Sign In</h1>
+	<form name="signin_form" role="form" class="form">
+		<input ng-model="vm.user.id" type="text" placeholder="Username" tabindex="10" required>
+		<input ng-model="vm.user.pwd" type="password" placeholder="Password" tabindex="20" required>
+        <button id="signin_submit" type="submit" class="login_submit ng-class: { login_submit_enabled: signin_form.$invalid == false, login_submit_disabled: signin_form.$invalid == true };" ng-click="vm.login( )" ng-disabled="signin_form.$invalid">
+            Sign In  <i class="fa fa-sign-in"></i>
+        </button>
+        <button id="signup_button" type="submit" class="signup_change" ng-click="vm.rotate( )">
+            Sign Up  <i class="fa fa-pencil"></i>
+        </button>
 
-.ld-l {
-  opacity: 0;
-  animation: ld-in 3s 0.0s ease infinite;
-}
+        <!-- This is the loading animation, I did it with svg animations -->
+        <div id="loading-animation" ng-show="vm.loading" class="clear">
+            <svg id="loading">
+            <g>
+            	<path class="ld-l" fill="#39C0C4" d="M43.6,33.2h9.2V35H41.6V15.2h2V33.2z"/>
+            	<path class="ld-o" fill="#39C0C4" d="M74.7,25.1c0,1.5-0.3,2.9-0.8,4.2c-0.5,1.3-1.2,2.4-2.2,3.3c-0.9,0.9-2,1.6-3.3,2.2
+            		c-1.3,0.5-2.6,0.8-4.1,0.8s-2.8-0.3-4.1-0.8c-1.3-0.5-2.4-1.2-3.3-2.2s-1.6-2-2.2-3.3C54.3,28,54,26.6,54,25.1s0.3-2.9,0.8-4.2
+            		c0.5-1.3,1.2-2.4,2.2-3.3s2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8s2.8,0.3,4.1,0.8c1.3,0.5,2.4,1.2,3.3,2.2c0.9,0.9,1.6,2,2.2,3.3
+            		C74.4,22.2,74.7,23.6,74.7,25.1z M72.5,25.1c0-1.2-0.2-2.3-0.6-3.3c-0.4-1-0.9-2-1.6-2.8c-0.7-0.8-1.6-1.4-2.6-1.9
+            		c-1-0.5-2.2-0.7-3.4-0.7c-1.3,0-2.4,0.2-3.4,0.7c-1,0.5-1.9,1.1-2.6,1.9c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3
+            		c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9c1,0.5,2.2,0.7,3.4,0.7c1.3,0,2.4-0.2,3.4-0.7
+            		c1-0.5,1.9-1.1,2.6-1.9c0.7-0.8,1.3-1.7,1.6-2.7C72.4,27.4,72.5,26.3,72.5,25.1z"/>
+            	<path class="ld-a" fill="#39C0C4" d="M78.2,35H76l8.6-19.8h2L95.1,35h-2.2l-2.2-5.2H80.4L78.2,35z M81.1,27.9h8.7l-4.4-10.5L81.1,27.9z"/>
+            	<path class="ld-d" fill="#39C0C4" d="M98,15.2h6.6c1.2,0,2.5,0.2,3.7,0.6c1.2,0.4,2.4,1,3.4,1.9c1,0.8,1.8,1.9,2.4,3.1s0.9,2.7,0.9,4.3
+            		c0,1.7-0.3,3.1-0.9,4.3s-1.4,2.3-2.4,3.1c-1,0.8-2.1,1.5-3.4,1.9c-1.2,0.4-2.5,0.6-3.7,0.6H98V15.2z M100,33.2h4
+            		c1.5,0,2.8-0.2,3.9-0.7c1.1-0.5,2-1.1,2.8-1.8c0.7-0.8,1.3-1.6,1.6-2.6s0.5-2,0.5-3c0-1-0.2-2-0.5-3c-0.4-1-0.9-1.8-1.6-2.6
+            		c-0.7-0.8-1.6-1.4-2.8-1.8c-1.1-0.5-2.4-0.7-3.9-0.7h-4V33.2z"/>
+            	<path class="ld-i" fill="#39C0C4" d="M121.2,35h-2V15.2h2V35z"/>
+            	<path class="ld-n" fill="#39C0C4" d="M140.5,32.1L140.5,32.1l0.1-16.9h2V35h-2.5l-11.5-17.1h-0.1V35h-2V15.2h2.5L140.5,32.1z"/>
+            	<path class="ld-g" fill="#39C0C4" d="M162.9,18.8c-0.7-0.7-1.5-1.3-2.5-1.7c-1-0.4-2-0.6-3.3-0.6c-1.3,0-2.4,0.2-3.4,0.7s-1.9,1.1-2.6,1.9
+            		c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9
+            		s2.2,0.7,3.4,0.7c1.1,0,2.1-0.1,3.1-0.4c0.9-0.2,1.7-0.5,2.3-0.9v-6h-4.6v-1.8h6.6v9c-1.1,0.7-2.2,1.1-3.5,1.5
+            		c-1.3,0.3-2.5,0.5-3.9,0.5c-1.5,0-2.9-0.3-4.1-0.8s-2.4-1.2-3.3-2.2c-0.9-0.9-1.6-2-2.1-3.3s-0.8-2.7-0.8-4.2s0.3-2.9,0.8-4.2
+            		c0.5-1.3,1.2-2.4,2.2-3.3c0.9-0.9,2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8c1.6,0,3,0.2,4.1,0.7s2.2,1.1,3,2L162.9,18.8z"/>
+            </g>
+            </svg>
+            <svg width='182px' height='182px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ripple"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g> <animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g><g><animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g></svg>
+        </div>   
+        <!-- Loading animation -->
 
-.ld-o {
-  opacity: 0;
-  animation: ld-in 3s 0.1s ease infinite;
-}
+	</form>
+</div>
 
-.ld-a {
-  opacity: 0;
-  animation: ld-in 3s 0.2s ease infinite;
-}
+<!-- This is the sign up form -->
+<div id="signup_wrapper" class="signin_wrapper" ng-hide="vm.signin">
+	<h1>Register</h1>
+	<form id="signup_form" name="signup_form" role="form" class="form">
+        <input ng-model='vm.user.data.fname' id="fname" name="fname" type="text" placeholder="First name" required>
+        <input ng-model='vm.user.data.lname' id="lname" name="lname" type="text" placeholder="Last name" required>
+        <input ng-model="vm.user.data.primary_email" type="email" name="email" id="email" placeholder="E-Mail" required>
+        <input type="{{ vm.showPassword ? 'text' : 'password' }}" ng-model='vm.user.extra.password' id="password" name="password" class="form-control input-lg" type="text" placeholder="Password" required>
+        <button id="signup_submit" type="submit"  class="login_submit ng-class: { login_submit_enabled: signup_form.$invalid == false, login_submit_disabled: signup_form.$invalid == true };" ng-click="vm.signup( )" ng-disabled="signup_form.$invalid">
+            Sign Up  <i class="fa fa-pencil"></i>
+        </button>
+        <button type="submit" class="signup_change" ng-click="vm.rotate( )">
+            Sign In  <i class="fa fa-sign-in"></i>
+        </button>
 
-.ld-d {
-  opacity: 0;
-  animation: ld-in 3s 0.3s ease infinite;
-}
+        <!-- This is the loading animation, I did it with svg animations -->
+        <div id="loading-animation" ng-show="vm.loading" class="clear">
+            <svg id="loading">
+            <g>
+            	<path class="ld-l" fill="#39C0C4" d="M43.6,33.2h9.2V35H41.6V15.2h2V33.2z"/>
+            	<path class="ld-o" fill="#39C0C4" d="M74.7,25.1c0,1.5-0.3,2.9-0.8,4.2c-0.5,1.3-1.2,2.4-2.2,3.3c-0.9,0.9-2,1.6-3.3,2.2
+            		c-1.3,0.5-2.6,0.8-4.1,0.8s-2.8-0.3-4.1-0.8c-1.3-0.5-2.4-1.2-3.3-2.2s-1.6-2-2.2-3.3C54.3,28,54,26.6,54,25.1s0.3-2.9,0.8-4.2
+            		c0.5-1.3,1.2-2.4,2.2-3.3s2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8s2.8,0.3,4.1,0.8c1.3,0.5,2.4,1.2,3.3,2.2c0.9,0.9,1.6,2,2.2,3.3
+            		C74.4,22.2,74.7,23.6,74.7,25.1z M72.5,25.1c0-1.2-0.2-2.3-0.6-3.3c-0.4-1-0.9-2-1.6-2.8c-0.7-0.8-1.6-1.4-2.6-1.9
+            		c-1-0.5-2.2-0.7-3.4-0.7c-1.3,0-2.4,0.2-3.4,0.7c-1,0.5-1.9,1.1-2.6,1.9c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3
+            		c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9c1,0.5,2.2,0.7,3.4,0.7c1.3,0,2.4-0.2,3.4-0.7
+            		c1-0.5,1.9-1.1,2.6-1.9c0.7-0.8,1.3-1.7,1.6-2.7C72.4,27.4,72.5,26.3,72.5,25.1z"/>
+            	<path class="ld-a" fill="#39C0C4" d="M78.2,35H76l8.6-19.8h2L95.1,35h-2.2l-2.2-5.2H80.4L78.2,35z M81.1,27.9h8.7l-4.4-10.5L81.1,27.9z"/>
+            	<path class="ld-d" fill="#39C0C4" d="M98,15.2h6.6c1.2,0,2.5,0.2,3.7,0.6c1.2,0.4,2.4,1,3.4,1.9c1,0.8,1.8,1.9,2.4,3.1s0.9,2.7,0.9,4.3
+            		c0,1.7-0.3,3.1-0.9,4.3s-1.4,2.3-2.4,3.1c-1,0.8-2.1,1.5-3.4,1.9c-1.2,0.4-2.5,0.6-3.7,0.6H98V15.2z M100,33.2h4
+            		c1.5,0,2.8-0.2,3.9-0.7c1.1-0.5,2-1.1,2.8-1.8c0.7-0.8,1.3-1.6,1.6-2.6s0.5-2,0.5-3c0-1-0.2-2-0.5-3c-0.4-1-0.9-1.8-1.6-2.6
+            		c-0.7-0.8-1.6-1.4-2.8-1.8c-1.1-0.5-2.4-0.7-3.9-0.7h-4V33.2z"/>
+            	<path class="ld-i" fill="#39C0C4" d="M121.2,35h-2V15.2h2V35z"/>
+            	<path class="ld-n" fill="#39C0C4" d="M140.5,32.1L140.5,32.1l0.1-16.9h2V35h-2.5l-11.5-17.1h-0.1V35h-2V15.2h2.5L140.5,32.1z"/>
+            	<path class="ld-g" fill="#39C0C4" d="M162.9,18.8c-0.7-0.7-1.5-1.3-2.5-1.7c-1-0.4-2-0.6-3.3-0.6c-1.3,0-2.4,0.2-3.4,0.7s-1.9,1.1-2.6,1.9
+            		c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9
+            		s2.2,0.7,3.4,0.7c1.1,0,2.1-0.1,3.1-0.4c0.9-0.2,1.7-0.5,2.3-0.9v-6h-4.6v-1.8h6.6v9c-1.1,0.7-2.2,1.1-3.5,1.5
+            		c-1.3,0.3-2.5,0.5-3.9,0.5c-1.5,0-2.9-0.3-4.1-0.8s-2.4-1.2-3.3-2.2c-0.9-0.9-1.6-2-2.1-3.3s-0.8-2.7-0.8-4.2s0.3-2.9,0.8-4.2
+            		c0.5-1.3,1.2-2.4,2.2-3.3c0.9-0.9,2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8c1.6,0,3,0.2,4.1,0.7s2.2,1.1,3,2L162.9,18.8z"/>
+            </g>
+            </svg>
+            <svg width='182px' height='182px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ripple"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g> <animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g><g><animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g></svg>
+        </div>   
+        <!-- Loading animation -->
 
-.ld-i {
-  opacity: 0;
-  animation: ld-in 3s 0.4s ease infinite;
-}
+	</form>
+</div>
 
-.ld-n {
-  opacity: 0;
-  animation: ld-in 3s 0.5s ease infinite;
-}
-
-.ld-g {
-  opacity: 0;
-  animation: ld-in 3s 0.6s ease infinite;
-}
-
-.spinner {
-  animation: ld-sp 3s ease infinite;
-}
-
-@keyframes ld-in {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>
-
-<div class="sign-wrap">
-    <!-- strat-contact-form --> 
-    <div class="sign-form">
-    <!-- start-form -->
-        <form class="sign_form" name="form" role="form">
-            <h1><a href="#/signup">Sign Up</a> <span>|</span> Log In</h1>
-        <div class="social-buttons">
-            <div class="facebook"><a href="#" title="sign up with facebook"><i class="fa fa-facebook fa-2x"></i></a></div>    
-            <div class="twitter"><a href="#" title="sign up with twitter"><i class="fa fa-twitter fa-2x"></i></a></div>
-            <div class="gplus"><a href="#" title="sign up with Google Plus"><i class="fa fa-google-plus fa-2x"></i></a></div>
-        </div>  
-        
-           <div class="sign-or">
-                <div class="or">OR</div>
-           </div>
-    
-            <ul>
-                <li>
-                    <input ng-model="vm.user.id" type="text" class="textbox1" name="id" id="id" class="form-control input-lg" placeholder="User Name or E-Mail address" tabindex="10" required />
-                    <span ng-show="form.id.$dirty && form.id.$error.required" class="form_hint" >User Name or e-mail address is required</span>
-                     <!-- <p><img src="../content/images/signup/contact.png" alt=""></p> -->
-                </li>
-                <li>
-                    <input class="textbox2" ng-model="vm.user.pwd" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="20" required />
-                    <span ng-show="form.id.$dirty && form.id.$error.required" class="form_hint">Password is required</span>
-                    <!-- <p><img src="../content/images/signup/lock.png" alt=""></p> -->
-                </li>
-             </ul>
-                <button type="submit" name="Sign In" value="Sign In" ng-click="vm.login( )" ng-disabled="form.$invalid" ng-hide="vm.forgotpwd" busy>
-                    Sign In
-                    <busy-message>Validating <i class="fa fa-refresh fa-spin"></i></busy-message>
-                </button>
-                <div class="clear"></div> 
+<canvas id="canvas"></canvas>
 
 <!--
-                <div class="rememeber">
-                    <label class="checkbox" ng-class="{true:'btn btn-success', false:'btn btn-default'}[vm.forgotpwd]">
-                        <input type="checkbox" name="checkbox" checked><i ng-class="{true:'glyphicon-check', false:'glyphicon-unchecked'}[vm.forgotpwd]"></i>
-                        Remember me
-                    </label>
-                </div>
-
-                <div class="forgot">
-                     <a href="#">forgot password?</a>
-                 </div> 
+<ul id="signin_bubbles" class="bg-bubbles">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
 -->
 
-                <div class="clear"></div> 
-    
-    
-            <!-- This is the loading animation, I did it with svg animations -->
-            <div id="loading-animation" ng-show="vm.loading" class="clear">
-                <svg id="loading">
-                <g>
-                	<path class="ld-l" fill="#39C0C4" d="M43.6,33.2h9.2V35H41.6V15.2h2V33.2z"/>
-                	<path class="ld-o" fill="#39C0C4" d="M74.7,25.1c0,1.5-0.3,2.9-0.8,4.2c-0.5,1.3-1.2,2.4-2.2,3.3c-0.9,0.9-2,1.6-3.3,2.2
-                		c-1.3,0.5-2.6,0.8-4.1,0.8s-2.8-0.3-4.1-0.8c-1.3-0.5-2.4-1.2-3.3-2.2s-1.6-2-2.2-3.3C54.3,28,54,26.6,54,25.1s0.3-2.9,0.8-4.2
-                		c0.5-1.3,1.2-2.4,2.2-3.3s2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8s2.8,0.3,4.1,0.8c1.3,0.5,2.4,1.2,3.3,2.2c0.9,0.9,1.6,2,2.2,3.3
-                		C74.4,22.2,74.7,23.6,74.7,25.1z M72.5,25.1c0-1.2-0.2-2.3-0.6-3.3c-0.4-1-0.9-2-1.6-2.8c-0.7-0.8-1.6-1.4-2.6-1.9
-                		c-1-0.5-2.2-0.7-3.4-0.7c-1.3,0-2.4,0.2-3.4,0.7c-1,0.5-1.9,1.1-2.6,1.9c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3
-                		c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9c1,0.5,2.2,0.7,3.4,0.7c1.3,0,2.4-0.2,3.4-0.7
-                		c1-0.5,1.9-1.1,2.6-1.9c0.7-0.8,1.3-1.7,1.6-2.7C72.4,27.4,72.5,26.3,72.5,25.1z"/>
-                	<path class="ld-a" fill="#39C0C4" d="M78.2,35H76l8.6-19.8h2L95.1,35h-2.2l-2.2-5.2H80.4L78.2,35z M81.1,27.9h8.7l-4.4-10.5L81.1,27.9z"/>
-                	<path class="ld-d" fill="#39C0C4" d="M98,15.2h6.6c1.2,0,2.5,0.2,3.7,0.6c1.2,0.4,2.4,1,3.4,1.9c1,0.8,1.8,1.9,2.4,3.1s0.9,2.7,0.9,4.3
-                		c0,1.7-0.3,3.1-0.9,4.3s-1.4,2.3-2.4,3.1c-1,0.8-2.1,1.5-3.4,1.9c-1.2,0.4-2.5,0.6-3.7,0.6H98V15.2z M100,33.2h4
-                		c1.5,0,2.8-0.2,3.9-0.7c1.1-0.5,2-1.1,2.8-1.8c0.7-0.8,1.3-1.6,1.6-2.6s0.5-2,0.5-3c0-1-0.2-2-0.5-3c-0.4-1-0.9-1.8-1.6-2.6
-                		c-0.7-0.8-1.6-1.4-2.8-1.8c-1.1-0.5-2.4-0.7-3.9-0.7h-4V33.2z"/>
-                	<path class="ld-i" fill="#39C0C4" d="M121.2,35h-2V15.2h2V35z"/>
-                	<path class="ld-n" fill="#39C0C4" d="M140.5,32.1L140.5,32.1l0.1-16.9h2V35h-2.5l-11.5-17.1h-0.1V35h-2V15.2h2.5L140.5,32.1z"/>
-                	<path class="ld-g" fill="#39C0C4" d="M162.9,18.8c-0.7-0.7-1.5-1.3-2.5-1.7c-1-0.4-2-0.6-3.3-0.6c-1.3,0-2.4,0.2-3.4,0.7s-1.9,1.1-2.6,1.9
-                		c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9
-                		s2.2,0.7,3.4,0.7c1.1,0,2.1-0.1,3.1-0.4c0.9-0.2,1.7-0.5,2.3-0.9v-6h-4.6v-1.8h6.6v9c-1.1,0.7-2.2,1.1-3.5,1.5
-                		c-1.3,0.3-2.5,0.5-3.9,0.5c-1.5,0-2.9-0.3-4.1-0.8s-2.4-1.2-3.3-2.2c-0.9-0.9-1.6-2-2.1-3.3s-0.8-2.7-0.8-4.2s0.3-2.9,0.8-4.2
-                		c0.5-1.3,1.2-2.4,2.2-3.3c0.9-0.9,2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8c1.6,0,3,0.2,4.1,0.7s2.2,1.1,3,2L162.9,18.8z"/>
-                </g>
-                </svg>
-                <svg width='182px' height='182px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ripple"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g> <animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g><g><animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="1;1;0"></animate><circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round"><animate attributeName="r" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1" values="0;22;44"></animate></circle></g></svg>
-            </div>   
-            <!-- Loading animation -->
-        </form>
-    
-    
-    <!-- end-form -->
-    <!-- start-account -->
+
+<img id='img_bottom' src="http://primg.checkpointchallenge.com:81/utils/mean_monkey.png" 
+style="max-width: 50%;min-width: 200px;height: auto;opacity: 0.8;position: fixed;"></img>
 
 
-</div>
-<!-- end-contact-form -->
-</div>
+<script >
+function randomBetween( min,max ) {
+    return Math.floor( Math.random( ) * ( max-min + 1 ) + min );
+}
+
+var imgBottom = document.getElementById( 'img_bottom' );
+var timeLine = new TimelineMax( { onComplete:meanMonkey } );
+
+function meanMonkey( ) {
+    var topStart = 0;
+    var topEnd = 0;
+    var rightStart = 0;
+    var rightEnd = 0;
+    var rotate = 0;
+    var position = randomBetween( 1, 8 ); //1-Top, 2-Right, 3-Bottom, 4-Left, 5-TopRight, 6-BottomRight, 7-Bottom-Left, 8-TopLeft
+    switch ( position ) {
+        case 1: // Top
+            rightStart = randomBetween( 0, 50 );
+            rightEnd = rightStart;
+            topStart = -50;
+            topEnd = randomBetween( -30, -15 );
+            rotate = 'rotate(180deg)';
+
+            break;
+    
+        case 2: // Right
+            var rotated = randomBetween( 1, 2 );
+            rightStart = -50;
+            rightEnd = randomBetween( -30, -15 );;
+            topStart = randomBetween( 0, 45 );
+            topEnd = topStart;
+
+            if ( rotated == 1 ) { // Rotated
+                rotate = 'rotate(-45deg)';
+            } else { // Straight
+                rotate = 'rotate(-90deg)';
+            }
+
+            break;
+    
+        case 3: // Bottom
+            rightStart = randomBetween( 0, 50 );
+            rightEnd = rightStart;
+            topStart = 100;
+            topEnd = randomBetween( 40, 80 );
+            rotate = 'rotate(0deg)';
+
+            break;
+    
+        case 4: // Left
+            var rotated = randomBetween( 1, 2 );
+            rightStart = 100;
+            topStart = randomBetween( 0, 35 );
+            topEnd = topStart;
+
+            if ( rotated == 1 ) { // Rotated
+                rightEnd = randomBetween( 70, 80 );
+                rotate = 'rotate(45deg)';
+            } else { // Straight
+                rightEnd = randomBetween( 55, 83 );
+                rotate = 'rotate(90deg)';
+            }
+
+            break;
+
+        case 5: // TopRight
+            rightStart = -50;
+            topStart = -50;
+            rightEnd = randomBetween( -30, -15 );;
+            topEnd = randomBetween( -30, -15 );
+            rotate = 'rotate(-135deg)';
+
+            break;
+
+        case 6: // BottomRight
+            rightStart = -50;
+            topStart = 100;
+            rightEnd = randomBetween( -20, -10 );
+            topEnd = randomBetween( 60, 80 );
+            rotate = 'rotate(-45deg)';
+
+            break;
+
+        case 7: // BottomLeft
+            rightStart = 100;
+            rightEnd = randomBetween( 60, 75 );
+            topStart = 100;
+            topEnd = randomBetween( 50, 80 );
+            rotate = 'rotate(45deg)';
+
+            break;
+
+        case 8: // TopLeft
+            rightStart = 100;
+            topStart = -50;
+            topEnd = randomBetween( -30, -20 );
+            rightEnd = randomBetween( 65, 75 );
+            rotate = 'rotate(135deg)';
+
+            break;
+    }
+
+//     TweenLite.set( imgBottom, { right: rightEnd+'%', top: topEnd+'%', transform: rotate } );
+
+    timeLine
+        .fromTo( imgBottom, 3, { right: rightStart+'%', top: topStart+'%', transform: rotate }, { ease: Power2.easeOut, right: rightEnd+'%', top: topEnd+'%' } )
+        .to( imgBottom, 3, { ease: Power2.easeOut, right: rightStart+'%', top: topStart+'%', transform: rotate } );
+}
+
+meanMonkey( );
+
+/************************/
+/**
+ * Generates random particles using canvas
+ * 
+ * @class Particles
+ * @constructor
+ */
+function Particles(){
+  //particle colors
+  this.colors = [
+    '255, 255, 255',
+    '255, 99, 71',
+    '19, 19, 19'
+  ]
+  //adds gradient to particles on true
+  this.blurry = true;
+  //adds white border
+  this.border = false;
+  //particle radius min/max
+  this.minRadius = 10; 
+  this.maxRadius = 35;
+  //particle opacity min/max
+  this.minOpacity = .005;
+  this.maxOpacity = .3;
+  //particle speed min/max
+  this.minSpeed = .05;
+  this.maxSpeed = .5;
+  //frames per second 
+  this.fps = 60;
+  //number of particles
+  this.numParticles = 75;
+  //required canvas variables
+  this.canvas = document.getElementById( 'canvas' );
+  this.ctx = this.canvas.getContext('2d');
+}
+
+/**
+ * Initializes everything
+ * @method init
+ */
+Particles.prototype.init = function(){
+  this.render();
+  this.createCircle();
+}
+
+/**
+ * generates random number between min and max values
+ * @param  {number} min value
+ * @param  {number} max malue
+ * @return {number} random number between min and max
+ * @method _rand
+ */
+Particles.prototype._rand = function(min, max){
+  return Math.random() * (max - min) + min;
+}
+
+/**
+ * Sets canvas size and updates values on resize
+ * @method render
+ */
+Particles.prototype.render = function(){ 
+  var self = this,
+      wHeight = $(window).height(),
+      wWidth = $(window).width();
+  
+  self.canvas.width = wWidth;
+  self.canvas.height = wHeight;
+  
+  $(window).on('resize', self.render);
+}
+
+/**
+ * Randomly creates particle attributes
+ * @method createCircle
+ */
+Particles.prototype.createCircle = function(){
+  var particle = [];
+
+  for (var i = 0; i < this.numParticles; i++) {
+    var self = this,
+        color = self.colors[~~(self._rand(0, self.colors.length))];
+    
+    particle[i] = {
+      radius    : self._rand(self.minRadius, self.maxRadius),
+      xPos      : self._rand(0, canvas.width),
+      yPos      : self._rand(0, canvas.height),
+      xVelocity : self._rand(self.minSpeed, self.maxSpeed),
+      yVelocity : self._rand(self.minSpeed, self.maxSpeed),
+      color     : 'rgba(' + color + ',' + self._rand(self.minOpacity, self.maxOpacity) + ')'
+    }
+    
+    //once values are determined, draw particle on canvas
+    self.draw(particle, i);
+  }
+  //...and once drawn, animate the particle
+  self.animate(particle);
+}
+
+/**
+ * Draws particles on canvas
+ * @param  {array} Particle array from createCircle method
+ * @param  {number} i value from createCircle method
+ * @method draw
+ */
+Particles.prototype.draw = function(particle, i){
+  var self = this,
+      ctx = self.ctx;
+  
+  if (self.blurry === true ) {
+    //creates gradient if blurry === true
+    var grd = ctx.createRadialGradient(particle[i].xPos, particle[i].yPos, particle[i].radius, particle[i].xPos, particle[i].yPos, particle[i].radius/1.25);
+    
+    grd.addColorStop(0.5, particle[i].color);
+    grd.addColorStop(0.000, 'rgba(34, 34, 34, 0)');
+    ctx.fillStyle = grd;
+  } else {
+    //otherwise sets to solid color w/ opacity value
+    ctx.fillStyle = particle[i].color; 
+  }
+  
+  if (self.border === true) {
+    ctx.strokeStyle = '#fff';
+    ctx.stroke();
+  }
+  
+  ctx.beginPath();
+  ctx.arc(particle[i].xPos, particle[i].yPos, particle[i].radius, 0, 2 * Math.PI, false);
+  ctx.fill();
+}
+
+/**
+ * Animates particles 
+ * @param  {array} particle value from createCircle & draw methods
+ * @method animate
+ */
+Particles.prototype.animate = function(particle){
+  var self = this,
+          ctx = self.ctx;
+  
+  setInterval(function(){
+    //clears canvas
+    self.clearCanvas();
+    //then redraws particles in new positions based on velocity
+    for (var i = 0; i < self.numParticles; i++) {
+      particle[i].xPos += particle[i].xVelocity;
+      particle[i].yPos -= particle[i].yVelocity;
+     
+      //if particle goes off screen call reset method to place it offscreen to the left/bottom
+      if (particle[i].xPos > self.canvas.width + particle[i].radius || particle[i].yPos > self.canvas.height + particle[i].radius) {
+        self.resetParticle(particle, i);
+      } else {
+        self.draw(particle, i);
+      }
+    }  
+  }, 1000/self.fps); 
+}
+
+/**
+ * Resets position of particle when it goes off screen
+ * @param  {array} particle value from createCircle & draw methods
+ * @param  {number} i value from createCircle method
+ * @method resetParticle
+ */
+Particles.prototype.resetParticle = function(particle, i){
+  var self = this;
+  
+  var random = self._rand(0, 1);
+  
+  if (random > .5) { 
+    // 50% chance particle comes from left side of window...
+    particle[i].xPos = -particle[i].radius;
+    particle[i].yPos = self._rand(0, canvas.height);
+  } else {
+    //... or bottom of window
+    particle[i].xPos = self._rand(0, canvas.width);
+    particle[i].yPos = canvas.height + particle[i].radius;   
+  }
+  //redraw particle with new values
+  self.draw(particle, i);
+}
+
+/**
+ * Clears canvas between animation frames
+ * @method clearCanvas
+ */
+Particles.prototype.clearCanvas = function(){
+  this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+ 
+// go go go!
+var particle = new Particles().init(); 
+
+
+</script>

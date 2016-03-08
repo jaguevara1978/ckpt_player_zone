@@ -54,7 +54,7 @@ canvas {
                 <div class="reward-img">
                     <img src="{{vm.data.reward.img_uri}}" alt="{{vm.data.reward.reward_title}}">
                 </div>
-                <div id="reward-detail"><a id="btn-reward-detail" href="#" title="Reward details">Details</a>
+                <div id="reward-detail"><a id="btn-reward-detail" title="Reward details">Details</a>
                 </div>
                 <div id="reward-dialog">
                     <h4>{{vm.data.reward.reward_title}}</h4>
@@ -93,16 +93,24 @@ canvas {
     </div>
     <!--iframe-->
     <div class="iframe-custom">
-<!--         <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="yes"></iframe> -->
+        <iframe id="iframe-sites" ng-src="{{vm.trustSrc(vm.data.site)}}" scrolling="yes"></iframe>
     </div>
 
 <script type="application/javascript">
 </script>
 
 <script type="application/javascript">
+    
+/*
+    TweenMax.to( whiteBlur, .3, {
+        boxShadow: "0px 0px 24px 6px white",
+        backgroundColor:"white",
+        color:"#999"
+    });
+*/
+    
     //Pop-up Dialog
     var rewardDialog = document.getElementById("reward-dialog");
-    var iframeSites = document.getElementById("iframe-sites");
 
     $(function() {
         var moveLeft = 15;

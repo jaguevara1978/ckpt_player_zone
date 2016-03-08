@@ -16,6 +16,8 @@
          * and then when app.dashboard tries to use app.data,
          * it's components are available.
          */
+         
+        ,'notification'
 
         ,'ngAnimate'
         ,'ngFx'
@@ -101,7 +103,6 @@
 
         // Direction of where to load the $locale settings files for angular-dynamic-locale
 //         tmhDynamicLocaleProvider.localeLocationPattern( 'bower_components/angular-i18n/angular-locale_{{locale}}.js' );
-
     }
 
     /*@ngInject*/

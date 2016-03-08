@@ -184,11 +184,9 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                         
                         // vm.data.display_time: after this number of seconds I will validate the 
                         // answer as -1, which means unaswered
-/*
                         vm.timeout_promise = $timeout( function( ) {
                             validateAnswer( -1 );
                         }, vm.data.display_time * 1000 )
-*/
                         
                         //// Count down
                         countDownTween = TweenLite.from( { }, vm.data.display_time, {
@@ -206,7 +204,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                         //// Count down
 
                         validatingAnswer = false
-                    },  0 );//vm.data.delay * 1000
+                    },  vm.data.delay * 1000 );//vm.data.delay * 1000
 /*
                     console.log( 'Get Question:' );
                     console.log(vm.data);
@@ -246,14 +244,6 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
             tr_id: option
         }
 
-
-/*
-        // I wanted to make it samller before exploding but no time for now
-        tl = new TimelineLite( { } );
-        tl.to( triviaContainer, 1, { ease: Circ.easeOut, scale:0.7 } );
-        tl.fromTo( triviaContainer, vm.data.validation_time, { scale: 0.7 }, 
-            { scale: 0.75, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
-*/
         var shakeTween = TweenLite.fromTo( triviaContainer, vm.data.validation_time, { scale: 1 }, 
             { scale: 1.1, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
 
@@ -340,7 +330,11 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
     function animatePoints( ) {
         if ( vm.data.earned_points > 0 ) {
             var repeat = Math.floor( vm.data.earned_points / 100 );
-            FireworksService.shoot( repeat );
+
+            if ( vm.data.correct ) {
+                FireworksService.shoot( repeat );
+            }
+    
             animate( repeat );
         }
         TweenLite.to( pointsBar, 3, { delay:2, value: vm.data.player_stats.accumulated_points } );

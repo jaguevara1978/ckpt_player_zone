@@ -57,7 +57,7 @@
 
 .btn-toggle {
   width: 70px;
-  height:25px;
+  height: 30px;
 }
 
 .btn-toggle-up {
@@ -245,7 +245,7 @@ font-size: .7em;
   }
  
   .btn-trivia {
-    font-size:1.1em;
+    font-size:1.2em;
   }
 
   .point-ckpt .progress-value {
@@ -666,6 +666,11 @@ width:100%;}
   display:block;
   width:100%;
   background:transparent;
+  
+  /*Align btn-toggle to the bottom*/
+  position: relative;
+  /*btn-toggle needs more espace to show border shadows*/
+  height: 50px;
 }
 
 .btn-toggle {
@@ -673,22 +678,38 @@ width:100%;}
   margin-left:auto;
   margin-right:auto;
   padding:2px;
-  background: #ffffff;
-  color:#34A6C1;
+  background-color: rgba( 6, 6, 6, 0.6 );
+  color: #FFF;
   text-align:center;
-  border-width: 3px 3px 0 3px;
-  border-style: solid;
-  border-color:#34A6C1;
-  border-radius:20px 20px 0 0;
-  text-shadow:none !important;
-/*-webkit-box-shadow: 0px -1px 20px 1px rgba(0, 0, 0, 0.75);
--moz-box-shadow:    0px -1px 20px 1px rgba(0, 0, 0, 0.75);
-box-shadow:         0px -1px 20px 1px rgba(0, 0, 0, 0.75);*/
-  
+/*   border-width: 3px 3px 0 3px; */
+/*   border-style: solid; */
+/*   border-color:#34A6C1; */
+/*     border-radius:20px 20px 0 0; */
+    border-radius: 70px 70px 0 0;
+    -moz-border-radius: 70px 70px 0 0;
+    -webkit-border-radius: 70px 70px 0 0;
+    text-shadow:none !important;
+    
+    /*Align to the bottom of the trivia-toggle parent div*/
+    position: relative;
+    margin: auto;
+    top: 20px
 }
 
 .btn-toggle:hover{
-  background:#eee;
+/*   background:#eee; */
+    background-color: rgba( 255, 255, 255, 0.7 );
+	color: rgba( 0, 0, 0, 0.8 );
+
+    -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    color: rgba( 0, 0, 0, 1 );
+    background-color: rgba( 255, 255, 255, 0.8 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 .btn-toggle-up:hover {
@@ -696,28 +717,23 @@ box-shadow:         0px -1px 20px 1px rgba(0, 0, 0, 0.75);*/
 }
 
 .chevron-down:after {
-  content: '\f078';
-  font-family: 'FontAwesome';
-  z-index:9002;
+    content: '\f078';
+    font-family: 'FontAwesome';
 }
 
-.chevron-down a:link{
-text-decoration:none;
-  }
-
+.chevron-down a:link {
+    text-decoration:none;
+}
 
 .btn-toggle-up {
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-  padding:2px;
-  background: #34A6C1;
-  text-align:center;
-  border-radius:50px 50px 0 0;
-  text-shadow:none !important;
-/*-webkit-box-shadow: 0px 9px 25px 3px rgba(0, 0, 0, 0.75);
--moz-box-shadow:    0px 9px 25px 3px rgba(0, 0, 0, 0.75);
-box-shadow:         0px 9px 25px 3px rgba(0, 0, 0, 0.75);*/
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    padding:2px;
+    background: #34A6C1;
+    text-align:center;
+    border-radius:50px 50px 0 0;
+    text-shadow:none !important;
 }
 
 .chevron-up:after {
@@ -747,60 +763,86 @@ text-decoration:none;
 /* Q&A Box */
 
 #trivia-box {
-  display:block;
-  width:100%;
-	background: #34A6C1;
-  background:rgba(52,166,193,0.9);
-	-webkit-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
+    display:block;
+    width:100%;
+/*     background: #34A6C1; */
+/*     background:rgba(52,166,193,0.9); */
+    background: rgba( 0, 0, 0, 0.2 );
+    border: 0.5px solid rgba( 4, 4, 4, 0 );
+    border-radius: 8px;
+/*
+    -webkit-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
+*/
 }
 
-
-.chevron-down:after {
-    content: '\f078';
-    font-family: 'FontAwesome';
-	color:#34A6C1;
+#trivia-box:hover {
+    background-color: rgba(105, 101, 101, 0.8 );
+    -moz-transition: all 0.8s; /* Firefox */
+    -webkit-transition: all 0.8s; /* Safari and Chrome */
+    -o-transition: all 0.8s; /* Opera */
+    transition: all 0.8s;
 }
-
-.chevron-down a:link{
-text-decoration:none;
-	}
 
 #trivia-box h1 {
 	display: block;
+/*
 	background: #ffffff;
 	color: #C8525E;
-  line-height:1.3em;
+*/
+	color: rgba( 0, 0, 0, 1 );
+    line-height:1.3em;
 	padding: 10px;
 	margin:0 0 12px 0;
 	font-weight: 500;
 	text-align:center;
 	border-radius:12px;
+
+    border: 1px solid rgba( 255, 255, 255, 0 );
+    background-color: rgba( 255, 255, 255, 0.8 );
+    -webkit-box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.9 );
+    -moz-box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.9 );
+    box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.9 );
+
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 
 .btn-trivia {
   display: block;
   width:100%;
-  background-color:#C8525E;
+/*   background-color:#C8525E; */
+  background-color: rgba( 0, 0, 0, 0.5 );
   -moz-border-radius:4px;
   -webkit-border-radius:8px;
   border-radius:8px;
-  border:1px solid #cccccc;
+/*   border:1px solid #cccccc; */
+  border: 1px solid rgba( 4, 4, 4, 0 );
   cursor:pointer;
-  color:#ffffff;
+  color:#FFFFFF;
   font-weight: 300;
   padding:10px 7px;
   margin:8px 0 3px 0;
   text-decoration:none;
   text-align:center;
 }
+
 .btn-trivia:hover {
-  background-color:#eb675e;
-  text-decoration:none;
-  color:#ffffff;
+    -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    color: rgba( 0, 0, 0, 1 );
+    background-color: rgba( 255, 255, 255, 0.8 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
+
 .btn-trivia:active {
   position:relative;
   top:1px;
@@ -808,26 +850,68 @@ text-decoration:none;
 }
 
 .btn-correct {
-  background-color:#006600;
+    background-color: rgba( 0, 255, 0, 0.7 );
+    -webkit-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 .btn-correct:hover {
-background-color:#006600;
+    background-color: rgba( 0, 255, 0, 0.7 );
+    -webkit-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
+
 .btn-correct:active {
-   background-color:#006600;
+    background-color: rgba( 0, 255, 0, 0.7 );
+    -webkit-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    box-shadow: 0px 0px 20px 4px rgba( 0, 255, 0, 0.7 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 .btn-wrong{
-  background-color:#C40808;
+    background-color: rgba( 255, 102, 0, 0.6 );
+    -webkit-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
-
 
 .btn-wrong:hover {
-  background-color:#C40808;
+    background-color: rgba( 255, 102, 0, 0.6 );
+    -webkit-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 .btn-wrong:active {
-  background-color:#C40808;
+    background-color: rgba( 255, 102, 0, 0.6 );
+    -webkit-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    box-shadow: 0px 0px 10px 4px rgba( 255, 102, 0, 0.6 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 
@@ -862,7 +946,17 @@ background-color:#006600;
 }
 
 .reward-img {
-  width:100%;
+    width:100%;
+    border-radius: 12px;
+    border: 1px solid rgba( 255, 255, 255, 0 );
+    background-color: rgba( 255, 255, 255, 0.5 );
+    -webkit-box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.6 );
+    -moz-box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.6 );
+    box-shadow: 0px 0px 10px 4px rgba( 255, 255, 255, 0.6 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 .reward-img img{
@@ -958,14 +1052,19 @@ text-align:center;
 }
 
 .flying-coin {
-    background:url(../images/icon-points.png);
+    background:url(http://primg.checkpointchallenge.com:81/utils/icon-points.png);
     width:27px;
     height:29px;
     position:absolute;
+/*
+    width: auto;
+    height: auto;
+    opacity: 0.8;
+*/
 }
 
 .flying-reward {
-    background:url(../images/icon-rewards.png);
+    background:url(http://primg.checkpointchallenge.com:81/utils/icon-rewards.png);
     width:27px;
     height:29px;
     position:absolute;

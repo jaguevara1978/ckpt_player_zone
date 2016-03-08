@@ -36,7 +36,7 @@ body {
     font-family: 'Merriweather Sans', sans-serif;
     font-size: 14px;
     font-weight:100;
-    line-height: 1.3em;
+/*     line-height: 1.3em; */
     background:#666;
     color: #333;
 }
@@ -217,10 +217,12 @@ textarea {
   vertical-align: top;
   resize: vertical;
 }
+/*
 input:invalid,
 textarea:invalid {
   background-color: #f0dddd;
 }
+*/
 table {
   border-collapse: collapse;
   border-spacing: 0;

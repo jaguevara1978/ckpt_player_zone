@@ -1,23 +1,13 @@
-﻿
+﻿<div class="fill container">
 
-<div class="container">
+    <div class="topnav clearfix vertical-middle" ng-if="showMainNavBar" data-ng-include="'layout/topnav.html'">
+    </div>
 
-<div class="topnav clearfix vertical-middle" ng-if="showMainNavBar" data-ng-include="'layout/topnav.html'">
-</div>
-
-<div class="content">
-
-    <toaster-container toaster-options="{
-        'close-button':true,
-        'animation-class': 'toast-top-full-width',
-        'debug': false,
-        'animation-duration': '200',
-        'time-out': '1500'
-    }"></toaster-container>
-    <div data-ng-view class="fill"></div>
-</div>
-
-
-<footer data-ng-include="'layout/footer.html'"></footer>
+    <div id="shell_content" class="content">
+        <div data-ng-view class="fill"></div>
+    </div>
+    
+    
+    <footer data-ng-include="'layout/footer.html'"></footer>
 
 </div>

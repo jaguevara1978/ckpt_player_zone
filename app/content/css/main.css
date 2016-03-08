@@ -1,4 +1,15 @@
+@font-face {
+  font-family: 'levibrushregular';
+  src: url("../fonts/levibrush-webfont.eot");
+  src: url("../fonts/levibrush-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/levibrush-webfont.woff") format("woff"), url("../fonts/levibrush-webfont.ttf") format("truetype"), url("../fonts/levibrush-webfont.svg#levibrushregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
 /*Layout*/
+
 
 .container {
   display: -webkit-flex;
@@ -82,6 +93,7 @@
   width:180px;
 }
 .sign-wrap{
+    
   width: 95%;
 }
 .account-setting-wrap{
@@ -89,7 +101,7 @@
 }
 @media (min-width: 480px) {
     .content {
-      min-height:500px;
+/*       min-height:500px; */
     }
     .user{
         float:left;
@@ -115,7 +127,7 @@
 }
 @media (min-width: 600px) {
     .content {
-      min-height:500px;
+/*       min-height:500px; */
     }
     .user{
         float:left;
@@ -234,15 +246,16 @@ margin-bottom:10px;
 
 .content {
   color: #ddd;
-  background-color: #655643;
+/*   background-color: #655643; */
   position:relative;
   height:auto;
+  min-height: 95%;
 }
 
 footer {
   padding:10px;
   color: #E8E8E8;
-  background-color: #34A6C1;
+/*   background-color: #34A6C1; */
 }
 
   /*Reward*/
@@ -518,331 +531,6 @@ nav ul ul ul li {
   left:170px;
 }
 
-  
-/* Change this in order to change the Dropdown symbol */
-li > a:after { content:  ' +'; }
-li > a:only-child:after { content: ''; }
-
-
-
-
-
-/*Sign forms*/
-.sign-wrap{
-  margin: 0 auto;
-  margin-top:5%;
-  color:#fef0e3;
-}
-.sign-form{
-  background:#B5C258;
-  padding: 3%;
-  margin: 5% 0;
-  position: relative;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -o-border-radius: 6px;
-  overflow:hidden;
-}
-.sign_form {
-  width: 100%;
-  float: left;
-  position: relative;
-}
-.or {
-width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-.or:after {
-    display: inline-block;
-    margin: 0 0 1% 1%;
-    height: 1px;
-    content: " ";
-    text-shadow: none;
-    background-color: #fef0e3;
-    width: 43%;
-}
-.or:before {
-    display: inline-block;
-    margin: 0 1% 1% 0;
-    height: 1px;
-    content: " ";
-    text-shadow: none;
-    background-color: #fef0e3;
-    width: 43%;
-}
-
-/*start-sign-form*/
-.sign-form h1{
-  font-size: 1.3em;
-  text-align:left;
-  margin-bottom:0;
-  color:#fef0e3;
-  text-align:center;
-  text-transform:uppercase;
-}
-.sign-form h1 a{
-  color:#34A6C1;
-}
-.sign-form h1 a:hover{
-  text-decoration:none;
-}
-.sign-form h1 span{
-  color:#666;
-  font-size:0.8em;
-  text-transform:lowercase;
-}
-.sign_form ul {
-  list-style-type:none;
-  list-style-position:outside;
-  margin:0px;
-  padding:0px;
-}
-.sign_form li{
-  position:relative;
-} 
-  /* form element visual styles */
-  .sign_form li{ 
-    float: left;
-    outline: none;
-    border: 1px solid #DDDDDD;
-    font-size: 1.2em;
-    color: #B6B6B6;
-    width: 100%;
-    font-weight: 600;
-    margin-top: 3%;
-    position: relative;
-    height: 35px;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    transition: all 0.5s ease-out;
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -ms-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    background:#fef0e3;
-  }
-  .sign_form li:hover{ 
-    border: 1px solid #79B42B;
-    color:#79B42B;
-  }
-  .sign_form input {
-    float: left;
-    font-size: 0.9em;
-    padding: 7px 14px;
-    width: 75%;
-    border: none;
-    outline: none;
-    color:#797779;
-    background:#fef0e3;
-  }
-  .sign_form p {
-    float: right;
-    padding: 8px 7px;
-    width: 9.3%;
-    cursor: pointer;
-  }
-  .sign_form button[type="submit"] {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #fff;
-    background: #C8525E;
-    width: 100%;
-    padding: 10px;
-    font-size: 1.1em;
-    letter-spacing:1px;
-    margin: 3% 0 2%;
-    transition: all 0.5s ease-out;
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -ms-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -o-border-radius: 2px;
-  } 
-.sign_form button[type="submit"]:hover {
-  background:#34A6C1;
-} 
-.sign_form button[type="checkbox"] {
-  width: 21px;
-  vertical-align: middle;
-  padding: 5px;
-  float:left;
-}
-.forgot {
-  float:right;
-  width:50%;
-  text-align:right;
-}
-.forgot a{
-  color:#333;
-  font-size: 0.8em;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-}
-.forgot a:hover{ 
-  text-decoration:none;
-}
-/* === Form hints === */
-.form_hint {
-  color: #fff;
-  text-align: center;
-  background:#333;
-  border-radius: 3px 3px 3px 3px;
-  font-size:0.7em;
-  margin-left: 8px;
-  padding: 6px;
-  z-index: 999;
-  position: absolute;
-  left:50%;
-  font-weight:100;
-  display: none;
-}
-.form_hint::before {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: -9px;
-  width: 0;
-  height: 0;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #333;
-  border-top: 10px solid transparent;
-}
-.sign_form input:focus + .form_hint {display: inline;}
-.sign_form input:required:valid + .form_hint {color: #fff;
-  background: #999;}
-.sign_form input:required:valid + .form_hint::before {color:#28921f;}
-/* Change the white to any color ;) */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fef0e3 inset;
-    -webkit-text-fill-color: #797779 !important;
-}
-/*end-sign-form*/
-
-/*start-checkbox*/
-.rememeber {
-  float:left;
-  width:50%;
-}
-.checkbox {
-  margin-bottom: 4px;
-  padding-left: 20px;
-  font-size: 0.8em;
-  line-height: 27px;
-  color: #333;
-  cursor: pointer;
-}
- .checkbox:last-child {
-  margin-bottom: 0;
-}
-.checkbox input {
-  position: absolute;
-  left: -9999px;
-}
-
-.checkbox i {
-  position: absolute;
-  bottom: 11px;
-  left: 0;
-  display: block;
-  width: 13px;
-  height: 13px;
-  outline: none;
-  border: 2px solid #fff;
-  background: #fff;
-}
-.checkbox input + i:after {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.1s;
-  -o-transition: opacity 0.1s;
-  -ms-transition: opacity 0.1s;
-  -moz-transition: opacity 0.1s;
-  -webkit-transition: opacity 0.1s;
-}
-.checkbox input + i:after {
-  content: '';
-  top: -1px;
-  left: -1px;
-  width: 15px;
-  height: 15px;
-  font: normal 12px/16px FontAwesome;
-  text-align: center;
-}
-
-.checkbox input:checked + i:after {
-  opacity: 1;
-}
-.checkbox {
-  float: left;
-  margin-right: 30px;
-}
-.checkbox:last-child {
-  margin-bottom: 4px;
-}
-/*end-checkbox*/
-
-/*social but6tons on sign form*/
-.social-buttons {
-  text-align:center;
-  margin:3% 0;
-}
-.social-buttons div {
-    display: inline-block;
-    width: 25%;
-    height: 40px; 
-    margin-right:1%;
-    text-align:center;
-    border-radius:6px;
-    -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   -o-border-radius: 6px;
-   position:relative;
-}
-.social-buttons .fa-2x {
-  font-size:1.6em;
-  color:#fff;
-  position:absolute;
-  left:50%;
-  margin-left:-10px;
-  top:50%;
-  margin-top:-10px;
-}
-.social-buttons div:hover {
-  background:#999;
-  cursor: pointer;
-}
-.social-buttons .facebook {
-   background:#3b5998;
-}
-.social-buttons .twitter {
-   background:#00aced;
-}
-.social-buttons .gplus {
-   background:#D84B37;
-}
-
-#firstname {
-  width:49%;
-  margin-right:2%;
-  display:inline-block;
-}
-#lastname {
-  width:49%;
-  display:inline-block;
-}
-
 /*activation*/
 .activation-form{
   background:#B5C258;
@@ -1072,8 +760,69 @@ ul.interest-list li:last-child {
   color:#fff;
   background: #C8525E;
 }
+/*
 .footer-buttons {
   text-align:right;
 }
+*/
 
 
+/*Alex - Fill whole window space*/
+html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.61);
+    background-image:url(http://primg.checkpointchallenge.com:81/utils/wall.png);
+    background-repeat:repeat;
+/*     font-family: 'Frijole', cursive; */
+    font-size: 14px;
+    color:#fff;
+}
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
+/*
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #FDFCFD;
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-box-shadow:#FDFCFD inset;
+    box-shadow:#FDFCFD inset;
+}
+*/
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-weight: 300;
+}
+body ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-weight: 300;
+}
+body ::-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+}
+body ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+}
+body ::-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-weight: 300;
+}
