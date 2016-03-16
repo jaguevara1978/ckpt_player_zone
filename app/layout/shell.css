@@ -1,0 +1,856 @@
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+/*
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Open Sans", sans-serif;
+  background-color: #485274;
+}
+*/
+
+a {
+  text-decoration: none;
+}
+
+/* -------------------------------- 
+
+Main Components 
+
+-------------------------------- */
+.cd-header {
+/*
+  height: 80px;
+  width: 90%;
+*/
+  margin: 0 auto;
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  transition: transform 0.5s;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-header::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cd-header.nav-is-visible {
+  -webkit-transform: translateY(80px);
+  -moz-transform: translateY(80px);
+  -ms-transform: translateY(80px);
+  -o-transform: translateY(80px);
+  transform: translateY(80px);
+}
+@media only screen and (min-width: 768px) {
+  .cd-header.nav-is-visible {
+    -webkit-transform: translateY(170px);
+    -moz-transform: translateY(170px);
+    -ms-transform: translateY(170px);
+    -o-transform: translateY(170px);
+    transform: translateY(170px);
+  }
+}
+
+.cd-logo {
+  float: left;
+  margin-top: 28px;
+}
+
+.cd-3d-nav-trigger {
+  position: relative;
+  float: right;
+  height: 45px;
+  width: 45px;
+/*   margin-top: 18px; */
+  /* replace text with background image */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  cursor: pointer;
+}
+.cd-3d-nav-trigger span,
+.cd-3d-nav-trigger span::before,
+.cd-3d-nav-trigger span::after {
+  /* hamburger icon in CSS */
+  position: absolute;
+  width: 28px;
+  height: 3px;
+  background-color: #FFF;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-3d-nav-trigger span {
+  /* this is the central line */
+  top: 21px;
+  left: 8px;
+  -webkit-transition: background 0.2s 0.5s;
+  -moz-transition: background 0.2s 0.5s;
+  transition: background 0.2s 0.5s;
+}
+.cd-3d-nav-trigger span::before, .cd-3d-nav-trigger span:after {
+  /* these are the upper and lower lines */
+  content: '';
+  left: 0;
+  -webkit-transition: -webkit-transform 0.2s 0.5s;
+  -moz-transition: -moz-transform 0.2s 0.5s;
+  transition: transform 0.2s 0.5s;
+}
+.cd-3d-nav-trigger span::before {
+  bottom: 8px;
+}
+.cd-3d-nav-trigger span::after {
+  top: 8px;
+}
+.nav-is-visible .cd-3d-nav-trigger span {
+  /* hide line in the center */
+  background-color: rgba(255, 255, 255, 0);
+}
+.nav-is-visible .cd-3d-nav-trigger span::before, .nav-is-visible .cd-3d-nav-trigger span::after {
+  /* keep visible other 2 lines */
+  background-color: white;
+}
+.nav-is-visible .cd-3d-nav-trigger span::before {
+  -webkit-transform: translateY(8px) rotate(-45deg);
+  -moz-transform: translateY(8px) rotate(-45deg);
+  -ms-transform: translateY(8px) rotate(-45deg);
+  -o-transform: translateY(8px) rotate(-45deg);
+  transform: translateY(8px) rotate(-45deg);
+}
+.nav-is-visible .cd-3d-nav-trigger span::after {
+  -webkit-transform: translateY(-8px) rotate(45deg);
+  -moz-transform: translateY(-8px) rotate(45deg);
+  -ms-transform: translateY(-8px) rotate(45deg);
+  -o-transform: translateY(-8px) rotate(45deg);
+  transform: translateY(-8px) rotate(45deg);
+}
+
+.cd-3d-nav-container {
+  /* this is the 3D navigation container */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background-color: #000000;
+  visibility: hidden;
+  /* enable a 3D-space for children elements */
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: -webkit-transform 0.5s 0s, visibility 0s 0.5s;
+  -moz-transition: -moz-transform 0.5s 0s, visibility 0s 0.5s;
+  transition: transform 0.5s 0s, visibility 0s 0.5s;
+}
+.cd-3d-nav-container.nav-is-visible {
+  visibility: visible;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: -webkit-transform 0.5s 0s, visibility 0.5s 0s;
+  -moz-transition: -moz-transform 0.5s 0s, visibility 0.5s 0s;
+  transition: transform 0.5s 0s, visibility 0.5s 0s;
+}
+@media only screen and (min-width: 768px) {
+  .cd-3d-nav-container {
+    height: 170px;
+  }
+}
+
+.cd-3d-nav {
+  /* this is the 3D rotating navigation */
+  position: relative;
+  height: 100%;
+  background-color: #343c55;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: center bottom;
+  -moz-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  -o-transform-origin: center bottom;
+  transform-origin: center bottom;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  -o-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  transition: transform 0.5s;
+}
+.cd-3d-nav::after {
+  /* menu dark cover layer - to enhance perspective effect */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.5s 0s, visibility 0.5s 0s;
+  -moz-transition: opacity 0.5s 0s, visibility 0.5s 0s;
+  transition: opacity 0.5s 0s, visibility 0.5s 0s;
+}
+.cd-3d-nav li {
+  height: 100%;
+  /*100 divided by number of options for now 4*/
+  width: 25%;
+  float: left;
+}
+.cd-3d-nav li:first-of-type a::before {
+  background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-1.svg);
+}
+.cd-3d-nav li:nth-of-type(2) a::before {
+  background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-4.svg);
+}
+.cd-3d-nav li:nth-of-type(3) a::before {
+  background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-3.svg);
+}
+.cd-3d-nav li:nth-of-type(4) a::before {
+  background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-5.svg);
+}
+.cd-3d-nav li:nth-of-type(5) a::before {
+  background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-5.svg);
+}
+.cd-3d-nav a {
+  position: relative;
+  display: block;
+  height: 100%;
+  color: transparent;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.cd-3d-nav a::before {
+  /* navigation icons */
+  content: '';
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: 32px 64px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+.no-touch .cd-3d-nav a:hover {
+  background-color: #2b3145;
+}
+.cd-3d-nav .cd-selected a {
+  background-color: #212635;
+}
+.no-touch .cd-3d-nav .cd-selected a:hover {
+  background-color: #212635;
+}
+.cd-3d-nav .cd-selected a::before {
+  background-position: 0 -32px;
+}
+.nav-is-visible .cd-3d-nav {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.nav-is-visible .cd-3d-nav::after {
+  /* menu cover layer - hide it when navigation is visible */
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.5s 0s, visibility 0s 0.5s;
+  -moz-transition: opacity 0.5s 0s, visibility 0s 0.5s;
+  transition: opacity 0.5s 0s, visibility 0s 0.5s;
+}
+@media only screen and (min-width: 768px) {
+  .cd-3d-nav a {
+    padding: 7.6em 1em 0;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* truncate text with ellipsis if too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cd-3d-nav a::before {
+    top: 4.4em;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+.cd-marker {
+  /* line at the bottom of nav selected item */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  /*100 divided by number of options for now 4*/
+  width: 25%;
+  -webkit-transform-origin: center bottom;
+  -moz-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  -o-transform-origin: center bottom;
+  transform-origin: center bottom;
+  -webkit-transform: translateZ(0) rotateX(90deg);
+  -moz-transform: translateZ(0) rotateX(90deg);
+  -ms-transform: translateZ(0) rotateX(90deg);
+  -o-transform: translateZ(0) rotateX(90deg);
+  transform: translateZ(0) rotateX(90deg);
+  -webkit-transition: -webkit-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+  -moz-transition: -moz-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+  transition: transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+}
+.cd-marker::before {
+  /* triangle at the bottom of nav selected item */
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  right: auto;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  height: 0;
+  width: 0;
+  border: 10px solid transparent;
+  border-bottom-color: inherit;
+}
+.nav-is-visible .cd-marker {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* these are the colors of the markers - line + arrow */
+.color-1 {
+  color: #9a57bd;
+  background-color: #9a57bd;
+}
+
+.color-2 {
+  color: #c96aa4;
+  background-color: #c96aa4;
+}
+
+.color-3 {
+  color: #d6915e;
+  background-color: #d6915e;
+}
+
+.color-4 {
+  color: #5397c7;
+  background-color: #5397c7;
+}
+
+.color-5 {
+  color: #77cd91;
+  background-color: #77cd91;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    -webkit-transition: -webkit-transform 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    transition: transform 0.5s;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+main.nav-is-visible {
+  -webkit-transform: translateY(80px);
+  -moz-transform: translateY(80px);
+  -ms-transform: translateY(80px);
+  -o-transform: translateY(80px);
+  transform: translateY(80px);
+}
+
+@media only screen and (min-width: 768px) {
+  main.nav-is-visible {
+    -webkit-transform: translateY(170px);
+    -moz-transform: translateY(170px);
+    -ms-transform: translateY(170px);
+    -o-transform: translateY(170px);
+    transform: translateY(170px);
+  }
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 1s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+.account-panel {
+/*     padding:20px; */
+    color: #fff;
+    background-color: #655643;
+    opacity: 0.95;
+    cursor: pointer;
+    height:120px;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+        -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+        -moz-box-flex: 1;         /* OLD - Firefox 19- */
+        -webkit-flex: 1;          /* Chrome */
+        -ms-flex: 1;              /* IE 10 */
+        flex: 1;
+}
+
+.account-panel .user {
+    font-size:1em;
+    font-weight:100;
+    border-right:2px solid #7F7F7F;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+
+    height: 100%;
+    padding-right: 20px;
+}
+
+.account-panel .user-info {
+  float:left;
+  margin-left:20px;
+  line-height:2em;
+}
+
+.account-panel .user-name {
+    font-weight:400;
+    overflow: hidden;
+    font-size:1em;
+}
+
+.account-panel .image-cropper {
+    width: 80px;
+    height: 80px;
+    width:80px;
+}
+
+.account-panel .image-cropper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    float:left;
+}
+
+.account-panel .image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.account-panel .point {
+    border-right:2px solid #7F7F7F;
+
+    /* Align Content Inside */
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+/*
+.account-panel .point progress {
+  background-color: #ffffff;
+  border: 0;
+  width: 95%;
+  height: 20px;
+  border-radius: 2px;
+}
+*/
+
+
+
+/*MEDIA QUERIES*/
+@media ( max-width: 900px ) {
+    .point-bar {
+        display: none; 
+    }
+
+    .shell_playerstats_user, .shell_playerstats_points_big_prize {
+        padding-right: 5px;
+    }
+
+    
+/*
+    .account-panel .user {
+        border: none;
+    }
+
+    .account-panel .point {
+        border: none;
+    }
+*/
+}
+
+@media ( max-width: 1100px ) {
+    .user-info {
+        display: none; 
+    }
+}
+
+@media ( min-width: 480px ) {
+}
+@media ( min-width: 600px ) {
+}
+
+@media ( max-width: 700px ) {
+    .shell_playerstats_points_big_prize {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) {
+    .point-number {
+      float:left;
+      width:25%;
+    }
+
+   .point-bar {
+      float:left;
+      width:75%;
+   }
+}
+
+@media (min-width: 1366px) {
+  .container {
+/*     width: 1366px; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .account-panel {
+    height:140px;
+  }
+
+  .account-panel .user-name {
+  font-size:1.2em;
+  }
+
+  .account-panel .image-cropper {
+    width: 100px;
+    height: 100px;
+    width:100px;
+  }
+
+  .point-number {
+    float:left;
+    width:20%;
+  }
+
+  .point-bar {
+    float:left;
+    width:80%;
+  }
+
+  .prize img{
+  width:200px;
+  }
+  .sign-wrap{
+    width: 35%;
+   }
+  .account-setting-wrap{
+    width: 60%;
+  }
+}
+
+
+
+/** NEW RESPONSIVENESS WITH FLEXBOX */
+.shell_player_stats {
+    color: #fff;
+    background-color: #655643;
+    opacity: 0.95;
+    cursor: pointer;
+    height: 120px;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    margin: auto;
+}
+.shell_playerstats_user {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+}
+
+.shell_playerstats_user .user_info {
+       
+}
+
+.shell_playerstats_points {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+/*     justify-content: center; */
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    flex-wrap: wrap;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex: 3;
+}
+
+.shell_playerstats_points progress {
+  background-color: #ffffff;
+  border: 0;
+  width: 95%;
+  height: 20px;
+  border-radius: 2px;
+}
+
+progress:hover {
+    -webkit-box-shadow: 0px 0px 24px 6px rgba( 55, 163, 189, 0.8 );
+    -moz-box-shadow: 0px 0px 24px 6px rgba( 55, 163, 189, 0.8 );
+    box-shadow: 0px 0px 24px 6px rgba( 55, 163, 189, 0.8 );
+    color: rgba( 0, 0, 0, 1 );
+    background-color: rgba( 55, 163, 189, 0.8 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;   
+}
+
+.shell_playerstats_points_bar {
+/*     padding-left: 10px; */
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    align-items: flex-start;
+    -moz-box-align: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+
+    flex-direction: column;
+}
+
+.shell_playerstats_points_bar .points_to_win {
+    color: #FF8C89;
+    padding-top: 5px;
+}
+
+.shell_playerstats_points_big_prize {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+
+    min-width: 180px;
+    -webkit-transform: translate( -15% );
+    -moz-transform: translate( -15 );
+    transform: translate( -15% );
+}
+
+.shell_playerstats_points_big_prize img {
+    width: 100%;
+}
+
+.shell_playerstats_points progress::-webkit-progress-bar {
+    background: #ffffff;
+    border-radius: 2px;
+}
+.shell_playerstats_points progress::-webkit-progress-value {
+    background: #34A6C1;
+    border-radius: 1px;
+}
+.shell_playerstats_points progress::-moz-progress-bar {
+  background: #34A6C1;
+   border-radius: 1px;
+}
+.shell_playerstats_points .progress-value {
+    line-height: 20px;
+    font-size: .8em;
+    color: #93C8CC;
+    float: left;
+}
+
+.shell_playerstats_points .shell_playerstats_points_number {
+    color: #93C8CC;    
+}
+
+.shell_playerstats_points_number .point_text {
+    font-size: 3em;
+    font-weight: 300;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.shell_playerstats_points .shell_playerstats_points_bar {
+/*     flex: 3; */
+}
+
+.shell_playerstats_rewards {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+
+    flex: 1;
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+}
+
+.shell_playerstats_toggle {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    align-items: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+}

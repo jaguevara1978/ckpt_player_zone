@@ -11,7 +11,7 @@
 angular.module('app').factory( 'AuthenticationService', AuthenticationService );
 
     /* @ngInject */
-    function AuthenticationService( $http, $cookies, $rootScope, $timeout, $location, config, ApiService, FlashService ) {
+    function AuthenticationService( $http, $cookies, $rootScope, $timeout, $location, config, ApiService, Notification ) {
         var service = { };
 
         service.signIn = signIn;
@@ -27,7 +27,7 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
                         setCredentials( response.data );
                         $location.path( '/rewards' );
                     } else {
-                        FlashService.Error( response.message );
+                        Notification.Error( response.message );
                     }
                 }
             );

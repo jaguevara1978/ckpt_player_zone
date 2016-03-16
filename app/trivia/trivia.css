@@ -54,17 +54,6 @@
     height: 20px;
   }
 
-
-.btn-toggle {
-  width: 70px;
-  height: 30px;
-}
-
-.btn-toggle-up {
-  width: 160px;
-  height:40px;
-}
-
 .reward-img img{
   max-width: 100%;
   max-height: 120px;
@@ -666,28 +655,30 @@ width:100%;}
   display:block;
   width:100%;
   background:transparent;
+  z-index: 1;
   
   /*Align btn-toggle to the bottom*/
   position: relative;
   /*btn-toggle needs more espace to show border shadows*/
-  height: 50px;
+  height: 70px;
 }
 
 .btn-toggle {
+  width: 70px;
+  height: 70px;
   display:block;
   margin-left:auto;
   margin-right:auto;
   padding:2px;
-  background-color: rgba( 6, 6, 6, 0.6 );
-  color: #FFF;
+  background-color: rgba(167, 162, 162, 0.74);
+  color: rgba( 255, 255, 255, 0 );
   text-align:center;
-/*   border-width: 3px 3px 0 3px; */
-/*   border-style: solid; */
-/*   border-color:#34A6C1; */
-/*     border-radius:20px 20px 0 0; */
-    border-radius: 70px 70px 0 0;
-    -moz-border-radius: 70px 70px 0 0;
-    -webkit-border-radius: 70px 70px 0 0;
+
+    /* Circle */
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+
     text-shadow:none !important;
     
     /*Align to the bottom of the trivia-toggle parent div*/
@@ -696,15 +687,12 @@ width:100%;}
     top: 20px
 }
 
-.btn-toggle:hover{
-/*   background:#eee; */
+.btn-toggle:hover {
     background-color: rgba( 255, 255, 255, 0.7 );
 	color: rgba( 0, 0, 0, 0.8 );
-
     -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
     -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
     box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
-    color: rgba( 0, 0, 0, 1 );
     background-color: rgba( 255, 255, 255, 0.8 );
     -moz-transition: all 0.5s; /* Firefox */
     -webkit-transition: all 0.5s; /* Safari and Chrome */
@@ -713,55 +701,41 @@ width:100%;}
 }
 
 .btn-toggle-up:hover {
-  background:#4EBAC4;
-}
-
-.chevron-down:after {
-    content: '\f078';
-    font-family: 'FontAwesome';
-}
-
-.chevron-down a:link {
-    text-decoration:none;
+    background-color: rgba( 255, 255, 255, 0.7 );
+    color: rgba( 0, 0, 0, 0.5 );
+   -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    background-color: rgba( 255, 255, 255, 0.8 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
 }
 
 .btn-toggle-up {
+    width: 50%;
+    height: 100%;
     display:block;
     margin-left:auto;
     margin-right:auto;
     padding:2px;
-    background: #34A6C1;
+    background-color: rgba(167, 162, 162, 0.74);
+    color: rgba( 255, 255, 255, 0.8 );
     text-align:center;
-    border-radius:50px 50px 0 0;
+    /* Circle */
+    border-radius: 50px 50px 0 0;
+    -moz-border-radius: 50px 50px 0 0;
+    -webkit-border-radius: 50px 50px 0 0;
+    
     text-shadow:none !important;
+    
+    /*Align to the bottom of the trivia-toggle parent div*/
+    position: relative;
+    margin: auto;
 }
-
-.chevron-up:after {
-  content: '\f077';
-  font-family: 'FontAwesome';
-  color:#ffffff;
-  -webkit-animation: bounce-s 2s infinite;
-    -moz-animation: bounce-s 2s infinite;
-    -ms-animation: bounce-s 2s infinite;
-    animation: bounce-s 2s infinite;
-    animation-name: bounce-s;
-    animation-duration: 2s;
-    animation-timing-function: initial;
-    animation-delay: initial;
-    animation-iteration-count: infinite;
-    animation-direction: initial;
-    animation-fill-mode: initial;
-    animation-play-state: initial;
-    z-index: 1000;
-}
-
-.chevron-up a:link{
-text-decoration:none;
-  }
-
 				
 /* Q&A Box */
-
 #trivia-box {
     display:block;
     width:100%;
@@ -1068,4 +1042,22 @@ text-align:center;
     width:27px;
     height:29px;
     position:absolute;
+}
+
+/*This is for the fireworks, let us find a better way later*/
+/*
+canvas {
+    -webkit-transform: translateZ(0);
+}
+*/
+
+.fa_button_toggle {
+    position: absolute;
+    top: 30%;
+    right: 30%;
+    margin: auto;
+}
+
+.hourglassSVG {
+    max-width: 100%;
 }

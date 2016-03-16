@@ -1,14 +1,10 @@
-﻿<div class="logo"><img src="content/images/logo-CKPT.png" /></div>
+﻿<!--
+<div class="logo"><img src="content/images/logo-CKPT.png" /></div>
 
 <nav>
     <ul class="navbar"  role="navigation">
-        <!--li data-match-route="/$"><a href="#/">Home</a></li-->
-<!--         <li data-match-route="/rewards"><a ng-href="#/contests">How it works</a></li> -->
         <li data-match-route="/profile"><a ng-href="#/rewards">Rewards</a></li>
         <li data-match-route="/trivia" class="btn-play"><a ng-href="#/trivia">Play to earn</a></li>
-<!--         <li data-match-route="/contests"><a ng-href="#/contests">Contests</a></li> -->
-<!--         <li data-match-route="/tradingzone"><a ng-href="#/tradings">Trading Zone</a></li> -->
-<!--         <li data-match-route="/about"><a ng-href="#/about">About</a></li> -->
         <li ng-if="loggedIn" class="nav navbar-nav navbar-right">
             <a ng-href="#/signin">
             Sign Out <i class="fa fa-sign-out"></i>
@@ -18,3 +14,48 @@
 </nav>
 
 <div class="account"><i class="fa fa-user fa-2x"></i></div>
+-->
+
+	<header class="cd-header">
+<!-- 		<a href="#0" class="cd-logo"><img src="layout/img/cd-logo.svg" alt="Logo"></a> -->
+		<a href="#0" class="cd-3d-nav-trigger">
+			Menu
+			<span></span>
+		</a>
+	</header> <!-- .cd-header -->
+	
+	<main>
+<!-- 		<h1>3D Rotating Navigation</h1> -->
+        <div id="shell_content" class="content">
+            <div data-ng-view class="fill"></div>
+        </div>
+	</main>
+	
+	<nav class="cd-3d-nav-container">
+		<ul class="cd-3d-nav">
+			<li class="cd-selected">
+				<a href="#0">Dashboard</a>
+			</li>
+
+			<li>
+				<a href="#0">Projects</a>
+			</li>
+
+			<li>
+				<a href="#0">Images</a>
+			</li>
+
+			<li>
+				<a href="#0">Settings</a>
+			</li>
+
+			<li>
+				<a href="#0">New</a>
+			</li>
+		</ul> <!-- .cd-3d-nav -->
+
+		<span class="cd-marker color-1"></span>	
+	</nav> <!-- .cd-3d-nav-container -->
+
+<script src="layout/js/jquery-2.1.1.js"></script>
+<script src="layout/js/main.js"></script> <!-- Resource jQuery -->

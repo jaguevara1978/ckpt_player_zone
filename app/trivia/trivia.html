@@ -1,14 +1,8 @@
-<style>
-/*This is for the fireworks, let us find a better way later*/
-canvas {
-    -webkit-transform: translateZ(0);
-}
-</style>
 <div id="container-ckpt" class="container-ckpt">
     <!--Timer-->
     <div id="timer-bar">
-		    <div class="count_down_bar" id="count_down_bar"></div>
-            <!-- <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress> -->
+	    <div class="count_down_bar" id="count_down_bar"></div>
+        <!-- <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress> -->
     </div>
 
     <!--Scores Panel-->
@@ -44,7 +38,74 @@ canvas {
     <!--Trivia Box-->
     <div id="trivia-container">
         <div id="trivia-toggle">
-            <button id="btn-toggle" class="btn btn-toggle chevron-down" ng-click="vm.toggleTrivia( )"></button>
+            <button id="btn-toggle" class="btn btn-toggle" ng-click="vm.toggleTrivia( )">
+                <i id="fa_button_toggle" class="fa fa-chevron-down fa-2x fa_button_toggle"></i>
+
+                <!-- HourGlass -->
+                <svg class="hourglassSVG" version="1.1"
+                	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                	 x="0px" y="0px" width="70px" height="70px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
+                    <defs>
+                        <circle id="grain" cx="0" cy="0" r="1" fill="#F7E0B7"/>
+                        <clipPath id="topMask">
+                            <path class="topMask" fill="#6D00BF" d="M316.7,266.3c-0.2,0.1-3.7,1.5-4.8,2.5c0,0,0,0,0,0.1c-1.8,1.5-3.2,4.5-3.2,7.1l-1.6,0
+                            	l-1.4,0c0-2.6-1.4-5.6-3.2-7.1c0,0,0-0.1,0-0.1c-1.1-1-4.6-2.5-4.8-2.5C237.1,249.5,195,174,188,91h119h119.3
+                            	C419.3,174,377.2,249.5,316.7,266.3z"/>
+                        </clipPath>
+                      
+                        <clipPath id="botMask">
+                            <path class="botMask" fill="#6D00BF" d="M316.7,283.7c-0.2-0.1-3.7-1.5-4.8-2.5c0,0,0,0,0-0.1c-1.8-1.5-3.2-4.5-3.2-7.1l-1.6,0
+                            l-1.4,0c0,2.6-1.4,5.6-3.2,7.1c0,0,0,0.1,0,0.1c-1.1,1-4.6,2.5-4.8,2.5C237.1,300.5,195,376,188,459h119h119.3
+                            C419.3,376,377.2,300.5,316.7,283.7z"/>
+                        </clipPath>
+                    </defs>
+                
+                    <g class="allGrouped">
+                        <g clip-path="url(#topMask)">
+                            <rect class="topSand" x="0" y="90" fill="#F7E0B7" width="600" height="185"/>
+                        </g>
+                        <g clip-path="url(#botMask)">
+                            <ellipse class="bottomSand" fill="#F7E0B7" cx="307.5" cy="580" rx="47.5" ry="120"/>    
+                        </g>
+                        <rect class="top" x="175" y="70" fill="#F1AF31" width="263" height="21"/>
+                        <line class="drip" fill="none" stroke="#F7E0B7" stroke-width="2" stroke-miterlimit="10" x1="307" y1="275" x2="307" y2="460"/>  
+                
+                        <path class="body" opacity="0.23" fill="#FFFFFF" d="M432.2,459H180.8c4.3-90,49.8-165,108.7-175.2c6.1-1,10.3-5.2,10.3-8.8
+                        c0-3-4.2-7.8-10.3-8.8C230.6,256,185.2,180.5,180.8,91h251.3c-4.3,89.6-49.7,166.3-108.8,175.2c-6,0.9-10.2,6.1-10.2,8.8
+                        c0,2.7,4.3,7.9,10.2,8.8C382.5,292.7,427.8,369,432.2,459z"/>
+                      
+                        <path class="topShadow" fill="#121212" opacity="0.12" d="M432.5,91h-252c0.3,4.1,0.8,8.8,1.4,14h249.3C432,98.3,432.2,95,432.5,91z"/>
+                        <path class="botShadow" fill="#121212" opacity="0" d="M432.5,459h-252c0.3-4.1,0.8-8.8,1.4-14h249.3C432,451.7,432.2,455,432.5,459z"/>
+                        <path class="rightShine" opacity="0.10" fill="#FFFFFF" d="M316.6,283.8c-5.2-1.2-8-6.1-8-8.8c0-2.7,2.8-7.5,8-8.8
+                        c58.6-14,105.6-87,106.5-175.2h-22.8c-3.6,85.6-38.3,168.8-102.8,177.2c0,0,8,0.7,8,6.8c0,6.2-8,6.8-8,6.8
+                        c64.5,8.3,99.2,91.6,102.8,177.2h22.8C422.3,370.8,375.3,297.8,316.6,283.8z"/>
+                        <path class="leftShine" opacity="0.28" fill="#FFFFFF" d="M297,283.8c5.2-1.2,8-6.1,8-8.8c0-2.7-2.8-7.5-8-8.8
+                        c-58.6-14-105.6-87-106.5-175.2h22.8c3.6,85.6,38.3,168.8,102.8,177.2c0,0-8,0.7-8,6.8c0,6.2,8,6.8,8,6.8
+                        c-64.5,8.3-99.2,91.6-102.8,177.2h-22.8C191.4,370.8,238.4,297.8,297,283.8z"/>
+                        <g clip-path="url(#botMask)">  
+                            <g class="grainGroup">  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                                <use xlink:href="#grain" x="0" y="0"/>  
+                            </g>    
+                        </g>
+                
+                        <rect class="bottom" x="175" y="459" fill="#F1AF31" width="263" height="21"/>
+                    </g>
+                    <circle class="circleDragger" cx="300" cy="300" r="300" opacity="0"/>  
+                    <g class="dragRotate" opacity="0">
+                        <path fill="#FFFFFF" d="M503,101c4.7,0,9.4,1.7,13.2,5.1c8.1,7.3,8.7,19.8,1.4,27.9c-3.1,3.5-7.2,5.6-11.5,6.2l0.3-13
+                        l-20.1,16.6l19.4,17.5l0.3-12c6.8-0.7,13.4-3.8,18.4-9.3c10.7-11.8,9.7-30-2.1-40.6c-5.7-5.2-13-7.6-20.1-7.4"/>
+                <!--         <text x="400" y="200"><tspan dx="40">Spin round</tspan><tspan dx="-128" dy="30">to start again</tspan></text> -->
+                    </g>
+                </svg>
+                <!-- HourGlass -->
+            </button>
         </div>
         <div id="trivia-box">
             <!--Rewards-->
@@ -52,7 +113,7 @@ canvas {
                 <h3>Congratulations! You just won</h3>
                 <h2>{{vm.data.reward.reward_title}}</a></h2>
                 <div class="reward-img">
-                    <img src="{{vm.data.reward.img_uri}}" alt="{{vm.data.reward.reward_title}}">
+                    <img ng-src="{{vm.data.reward.img_uri}}" alt="{{vm.data.reward.reward_title}}">
                 </div>
                 <div id="reward-detail"><a id="btn-reward-detail" title="Reward details">Details</a>
                 </div>
@@ -97,24 +158,12 @@ canvas {
     </div>
 
 <script type="application/javascript">
-</script>
-
-<script type="application/javascript">
-    
-/*
-    TweenMax.to( whiteBlur, .3, {
-        boxShadow: "0px 0px 24px 6px white",
-        backgroundColor:"white",
-        color:"#999"
-    });
-*/
-    
     //Pop-up Dialog
     var rewardDialog = document.getElementById("reward-dialog");
 
-    $(function() {
+    $( function( ) {
         var moveLeft = 15;
-        var moveUp = $(rewardDialog).outerHeight();
+        var moveUp = $( rewardDialog ).outerHeight( );
 
         $('a#btn-reward-detail').hover(function(e) {
             $(rewardDialog).show()

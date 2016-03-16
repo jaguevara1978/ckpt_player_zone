@@ -11,7 +11,7 @@
 angular.module( 'app.profile' ).controller( 'Profile', Profile );
 
 /*@ngInject*/
-function Profile( $rootScope, FlashService, ApiService )  {
+function Profile( $rootScope, Notification, ApiService )  {
     var vm = this;
     vm.age = age;
     vm.update = update;
@@ -33,7 +33,7 @@ function Profile( $rootScope, FlashService, ApiService )  {
                     vm.data = response.data;
                     console.log( vm.data );
                 } else {
-                    FlashService.Error( response.message );
+                    Notification.Error( response.message );
                     return { };
                 }
             });

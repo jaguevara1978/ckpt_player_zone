@@ -11,7 +11,7 @@
 angular.module( 'app.trivia' ).controller( 'Trivia', Trivia );
 
 /*@ngInject*/
-function Trivia( ApiService, FireworksService, $location, $rootScope, FlashService, $scope, $timeout, $interval, $sce ) {
+function Trivia( ApiService, FireworksService, $location, $rootScope, Notification, $scope, $timeout, $interval, $sce ) {
     var vm = this;
     var pointsAux = 0;
     var validatingAnswer = false;
@@ -38,6 +38,37 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
     var rectPointsBar = pointsBar.getBoundingClientRect( );
     var rectRewardsBar = rewardsBar.getBoundingClientRect( );
     var rectTriviaBox = triviaBox.getBoundingClientRect( );
+    var fa_button_toggle = document.getElementById( "fa_button_toggle" );
+
+/* ********* HourGlass ********** */
+var xmlns="http://www.w3.org/2000/svg", 
+    select = function( s ) {
+        return document.querySelector( s );
+    }, 
+    selectAll = function( s ) {
+        return document.querySelectorAll( s );
+    }
+    , hourGlassContainer = select( '.hourglass_container' ), hourglassSVG = select( '.hourglassSVG' )
+    , topSand = select( '.topSand' ), bottomSand = select('.bottomSand'), drip = select('.drip'), allGrouped = select('.allGrouped'), leftShine = select('.leftShine'), rightShine = select('.rightShine'), topShadow = select('.topShadow'), botShadow = select('.botShadow'), circleDragger = select('.circleDragger'), allGrains = selectAll('.grainGroup use')
+    , grainGroup = select('.grainGroup'), dragRotate = select( '.dragRotate' ), grainIsPaused = false;
+
+//     var sandTime = 2;
+var timeLeft = 0;
+var playhead = 0;
+
+
+//console.log( topSand );
+//center the container cos it's pretty an' that
+// TweenMax.set( container, { position: 'absolute', top: '50%', left: '50%', xPercent: -50, yPercent: -50 } );
+
+TweenMax.set( botMask, { x:'-=1' } );
+TweenMax.set( allGrouped, { svgOrigin: '306.5 275' } );
+TweenMax.set( circleDragger, { transformOrigin:'50% 50%' } );
+// TweenMax.set( drip, { drawSVG:'0% 0%' } );
+
+// var grainTl = new TimelineMax( );
+var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
+/* ********* HourGlass ********** */
 
 
     // console.log( rectButtonToggle.top, rectButtonToggle.right, rectButtonToggle.bottom, rectButtonToggle.left);
@@ -174,6 +205,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                         	}
                         });
 
+                    // This timeout will control the time before showing the question
                     $timeout( function( ) {
                         TweenLite.to( triviaContainer, 1, { ease: Expo.easeOut, bottom: 0 } );
                         // TweenLite.to( progressBar, 0.1, { opacity: 1 } );
@@ -187,6 +219,9 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                         vm.timeout_promise = $timeout( function( ) {
                             validateAnswer( -1 );
                         }, vm.data.display_time * 1000 )
+                        
+                        hourGlass( vm.data.display_time );
+                        reset( );
                         
                         //// Count down
                         countDownTween = TweenLite.from( { }, vm.data.display_time, {
@@ -210,7 +245,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                     console.log(vm.data);
 */
                 } else {
-                    FlashService.Error( response.message );
+                    Notification.error( response.message );
                 }
             }
         );
@@ -239,6 +274,9 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
         //$interval.cancel( vm.countdown_promise );
         $timeout.cancel( vm.timeout_promise );
         countDownTween.kill( );
+
+        // Pause HourGlass
+        setDragger( );
 
         var data = {
             tr_id: option
@@ -291,7 +329,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
                     }, vm.data.validation_time * 1000 );
                     
                 } else {
-                   FlashService.Error( response.message );
+                   Notification.error( response.message );
                 }
             }
         );
@@ -389,6 +427,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
         if ( challengeBoxHidden ) {
             challengeBoxHidden = false;
             buttonToggleTL.kill( );
+            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-down fa-2x fa_button_toggle" } );
             TweenLite.to( buttonToggle, 0.3, { className:"btn btn-toggle chevron-down" } );
             TweenLite.to( triviaContainer, 1, { bottom: 0 } );
             TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0.5, display: 'block' } );
@@ -396,6 +435,7 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
         } else {          
             challengeBoxHidden = true;
             triviaContainerHeight = getObjectHeight( triviaContainer );
+            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-up fa-2x fa_button_toggle_up" } );
             TweenLite.to( buttonToggle, 0.2, { className:"btn btn-toggle-up chevron-up fa-2x" } );
             TweenLite.to( triviaContainer, 1, { ease: Elastic.easeOut.config( 1, 0.3 ), bottom: -triviaContainerHeight + getObjectHeight( buttonToggle ) - 1 } );
             TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0, display: 'none' } );
@@ -415,5 +455,140 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, FlashServi
     // Some Animation when good answer
     function goodFeedBack( ) {
     }
+
+/* ********* HourGlass ********** */
+function hourGlass( sandTime ) {
+    hourGlassTl.to( drip, 1, { drawSVG:'100% 0%', ease:Expo.easeIn } )
+        .addCallback( createGrains )
+        .to( topSand, sandTime, { attr: { y: '+=189' }, ease:Linear.easeNone } )
+        .to( bottomSand, sandTime, { attr: { cy:'-=165', rx:'+=200' }, transformOrigin:'50% 50%', ease:Linear.easeNone }, '-=' + sandTime )
+        .fromTo( grainGroup, sandTime, { x: 307, y: 465 }, { y: 296, ease:Linear.easeNone }, '-=' + sandTime )
+        .addCallback( pauseGrains )
+        .to( drip, 1, { drawSVG: '100% 100%', ease:Linear.easeNone } )
+        .addCallback( setDragger, '+=0' )
+        .to( leftShine, 1, { alpha: 0.1, ease:Linear.easeNone } )
+        .to( rightShine, 1, { alpha: 0.28, ease:Linear.easeNone }, '-=1' )
+        .to( topShadow, 1, { alpha: 0, ease:Linear.easeNone }, '-=1' )
+        .to( botShadow, 1, { alpha: 0.12, ease:Linear.easeNone }, '-=1')
+        .to( bottomSand, 1, { attr: { cy:'-=40' }, ease:Linear.easeNone }, '-=1' );
+}    
+    
+    function onPress( ) {
+      playhead = hourGlassTl.time( );
+    }
+    
+    function onDrag( ) {
+        TweenMax.set( allGrouped, {
+            rotation:circleDragger._gsTransform.rotation
+        } );
+        
+        timeLeft = hourGlassTl.duration( ) - playhead;
+        var percent = ( circleDragger._gsTransform.rotation/180)* timeLeft;
+        
+        hourGlassTl.time( playhead + percent );
+    }
+    
+    function setDragger( ) {
+        //   myDraggable[0].enable();
+        hourGlassTl.pause( );
+        
+        if ( dragRotate !== null ) {
+            TweenMax.to( dragRotate, 1, { alpha:0.8 } );
+        }
+      
+    // pauseGrains();
+    
+    //if you want something to happen when the sand has finished do it here
+    //doFinished();
+    
+    }
+    
+    function removeInfo( ) {
+        if ( dragRotate !== null ) {
+            TweenMax.to( dragRotate, 0.3, { alpha:0, onComplete:function( ) {
+                    hourglassSVG.removeChild( dragRotate );
+                    dragRotate = null;
+                }
+            } );
+        }
+    }
+    
+    function reset( ) {
+        TweenMax.set( [ circleDragger, allGrouped ], {
+        rotation:0
+      } )
+      //   myDraggable[0].disable();
+      hourGlassTl.play( 0 );
+
+      grainIsPaused = false;
+      restartGrains( );
+    }
+
+    function doFinished( ) {
+        alert( 'all done!' )
+    }
+    
+    function createGrainAnim(el, id){
+      if ( grainIsPaused ) {
+        return;
+      }
+      var angle = randomBetween( -180, 0 );
+      var vel = randomBetween( 10, 50 ); 
+        
+        TweenMax.set(el,  {
+          x:0,
+          y:0,
+          attr:{
+            x:0        
+          }
+    
+        })
+        el.grainId = id;
+        //
+        var t = TweenMax.to( el, randomBetween( 1, 3 ) / 10, {
+    /*
+            physics2D:{
+              velocity:180, 
+              angle:angle, 
+              //acceleration:1000, 
+              gravity:620, 
+              accelerationAngle:0
+            },
+    */
+          //repeat:-1
+          onComplete:createGrainAnim,
+          onCompleteParams:[el, el.grainId]
+        })
+        
+        //grainTl.add(t, (i+1)/100)
+        
+      
+    }
+    
+    function createGrains( ) {
+        for( var i = 0; i < allGrains.length; i++ ) {
+            createGrainAnim( allGrains[ i ], i );
+        }
+    }
+    
+    function randomBetween( min, max ) {
+        return Math.floor( Math.random( ) * ( max - min + 1 ) + min );
+    }
+    
+    function pauseGrains( ) {
+        grainIsPaused = true;
+        for( var i = 0; i < allGrains.length; i++ ) {
+            TweenMax.set( allGrains[ i ], { alpha: 0, attr: { x: 0, y: 0 } } );
+        }
+    }
+    
+    function restartGrains( ) {
+        for( var i = 0; i < allGrains.length; i++ ) {
+            TweenMax.set( allGrains[ i ], { alpha: 1, x: 307, y: 465 } );
+        }
+    }
+/* ********* END - HourGlass ********** */
+
+
 }
 })();

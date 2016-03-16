@@ -1,4 +1,4 @@
-(function () {
+( function ( ) {
 'use strict';
 
 /**
@@ -70,7 +70,6 @@ function SignIn( $rootScope, $scope, $location, $timeout, AuthenticationService,
     };
 
     function login( ) {
-        console.log( 'entor' );
         if ( !vm.loading ) {
             vm.loading = true;
             loadingAnimation( signInButton );
@@ -88,7 +87,7 @@ function SignIn( $rootScope, $scope, $location, $timeout, AuthenticationService,
                         $location.path( '/rewards' );
                         Notification.info( { message: 'Welcome to the Challenge', delay: 800 } );
                     } else {
-                        Notification.error( { message: response.message } );
+                        Notification.error( { message: response.message, delay: 5000 } );
                     }
                     vm.loading = false;
                 }

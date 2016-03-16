@@ -12,7 +12,6 @@
     <link rel='stylesheet' href='bower_components/bootstrap-additions/dist/bootstrap-additions.css' />
     <link rel='stylesheet' href='bower_components/angular-motion/dist/angular-motion.css' />
     <link rel='stylesheet' href='bower_components/toastr/toastr.css' />
-    <link rel='stylesheet' href='bower_components/angularjs-toaster/toaster.css' />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -23,17 +22,25 @@
     <link rel="stylesheet" href="content/css/animate.css" />
     <link rel="stylesheet" href="content/css/nga.all.css" />
     <link rel="stylesheet" href="content/css/loading.css" />
-    <link rel="stylesheet" href="trivia/tpl/css/feedback.css" />
+<!--     <link rel="stylesheet" href="trivia/tpl/css/feedback.css" /> -->
     <link rel="stylesheet" href="trivia/trivia.css" media="all"/>
     <link rel="stylesheet" href="signin/signin.css" media="all"/>
+    <link rel="stylesheet" href="rewards/rewards.css" media="all"/>
     <link rel="stylesheet" href="core/directives/notifications/notifications.css" media="all"/>
-    
+	<link rel="stylesheet" href="layout/shell_reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="layout/shell.css"> <!-- Resource style -->
+
     <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400italic,700,700italic,300italic,300,800,800italic' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
 </head>
 
-<body class="fill">
-    <div class="fill" data-ng-include="'layout/shell.html'"></div>
+<body>
+    <!-- Any other content and or templates or views should be inside the shell html -->
+    <div data-ng-include="'layout/shell.html'" 
+        style="position: relative;
+            margin: auto;
+            height: 100%;
+            width: 100%;"></div>
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -56,7 +63,6 @@
     <script src="bower_components/toastr/toastr.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angularjs-toaster/toaster.js"></script>
     <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
     <script src="bower_components/ngFx/dist/ngFx.js"></script>
     <script src="bower_components/spin.js/spin.js"></script>
@@ -85,7 +91,7 @@
     <script src="core/constants.js"></script>
     <script src="core/config.js"></script>
     <script src="core/services/authentication.service.js"></script>
-    <script src="core/services/flash.service.js"></script>
+<!--     <script src="core/services/flash.service.js"></script> -->
     <script src="core/services/http.interceptor.service.js"></script>
     <script src="core/services/api.service.js"></script>
     <script src="core/services/user.service.js"></script>
@@ -161,15 +167,20 @@
 
 
     <!-- No bower vendors -->
-    <script src="content/js/pixi.min.js"></script>
-    <script src="content/js/EasePack.min.js"></script>
-    <script src="content/js/TweenLite.min.js"></script>
+<!--     <script src="content/js/pixi.min.js"></script> -->
+<!--     <script src="content/js/EasePack.min.js"></script> -->
+<!--     <script src="content/js/TweenLite.min.js"></script> -->
 <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script> -->
     <script src="content/js/commons.js"></script>
     <script src="content/js/Velocity.js"></script>
     <script src="content/js/requestanimframe.js"></script>
+	<script src="content/js/modernizr.js"></script> <!-- Modernizr -->
     <!-- endbuild -->
 
     <script src="content/js/angular-no-captcha.min.js"></script>
+    <script src="content/js/active.navbar.js"></script>
+
+
 </body>
+<!-- <footer data-ng-include="'layout/footer.html'"></footer> -->
 </html>

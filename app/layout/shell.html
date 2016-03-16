@@ -1,13 +1,133 @@
-﻿<div class="fill container">
+﻿	<div id="cd-header" class="cd-header animate-show" ng-show="showMainNavBar"  ng-controller="Shell as vm">
+        <!--Account Panel-->
+<!--         <div class="account-panel clearfix vertical-middle"> -->
+        <div class="account-panel shell_player_stats">
+            <!--profile-->
+            <div class="shell_playerstats_user">
+                <div class="image-cropper"><img src="http://www.electricvelocity.com.au/Upload/Blogs/smart-e-bike-side_2.jpg" class="rounded"></div>
+                <div class="user-info">
+                    <div class="user-name">Alexander</div>
+                    <div class="user-level">Level 2</div>
+                    <div class="user-level2">Beginner</div>
+                </div>
+            </div>
+            
+            <!--Points-->
+            <div class="shell_playerstats_points">
+                <div class="shell_playerstats_points_number">
+                    Points <span class="point_text"> {{vm.data.player_stats.accumulated_points}}</span> 
+                </div>
+                <div class="shell_playerstats_points_bar">
+                    <progress max="100000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
+                    <div class="points_to_win">{{100000 - vm.data.player_stats.accumulated_points}} more points left to win a Lexus</div>
+                </div>
+            </div>
 
-    <div class="topnav clearfix vertical-middle" ng-if="showMainNavBar" data-ng-include="'layout/topnav.html'">
-    </div>
+                <div class="shell_playerstats_points_big_prize">
+                    <img src="http://primg.checkpointchallenge.com:81/utils/big_prize_lexus.png">
+                </div>
 
-    <div id="shell_content" class="content">
-        <div data-ng-view class="fill"></div>
-    </div>
+            <!--rewards-->
+            <div class="shell_playerstats_rewards">
+                <div class="reward-number">
+                    <span class="reward-text">{{vm.data.player_stats.accumulated_rewards}}</span> Rewards
+                </div>
+            </div>
+            <div class="shell_playerstats_toggle">
+        		<a id="nav_trigger" class="cd-3d-nav-trigger">
+        			Menu
+        			<span></span>
+        		</a>
+            </div>
+        </div>
+    </div> <!-- .cd-header -->
+
+    <main>
+        <div data-ng-view style="height: 100%; width: 100%;"></div>
+    </main>
     
+    <nav class="cd-3d-nav-container" ng-show="showMainNavBar">
+    	<ul class="cd-3d-nav ul_nav_menu" bs-active-link>
+    		<li>
+    			<a ng-href="#/rewards">Rewards</a>
+    		</li>
     
-    <footer data-ng-include="'layout/footer.html'"></footer>
+    		<li>
+    			<a ng-href="#/profile">Profile</a>
+    		</li>
+    
+    		<li>
+    			<a ng-href="#/trivia">Play to Earn</a>
+    		</li>
 
-</div>
+    		<li>
+    			<a ng-href="#/signin">Sign out</a>
+    		</li>
+    
+<!--
+    		<li>
+    			<a href="#0">New</a>
+    		</li>
+-->
+    	</ul> <!-- .cd-3d-nav -->
+    
+    	<span class="cd-marker color-1"></span>	
+    </nav> <!-- .cd-3d-nav-container -->
+
+<script>
+	//toggle 3d navigation
+    var navTrigger = document.getElementById( 'cd-header' );
+    navTrigger.addEventListener( 'click', function( ){
+    	//toggle 3d navigation
+		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    });
+
+	//select a new item from the 3d navigation
+	$('.cd-3d-nav').on('click', 'a', function(){
+		var selected = $(this);
+		selected.parent('li').addClass('cd-selected').siblings('li').removeClass('cd-selected');
+		updateSelectedNav('close');
+	});
+
+	$(window).on('resize', function(){
+		window.requestAnimationFrame(updateSelectedNav);
+	});
+
+	function toggle3dBlock( addOrRemove ) {
+		if( typeof( addOrRemove )==='undefined' ) addOrRemove = true;	
+		$('.cd-header').toggleClass('nav-is-visible', addOrRemove);
+		$('.cd-3d-nav-container').toggleClass('nav-is-visible', addOrRemove);
+		$('main').toggleClass('nav-is-visible', addOrRemove).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			//fix marker position when opening the menu (after a window resize)
+			addOrRemove && updateSelectedNav( );
+		});
+	}
+
+	//this function update the .cd-marker position
+	function updateSelectedNav( type ) {
+		var selectedItem = $( '.cd-selected' ),
+			selectedItemPosition = selectedItem.index( ) + 1, 
+			leftPosition = selectedItem.offset( ).left,
+			backgroundColor = selectedItem.data( 'color' ),
+			marker = $( '.cd-marker' );
+
+		marker.removeClassPrefix( 'color' ).addClass( 'color-' + selectedItemPosition ).css( {
+			'left': leftPosition,
+		} );
+		if( type == 'close' ) {
+			marker.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function( ) {
+				toggle3dBlock( false );
+			});
+		}
+	}
+
+	$.fn.removeClassPrefix = function(prefix) {
+	    this.each(function(i, el) {
+	        var classes = el.className.split(" ").filter(function(c) {
+	            return c.lastIndexOf(prefix, 0) !== 0;
+	        });
+	        el.className = $.trim(classes.join(" "));
+	    });
+	    return this;
+	};
+</script>

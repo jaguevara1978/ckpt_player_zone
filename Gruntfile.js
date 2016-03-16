@@ -408,11 +408,11 @@ module.exports = function (grunt) {
             src: ['fonts/*'],
             dest: '<%= yeoman.dist %>/content'
         }, {
-            // I have to coy no captcha js as it is because it was not minifying properly
+            // I have to copy no captcha js as it is because it was not minifying properly
             expand: true,
             dot: true,
             cwd: '<%= yeoman.app %>/content',
-            src: ['js/angular-no-captcha.min.js'],
+            src: ['js/angular-no-captcha.min.js','js/active.navbar.js'],
             dest: '<%= yeoman.dist %>/content'
         }]
       },

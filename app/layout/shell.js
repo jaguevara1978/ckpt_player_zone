@@ -1,36 +1,27 @@
-(function() {
+( function( ) {
     'use strict';
 
-    angular
-        .module('app.layout')
-        .controller('Shell', Shell);
+angular.module( 'app.layout' ).controller( 'Shell', Shell );
 
-    /*@ngInject*/
-    function Shell($timeout, config, logger) {
-        /*jshint validthis: true */
-        var vm = this;
+/*@ngInject*/
+function Shell( ApiService, config ) {
+    /*jshint validthis: true */
+    var vm = this;
 
-        vm.title = config.appTitle;
-        vm.busyMessage = 'Please wait ...';
-        vm.isBusy = true;
-        vm.showSplash = true;
+    vm.title = config.appTitle;
 
-        activate();
+    initialize( );
 
-        function activate() {
-            logger.success(config.appTitle + ' loaded!', null);
-//            Using a resolver on all routes or dataservice.ready in every controller
-//            dataservice.ready().then(function(){
-//                hideSplash();
-//            });
-            hideSplash();
-        }
+    function initialize( ) {
+        ApiService.get('contact_rewards').then(function(response) {
+            if (response.success) {
+                vm.data = response.data;
+                //console.log( vm.data );
+            } else {
+                Notification.Error(response.message);
+            }
+        });
+    }    
+}
 
-        function hideSplash() {
-            //Force a 1 second delay so we can see the splash.
-            $timeout(function() {
-                vm.showSplash = false;
-            }, 1000);
-        }
-    }
-})();
+} ) ( );

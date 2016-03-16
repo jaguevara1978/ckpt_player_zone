@@ -35,7 +35,7 @@
         ,'mgcrea.ngStrap.modal'
         ,'mgcrea.ngStrap.popover'
         ,'ngPasswordStrength'
-        ,'toaster'
+        //,'toaster'
         // ,'pascalprecht.translate' // Bower: angular-translate-handler-log, angular-translate-loader-static-files, angular-translate-storage-cookie, angular-translate-storage-local depends on angular-translate
         // ,'tmh.dynamicLocale' // angular-dynamic-locale
 
