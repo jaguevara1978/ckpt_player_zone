@@ -17,7 +17,7 @@ angular.module('app').factory( 'ApiService', ApiService );
         service.get = get;
         service.post = post;
         service.put = put;
-        service.Delete = Delete;
+//         service.Delete = Delete;
 
         return service;
 
@@ -35,13 +35,10 @@ angular.module('app').factory( 'ApiService', ApiService );
             return $http.post( config.apiUrl + entity, data ).then( handleSuccess, handleErrorResponse );
         }
 
-        function put( data ) {
-            return $http.post( config.apiUrl + 'memberUpdate', data ).then( handleSuccess, handleErrorResponse );
+        function put( entity, data ) {
+            return $http.put( config.apiUrl + entity + '/0', data ).then( handleSuccess, handleErrorResponse );
         }
 
-        function Delete( id ) {
-            return $http.delete( '/api/users/' + id ).then( handleSuccess, handleErrorResponse );
-        }
 /**********************************/
 
         // Private functions

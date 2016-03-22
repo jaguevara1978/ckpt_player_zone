@@ -29,11 +29,11 @@
         ,'ngBusy'
         /*,'mgcrea.ngStrap.helpers.dimensions'
         ,'mgcrea.ngStrap.tooltip'
-        ,'mgcrea.ngStrap.popover'*/
+        ,'mgcrea.ngStrap.popover'
         ,'mgcrea.ngStrap.alert'
         ,'mgcrea.ngStrap.aside'
         ,'mgcrea.ngStrap.modal'
-        ,'mgcrea.ngStrap.popover'
+        ,'mgcrea.ngStrap.popover'*/
         ,'ngPasswordStrength'
         //,'toaster'
         // ,'pascalprecht.translate' // Bower: angular-translate-handler-log, angular-translate-loader-static-files, angular-translate-storage-cookie, angular-translate-storage-local depends on angular-translate
@@ -162,7 +162,8 @@
                     $location.path( '/signin' );
                 }
 
-                $rootScope.showMainNavBar = $location.path( ) !== "/trivia";
+//                 $rootScope.showMainNavBar = $location.path( ) !== "/trivia";
+                $rootScope.showMainNavBar = true;
             } catch( error ) {
                 // console.log( 'error' );
                 $location.path( '/signin' );

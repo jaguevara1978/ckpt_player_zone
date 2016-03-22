@@ -4,13 +4,14 @@
 angular.module( 'app.layout' ).controller( 'Shell', Shell );
 
 /*@ngInject*/
-function Shell( ApiService, config ) {
-    /*jshint validthis: true */
+function Shell( $location, $scope, ApiService, config ) {
     var vm = this;
 
     vm.title = config.appTitle;
 
-    initialize( );
+    $scope.$on( "$routeChangeSuccess", function ( ) {
+        initialize( );
+    });
 
     function initialize( ) {
         ApiService.get('contact_rewards').then(function(response) {
@@ -21,7 +22,7 @@ function Shell( ApiService, config ) {
                 Notification.Error(response.message);
             }
         });
-    }    
+    }   
 }
 
 } ) ( );

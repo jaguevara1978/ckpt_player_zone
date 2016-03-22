@@ -191,7 +191,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
 
                     vm.data.actual_time = vm.data.display_time;
                     
-                    // Show progress of delayt time before showing the question
+                    // Show progress of delay time before showing the question
                     TweenLite.from( { }, vm.data.delay, {
                             //yoyo:true,
                             //repeat:-1,
@@ -239,6 +239,11 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                         //// Count down
 
                         validatingAnswer = false
+                        
+                        // Navigation shouldn't disappear until everything is actually loaded.
+                        // I do this to make it look more friendly just the first time the game loads, after taht
+                        // THe navigation will be gone.
+                        $rootScope.showMainNavBar = false;
                     },  vm.data.delay * 1000 );//vm.data.delay * 1000
 /*
                     console.log( 'Get Question:' );

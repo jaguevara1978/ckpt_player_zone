@@ -3,7 +3,7 @@
 <!-- This is the sign in form -->
 <div id="signin_wrapper" class="signin_wrapper" ng-show="vm.signin">
 	<h1>Sign In</h1>
-	<form name="signin_form" role="form" class="form">
+	<form name="signin_form" role="form" class="signin_form">
 		<input ng-model="vm.user.id" type="text" placeholder="Username" tabindex="10" required>
 		<input ng-model="vm.user.pwd" type="password" placeholder="Password" tabindex="20" required>
         <button id="signin_submit" type="submit" class="login_submit ng-class: { login_submit_enabled: signin_form.$invalid == false, login_submit_disabled: signin_form.$invalid == true };" ng-click="vm.login( )" ng-disabled="signin_form.$invalid">
