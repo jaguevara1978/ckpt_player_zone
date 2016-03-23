@@ -152,9 +152,11 @@ Main Components
   background-color: #000000;
   visibility: hidden;
   /* enable a 3D-space for children elements */
+/*
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   perspective: 1000px;
+*/
   -webkit-transform: translateY(-100%);
   -moz-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
@@ -165,15 +167,15 @@ Main Components
   transition: transform 0.5s 0s, visibility 0s 0.5s;
 }
 .cd-3d-nav-container.nav-is-visible {
-  visibility: visible;
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition: -webkit-transform 0.5s 0s, visibility 0.5s 0s;
-  -moz-transition: -moz-transform 0.5s 0s, visibility 0.5s 0s;
-  transition: transform 0.5s 0s, visibility 0.5s 0s;
+    visibility: visible;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: -webkit-transform 0.5s 0s, visibility 0.5s 0s;
+    -moz-transition: -moz-transform 0.5s 0s, visibility 0.5s 0s;
+    transition: transform 0.5s 0s, visibility 0.5s 0s;
 }
 @media only screen and (min-width: 768px) {
   .cd-3d-nav-container {
@@ -182,31 +184,40 @@ Main Components
 }
 
 .cd-3d-nav {
-  /* this is the 3D rotating navigation */
-  position: relative;
-  height: 100%;
-  background-color: #343c55;
-  /* Force Hardware Acceleration */
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform-origin: center bottom;
-  -moz-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-  -o-transform-origin: center bottom;
-  transform-origin: center bottom;
-  -webkit-transform: rotateX(90deg);
-  -moz-transform: rotateX(90deg);
-  -ms-transform: rotateX(90deg);
-  -o-transform: rotateX(90deg);
-  transform: rotateX(90deg);
-  -webkit-transition: -webkit-transform 0.5s;
-  -moz-transition: -moz-transform 0.5s;
-  transition: transform 0.5s;
+    /* this is the 3D rotating navigation */
+    position: relative;
+    height: 100%;
+    background-color: #343c55;
+
+    /* Force Hardware Acceleration */
+    /*
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      -o-transform: translateZ(0);
+      transform: translateZ(0);
+    */
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    -webkit-transform-origin: center bottom;
+    -moz-transform-origin: center bottom;
+    -ms-transform-origin: center bottom;
+    -o-transform-origin: center bottom;
+    transform-origin: center bottom;
+    
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    -ms-transform: rotateX(90deg);
+    -o-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+
+    /*
+      -webkit-transition: -webkit-transform 0.5s;
+      -moz-transition: -moz-transform 0.5s;
+      transition: transform 0.5s;
+    */
 }
 .cd-3d-nav::after {
   /* menu dark cover layer - to enhance perspective effect */
@@ -229,6 +240,7 @@ Main Components
   width: 25%;
   float: left;
 }
+/*
 .cd-3d-nav li:first-of-type a::before {
   background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-1.svg);
 }
@@ -244,17 +256,23 @@ Main Components
 .cd-3d-nav li:nth-of-type(5) a::before {
   background-image: url(http://primg.checkpointchallenge.com:81/utils/icon-5.svg);
 }
+*/
+
 .cd-3d-nav a {
+/*
   position: relative;
   display: block;
-  height: 100%;
-  color: transparent;
-  -webkit-transition: background-color 0.2s;
-  -moz-transition: background-color 0.2s;
-  transition: background-color 0.2s;
+*/
+    height: 100%;
+    color: transparent;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    padding-bottom: 10px;
 }
 .cd-3d-nav a::before {
   /* navigation icons */
+/*
   content: '';
   height: 32px;
   width: 32px;
@@ -271,18 +289,24 @@ Main Components
   background-size: 32px 64px;
   background-repeat: no-repeat;
   background-position: 0 0;
+*/
 }
-.no-touch .cd-3d-nav a:hover {
-  background-color: #2b3145;
+.cd-3d-nav a:hover {
+/*   background-color: #2b3145; */
 }
 .cd-3d-nav .cd-selected a {
-  background-color: #212635;
+/*     background-color: rgba( 101, 86, 67, 1 ); */
 }
-.no-touch .cd-3d-nav .cd-selected a:hover {
-  background-color: #212635;
+.cd-3d-nav .cd-selected .svg_wrapper .shell_menu_icon_path {
+  -webkit-animation: fillIn 1s linear forwards;
+  animation: fillIn 1s linear forwards;
+}
+
+.cd-3d-nav .cd-selected a:hover {
+/*   background-color: rgba( 101, 86, 67, 1 ); */
 }
 .cd-3d-nav .cd-selected a::before {
-  background-position: 0 -32px;
+/*   background-position: 0 -32px; */
 }
 .nav-is-visible .cd-3d-nav {
   -webkit-transform: translateZ(0);
@@ -301,7 +325,7 @@ Main Components
 }
 @media only screen and (min-width: 768px) {
   .cd-3d-nav a {
-    padding: 7.6em 1em 0;
+/*     padding: 7.6em 1em 0; */
     color: #ffffff;
     font-size: 1.3rem;
     font-weight: 600;
@@ -313,6 +337,7 @@ Main Components
     overflow: hidden;
     text-overflow: ellipsis;
   }
+/*
   .cd-3d-nav a::before {
     top: 4.4em;
     left: 50%;
@@ -323,6 +348,7 @@ Main Components
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
   }
+*/
 }
 
 .cd-marker {
@@ -397,6 +423,118 @@ Main Components
   color: #77cd91;
   background-color: #77cd91;
 }
+
+
+/* Adding some background color to the different menu items */
+.nav li:nth-child(6n+1) {
+	background: rgb(208, 101, 3);
+}
+
+.nav li:nth-child(6n+2) {
+	background: rgb(233, 147, 26);
+}
+
+.nav li:nth-child(6n+3) {
+	background: rgb(22, 145, 190);
+}
+
+.nav li:nth-child(6n+4) {
+	background: rgb(22, 107, 162);
+}
+
+.nav li:nth-child(6n+5) {
+	background: rgb(27, 54, 71);
+}
+
+.nav li:nth-child(6n+6) {
+	background: rgb(21, 40, 54);
+}
+
+/* Hover effect for the whole navigation to make the hovered item stand out */
+.nav ul:hover a {
+	color: rgba(249, 249, 249, .5);
+}
+.nav ul:hover a:hover {
+	color: rgba(249, 249, 249, 0.99);
+}
+/* hover, focused and active effects that add a little colored border to the different items */
+/*
+.nav li:nth-child(6n+1) a:hover,
+.nav li:nth-child(6n+1) a:active,
+.nav li:nth-child(6n+1) a:focus {
+	border-bottom: 4px solid rgb(174, 78, 1);
+}
+
+.nav li:nth-child(6n+2) a:hover,
+.nav li:nth-child(6n+2) a:active,
+.nav li:nth-child(6n+2) a:focus {
+	border-bottom: 4px solid rgb(191, 117, 20);
+}
+
+.nav li:nth-child(6n+3) a:hover,
+.nav li:nth-child(6n+3) a:active,
+.nav li:nth-child(6n+3) a:focus {
+	border-bottom: 4px solid rgb(12, 110, 149);
+}
+
+.nav li:nth-child(6n+4) a:hover,
+.nav li:nth-child(6n+4) a:active,
+.nav li:nth-child(6n+4) a:focus {
+	border-bottom: 4px solid rgb(10, 75, 117);
+}
+
+.nav li:nth-child(6n+5) a:hover,
+.nav li:nth-child(6n+5) a:active,
+.nav li:nth-child(6n+5) a:focus {
+	border-bottom: 4px solid rgb(16, 34, 44);
+}
+
+.nav li:nth-child(6n+6) a:hover,
+.nav li:nth-child(6n+6) a:active,
+.nav li:nth-child(6n+6) a:focus {
+	border-bottom: 4px solid rgb(9, 18, 25);
+}
+*/
+	/* Placing the icon */
+	
+	.icon {
+		padding-top: 1.4em;
+	}
+
+	.icon + span {
+		margin-top: 2.1em;
+		-webkit-transition: margin .5s;
+		-moz-transition: margin .5s;
+		-o-transition: margin .5s;
+		-ms-transition: margin .5s;
+		transition: margin .5s;
+	}
+
+	/* Animating the height of the element*/
+	.nav a {
+/* 		height: 9em; */
+	}
+	.nav a:hover ,
+	.nav a:active ,
+	.nav a:focus {
+/* 		height: 10em; */
+	}	
+
+	/* Making the text follow the height animation */
+	.nav a:hover .icon + span {
+		margin-top: 3.2em;
+		-webkit-transition: margin .5s;
+		-moz-transition: margin .5s;
+		-o-transition: margin .5s;
+		-ms-transition: margin .5s;
+		transition: margin .5s;
+	}
+
+
+
+
+
+
 
 main {
     height: 100%;
@@ -647,8 +785,6 @@ main.nav-is-visible {
   }
 }
 
-
-
 /** NEW RESPONSIVENESS WITH FLEXBOX */
 .shell_player_stats {
     color: #fff;
@@ -854,4 +990,68 @@ progress:hover {
     -webkit-flex: 1;          /* Chrome */
     -ms-flex: 1;              /* IE 10 */
     flex: 1;
+}
+
+
+
+/*Menu SVG Animated ICONS*/
+.shell_menu_icon_path {
+    fill: #FFF;
+    fill-opacity: 0.1;
+    stroke: #FFF;
+    stroke-width: 1;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.shell_menu_play {
+    fill: rgb(241, 76, 56);
+    fill-opacity: 0.1;
+    stroke: rgb(241, 76, 56);;
+    stroke-width: 2;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillIn {
+/*   from { fill-opacity: 0; } */
+  to {
+    fill-opacity: 1;
+  }
+}
+
+.svg_wrapper {
+    width: 100%;
+    height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.svg_wrapper svg {
+    height: 70%;
+    margin: auto;
+}
+
+.svg_wrapper:hover .shell_menu_icon_path {
+  -webkit-animation:
+    dash 5s linear forwards;
+  animation:
+    dash 5s linear forwards;
+}
+
+.svg_wrapper:hover .shell_menu_play {
+  -webkit-animation:
+    fillIn 1.5s linear alternate infinite,
+    dash 1.5s linear alternate infinite;
+  animation:
+    fillIn 1.5s linear alternate infinite,
+    dash 1.5s linear alternate infinite;
 }

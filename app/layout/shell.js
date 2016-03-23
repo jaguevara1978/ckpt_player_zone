@@ -19,7 +19,7 @@ function Shell( $location, $scope, ApiService, config ) {
                 vm.data = response.data;
                 //console.log( vm.data );
             } else {
-                Notification.Error(response.message);
+                Notification.error(response.message);
             }
         });
     }   
