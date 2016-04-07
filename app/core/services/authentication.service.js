@@ -27,7 +27,7 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
                         setCredentials( response.data );
                         $location.path( '/rewards' );
                     } else {
-                        Notification.Error( response.message );
+                        Notification.error( response.message );
                     }
                 }
             );

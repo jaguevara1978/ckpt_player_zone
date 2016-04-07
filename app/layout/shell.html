@@ -112,7 +112,7 @@
 	$('.cd-3d-nav').on('click', 'a', function(){
 		var selected = $(this);
 		selected.parent('li').addClass('cd-selected').siblings('li').removeClass('cd-selected');
-		updateSelectedNav('close');
+		updateSelectedNav( 'close' );
 	});
 
 	$(window).on('resize', function(){

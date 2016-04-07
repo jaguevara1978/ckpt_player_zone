@@ -1,38 +1,18 @@
 /* -------------------------------- 
-
 Primary style
-
 -------------------------------- */
 *, *::after, *::before {
   box-sizing: border-box;
 }
-
-/*
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
-  background-color: #485274;
-}
-*/
 
 a {
   text-decoration: none;
 }
 
 /* -------------------------------- 
-
 Main Components 
-
 -------------------------------- */
 .cd-header {
-/*
-  height: 80px;
-  width: 90%;
-*/
   margin: 0 auto;
   -webkit-transition: -webkit-transform 0.5s;
   -moz-transition: -moz-transform 0.5s;
@@ -43,13 +23,17 @@ Main Components
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
+/*
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+*/
 }
 .cd-header::after {
+/*
   clear: both;
   content: "";
-  display: table;
+*/
+/*   display: table; */
 }
 .cd-header.nav-is-visible {
   -webkit-transform: translateY(80px);
@@ -94,8 +78,10 @@ Main Components
   width: 28px;
   height: 3px;
   background-color: #FFF;
+/*
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+*/
 }
 .cd-3d-nav-trigger span {
   /* this is the central line */
@@ -162,20 +148,22 @@ Main Components
   -ms-transform: translateY(-100%);
   -o-transform: translateY(-100%);
   transform: translateY(-100%);
-  -webkit-transition: -webkit-transform 0.5s 0s, visibility 0s 0.5s;
-  -moz-transition: -moz-transform 0.5s 0s, visibility 0s 0.5s;
-  transition: transform 0.5s 0s, visibility 0s 0.5s;
+  -webkit-transition: -webkit-transform 0s 0s, visibility 0s 0s;
+  -moz-transition: -moz-transform 0s 0s, visibility 0s 0s;
+  transition: transform 0s 0s, visibility 0s 0s;
 }
 .cd-3d-nav-container.nav-is-visible {
     visibility: visible;
+
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
     transform: translateY(0);
-    -webkit-transition: -webkit-transform 0.5s 0s, visibility 0.5s 0s;
-    -moz-transition: -moz-transform 0.5s 0s, visibility 0.5s 0s;
-    transition: transform 0.5s 0s, visibility 0.5s 0s;
+
+    -webkit-transition: -webkit-transform 0s 0s, visibility 0s 0s;
+    -moz-transition: -moz-transform 0s 0s, visibility 0s 0s;
+    transition: transform 0s 0s, visibility 0s 0s;
 }
 @media only screen and (min-width: 768px) {
   .cd-3d-nav-container {
@@ -185,9 +173,9 @@ Main Components
 
 .cd-3d-nav {
     /* this is the 3D rotating navigation */
-    position: relative;
+/*     position: relative; */
     height: 100%;
-    background-color: #343c55;
+/*     background-color: #343c55; */
 
     /* Force Hardware Acceleration */
     /*
@@ -198,20 +186,26 @@ Main Components
       transform: translateZ(0);
     */
 
+/*
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+*/
     
+/*
     -webkit-transform-origin: center bottom;
     -moz-transform-origin: center bottom;
     -ms-transform-origin: center bottom;
     -o-transform-origin: center bottom;
     transform-origin: center bottom;
+*/
     
+/*
     -webkit-transform: rotateX(90deg);
     -moz-transform: rotateX(90deg);
     -ms-transform: rotateX(90deg);
     -o-transform: rotateX(90deg);
     transform: rotateX(90deg);
+*/
 
     /*
       -webkit-transition: -webkit-transform 0.5s;
@@ -221,6 +215,7 @@ Main Components
 }
 .cd-3d-nav::after {
   /* menu dark cover layer - to enhance perspective effect */
+/*
   content: '';
   position: absolute;
   top: 0;
@@ -233,6 +228,7 @@ Main Components
   -webkit-transition: opacity 0.5s 0s, visibility 0.5s 0s;
   -moz-transition: opacity 0.5s 0s, visibility 0.5s 0s;
   transition: opacity 0.5s 0s, visibility 0.5s 0s;
+*/
 }
 .cd-3d-nav li {
   height: 100%;
@@ -264,10 +260,12 @@ Main Components
   display: block;
 */
     height: 100%;
-    color: transparent;
+    color: #FFF;
+/*
     -webkit-transition: background-color 0.2s;
     -moz-transition: background-color 0.2s;
     transition: background-color 0.2s;
+*/
     padding-bottom: 10px;
 }
 .cd-3d-nav a::before {
@@ -309,29 +307,35 @@ Main Components
 /*   background-position: 0 -32px; */
 }
 .nav-is-visible .cd-3d-nav {
+/*
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
+*/
 }
 .nav-is-visible .cd-3d-nav::after {
   /* menu cover layer - hide it when navigation is visible */
+/*
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.5s 0s, visibility 0s 0.5s;
   -moz-transition: opacity 0.5s 0s, visibility 0s 0.5s;
   transition: opacity 0.5s 0s, visibility 0s 0.5s;
+*/
 }
 @media only screen and (min-width: 768px) {
   .cd-3d-nav a {
-/*     padding: 7.6em 1em 0; */
-    color: #ffffff;
+    color: #FFF;
     font-size: 1.3rem;
-    font-weight: 600;
     text-align: center;
+/*     padding: 7.6em 1em 0; */
+/*     font-weight: 600; */
+/*
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+*/
     /* truncate text with ellipsis if too long */
     white-space: nowrap;
     overflow: hidden;
@@ -351,51 +355,68 @@ Main Components
 */
 }
 
+ /* line at the bottom of nav selected item */
 .cd-marker {
-  /* line at the bottom of nav selected item */
   position: absolute;
   bottom: 0;
   left: 0;
   height: 3px;
   /*100 divided by number of options for now 4*/
   width: 25%;
+
+/*
   -webkit-transform-origin: center bottom;
   -moz-transform-origin: center bottom;
   -ms-transform-origin: center bottom;
   -o-transform-origin: center bottom;
   transform-origin: center bottom;
+*/
+
+/*
   -webkit-transform: translateZ(0) rotateX(90deg);
   -moz-transform: translateZ(0) rotateX(90deg);
   -ms-transform: translateZ(0) rotateX(90deg);
   -o-transform: translateZ(0) rotateX(90deg);
   transform: translateZ(0) rotateX(90deg);
-  -webkit-transition: -webkit-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
-  -moz-transition: -moz-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
-  transition: transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+*/
+
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+
+    -webkit-transition: -webkit-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+    -moz-transition: -moz-transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
+    transition: transform 0.5s, left 0.5s, color 0.5s, background-color 0.5s;
 }
+
+/* triangle at the bottom of nav selected item */
 .cd-marker::before {
-  /* triangle at the bottom of nav selected item */
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  left: 50%;
-  right: auto;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  height: 0;
-  width: 0;
-  border: 10px solid transparent;
-  border-bottom-color: inherit;
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    right: auto;
+
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-bottom-color: inherit;
 }
+
 .nav-is-visible .cd-marker {
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 /* these are the colors of the markers - line + arrow */
@@ -497,6 +518,7 @@ Main Components
 */
 	/* Placing the icon */
 	
+/*
 	.icon {
 		padding-top: 1.4em;
 	}
@@ -509,6 +531,7 @@ Main Components
 		-ms-transition: margin .5s;
 		transition: margin .5s;
 	}
+*/
 
 	/* Animating the height of the element*/
 	.nav a {
@@ -521,6 +544,7 @@ Main Components
 	}	
 
 	/* Making the text follow the height animation */
+/*
 	.nav a:hover .icon + span {
 		margin-top: 3.2em;
 		-webkit-transition: margin .5s;
@@ -529,6 +553,7 @@ Main Components
 		-ms-transition: margin .5s;
 		transition: margin .5s;
 	}
+*/
 
 
 
@@ -548,8 +573,10 @@ main {
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+/*
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+*/
 }
 
 main.nav-is-visible {
@@ -571,7 +598,7 @@ main.nav-is-visible {
 }
 
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-  transition: all linear 1s;
+/*   transition: all linear 1s; */
 }
 
 .animate-show.ng-hide {
@@ -1005,9 +1032,9 @@ progress:hover {
 }
 
 .shell_menu_play {
-    fill: rgb(241, 76, 56);
-    fill-opacity: 0.1;
-    stroke: rgb(241, 76, 56);;
+    fill: rgb( 241, 76, 56 );
+    fill-opacity: 0.4;
+    stroke: rgb( 241, 76, 56 );
     stroke-width: 2;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;

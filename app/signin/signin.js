@@ -73,9 +73,11 @@ function SignIn( $rootScope, $scope, $location, $timeout, AuthenticationService,
         if ( !vm.loading ) {
             vm.loading = true;
             loadingAnimation( signInButton );
+/*
             $timeout( function( ) {
 
             },  1000 );
+*/
 
             ApiService.post( 'auth', vm.user )
                 .then(function ( response ) {
