@@ -8,6 +8,7 @@ function Shell( $location, $scope, ApiService, config ) {
     var vm = this;
 
     vm.title = config.appTitle;
+    vm.goPlay = goPlay;
 
     $scope.$on( "$routeChangeSuccess", function ( ) {
         initialize( );
@@ -22,7 +23,11 @@ function Shell( $location, $scope, ApiService, config ) {
                 Notification.error(response.message);
             }
         });
-    }   
+    }
+
+    function goPlay( ) {
+        $location.path( '/trivia' );
+    }
 }
 
 } ) ( );

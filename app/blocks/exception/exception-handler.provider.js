@@ -50,7 +50,13 @@
         return function(exception, cause) {
             var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
             var errorData = {exception: exception, cause: cause};
-            exception.message = appErrorPrefix + exception.message;
+            try {
+                exception.message = appErrorPrefix + exception.message;
+            } catch( e ) {
+                exception = {
+                    message: appErrorPrefix + exception
+                };
+            }
             $delegate(exception, cause);
             /**
              * Could add the error to a service's collection,

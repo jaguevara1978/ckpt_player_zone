@@ -90,7 +90,7 @@ function Profile( $rootScope, Notification, ApiService, $scope )  {
                 if ( response.success ) {
                     vm.data = response.data;
 
-                    console.log( payload );
+                    //console.log( payload );
 
                     var birthdate = moment( vm.data.birthdate );
                     vm.data.birth = {

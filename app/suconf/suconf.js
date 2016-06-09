@@ -11,7 +11,7 @@
 angular.module('app.suconf').controller('SUConf', SignUpConfirmCtroller);
 
 /*@ngInject*/
-function SignUpConfirmCtroller(UserService, $location, $rootScope, FlashService, $scope) {
+function SignUpConfirmCtroller(UserService, $location, $rootScope, Notification, $scope) {
     var vm = this;
 
     vm.name = $rootScope.globals.name;    

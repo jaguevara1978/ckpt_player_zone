@@ -2,7 +2,7 @@
 <html data-ng-app="app" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title ng-bind="'CKPT, ' + title">CKPT</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -12,6 +12,8 @@
     <link rel='stylesheet' href='bower_components/bootstrap-additions/dist/bootstrap-additions.css' />
     <link rel='stylesheet' href='bower_components/angular-motion/dist/angular-motion.css' />
     <link rel='stylesheet' href='bower_components/toastr/toastr.css' />
+    <link rel='stylesheet' href='bower_components/flexboxgrid/dist/flexboxgrid.css' />
+    <link rel='stylesheet' href='bower_components/angularPrint/angularPrint.css' />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -69,6 +71,13 @@
     <script src="bower_components/spin.js/spin.js"></script>
     <script src="bower_components/vivus/dist/vivus.js"></script>
     <script src="bower_components/svg-injector/svg-injector.js"></script>
+    <script src="bower_components/filepicker-js/filepicker.min.js"></script>
+    <script src="bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
+    <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
+    <script src="bower_components/qrcode-generator/js/qrcode_UTF8.js"></script>
+    <script src="bower_components/angular-qrcode/angular-qrcode.js"></script>
+    <script src="bower_components/angular-io-barcode/build/angular-io-barcode.js"></script>
+    <script src="bower_components/angularPrint/angularPrint.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -174,16 +183,19 @@
 <!--     <script src="content/js/pixi.min.js"></script> -->
 <!--     <script src="content/js/EasePack.min.js"></script> -->
 <!--     <script src="content/js/TweenLite.min.js"></script> -->
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script> -->
     <script src="content/js/commons.js"></script>
     <script src="content/js/Velocity.js"></script>
     <script src="content/js/requestanimframe.js"></script>
-	<script src="content/js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="content/js/modernizr.custom.js"></script>
+<!--
+	<script src="content/js/modernizr.js"></script>
+-->
+	<script src="content/js/grid.js"></script>
     <!-- endbuild -->
 
     <script src="content/js/angular-no-captcha.min.js"></script>
     <script src="content/js/active.navbar.js"></script>
-    <script src="content/js/auto.save.directive.js"></script>
+<!--     <script src="content/js/auto.save.directive.js"></script> -->
 
 
 </body>

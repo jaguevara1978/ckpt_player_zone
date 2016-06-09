@@ -11,7 +11,7 @@
 angular.module( 'app.signup' ).controller( 'SignUp', SignUp );
 
 /*@ngInject*/
-function SignUp( $location, $rootScope, ApiService, FlashService, $scope, AuthenticationService ) {
+function SignUp( $location, $rootScope, ApiService, Notification, $scope, AuthenticationService ) {
     var vm = this;
     vm.showPassword = false;
     vm.loading = false;
@@ -60,10 +60,10 @@ function SignUp( $location, $rootScope, ApiService, FlashService, $scope, Authen
                     vm.user = null;
 
                     vm.loading = false;
-                    FlashService.Success( 'We have just sent you an e-mail confirmation. Please, take a look.', 20000 );
+                    Notification.Success( 'We have just sent you an e-mail confirmation. Please, take a look.', 20000 );
                 } else {
                     vm.loading = false;
-                    FlashService.Error( response.message, 20000 );
+                    Notification.error( response.message, 20000 );
                 }
             });
     }

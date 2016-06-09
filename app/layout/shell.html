@@ -1,50 +1,53 @@
-﻿	<div id="cd-header" class="cd-header animate-show" ng-show="showMainNavBar"  ng-controller="Shell as vm">
-        <!--Account Panel-->
-<!--         <div class="account-panel clearfix vertical-middle"> -->
-        <div class="account-panel shell_player_stats">
-            <!--profile-->
-            <div class="shell_playerstats_user">
-                <div class="image-cropper"><img src="http://www.electricvelocity.com.au/Upload/Blogs/smart-e-bike-side_2.jpg" class="rounded"></div>
-<!--
-                <div class="user-info">
-                    <div class="user-name">Alexander</div>
-                    <div class="user-level">Level 2</div>
-                    <div class="user-level2">Beginner</div>
-                </div>
--->
-            </div>
-            
-            <!--Points-->
-            <div class="shell_playerstats_points">
-                <div class="shell_playerstats_points_number">
-                    Points <span class="point_text"> {{vm.data.player_stats.accumulated_points}}</span> 
-                </div>
-                <div class="shell_playerstats_points_bar">
-                    <progress max="100000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
-                    <div class="points_to_win">{{100000 - vm.data.player_stats.accumulated_points}} more points left to win a Lexus</div>
-                </div>
-            </div>
+﻿        	<div id="cd-header" class="cd-header animate-show" ng-show="showMainNavBar"  ng-controller="Shell as vm">
+                <!--Account Panel-->
+        <!--         <div class="account-panel clearfix vertical-middle"> -->
+                <div class="account-panel shell_player_stats">
+                    <!--profile-->
+                    <div class="shell_playerstats_user" ng-click="vm.goPlay( )">
+                        <div class="svg_wrapper_account_panel">
+                            <svg viewBox="0 0 100 100">
+                                <title>Play-100</title>
+                                <path class="shell_menu_play" d="M277.09,436.44V357.57L344.15,397Zm4.23-71.74v64.6L336.15,397Z" transform="translate(-257 -347)"/>
+                                <path class="shell_menu_play" d="M281.33,364.7L336.15,397l-54.82,32.3V364.7Z" transform="translate(-257 -347)"/>
+                            </svg>
+                        </div>
+                        <div class="account_panel_play_now_text">
+                  			Play Now!
+                        </div>
+                    </div>
+                    
+                    <!--Points-->
+                    <div id="shell_playerstats_points" class="shell_playerstats_points">
+                        <div class="shell_playerstats_points_number">
+                            Points <span class="point_text"> {{vm.data.player_stats.accumulated_points}}</span> 
+                        </div>
+                        <div class="shell_playerstats_points_bar">
+                            <progress max="100000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
+                            <div class="points_to_win">{{100000 - vm.data.player_stats.accumulated_points}} more points left to win a Lexus</div>
+                        </div>
+                    </div>
+        
+                    <div id="shell_playerstats_points_big_prize" class="shell_playerstats_points_big_prize">
+                        <img src="http://primg.checkpointchallenge.com:81/utils/big_prize_lexus.png">
+                    </div>
+        
+                    <!--rewards-->
+                    <div id="shell_playerstats_rewards" class="shell_playerstats_rewards">
+                        <div class="reward-number">
+                            <span class="reward-text">{{vm.data.player_stats.accumulated_rewards}}</span> Rewards
+                        </div>
+                    </div>
 
-                <div class="shell_playerstats_points_big_prize">
-                    <img src="http://primg.checkpointchallenge.com:81/utils/big_prize_lexus.png">
+                    <div class="shell_playerstats_toggle">
+                		<a id="nav_trigger" class="cd-3d-nav-trigger">
+                			Menu
+                			<span></span>
+                		</a>
+                    </div>
                 </div>
+            </div> <!-- .cd-header -->
 
-            <!--rewards-->
-            <div class="shell_playerstats_rewards">
-                <div class="reward-number">
-                    <span class="reward-text">{{vm.data.player_stats.accumulated_rewards}}</span> Rewards
-                </div>
-            </div>
-            <div class="shell_playerstats_toggle">
-        		<a id="nav_trigger" class="cd-3d-nav-trigger">
-        			Menu
-        			<span></span>
-        		</a>
-            </div>
-        </div>
-    </div> <!-- .cd-header -->
-
-    <main>
+    <main id='main_content'>
         <div data-ng-view style="height: 100%; width: 100%;"></div>
     </main>
 
@@ -101,11 +104,42 @@
     </nav> <!-- .cd-3d-nav-container -->
 
 <script>
+    var main_content = document.getElementById( 'main_content' );
+    var shell_playerstats_points = document.getElementById( 'shell_playerstats_points' );
+    var shell_playerstats_points_big_prize = document.getElementById( 'shell_playerstats_points_big_prize' );
+    var shell_playerstats_rewards = document.getElementById( 'shell_playerstats_rewards' );
+
 	//toggle 3d navigation
     var navTrigger = document.getElementById( 'cd-header' );
     navTrigger.addEventListener( 'click', function( ){
     	//toggle 3d navigation
 		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    });
+
+    shell_playerstats_points.addEventListener( 'mouseover', function( ){
+    	//toggle 3d navigation
+    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
+    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    	}
+    });
+    shell_playerstats_points_big_prize.addEventListener( 'mouseover', function( ){
+    	//toggle 3d navigation
+    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
+    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    	}
+    });
+    shell_playerstats_rewards.addEventListener( 'mouseover', function( ){
+    	//toggle 3d navigation
+    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
+    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    	}
+    });
+
+    main_content.addEventListener( 'mouseover', function( ){
+    	//toggle 3d navigation
+    	if ( $( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
+    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
+    	}
     });
 
 	//select a new item from the 3d navigation

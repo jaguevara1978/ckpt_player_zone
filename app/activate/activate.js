@@ -11,7 +11,7 @@
 angular.module( 'app.activate' ).controller( 'Activate', Activate );
 
 /*@ngInject*/
-function Activate( $rootScope, $location, $routeParams, ApiService, AuthenticationService, FlashService ) {
+function Activate( $rootScope, $location, $routeParams, ApiService, AuthenticationService, Notification ) {
     var vm = this;
     vm.confirmSignUp = confirmSignUp;
     vm.loading = false;
@@ -45,7 +45,7 @@ function Activate( $rootScope, $location, $routeParams, ApiService, Authenticati
                     if ( response.success ) {
                         vm.data = response.data;
                     } else {
-                        FlashService.Error( response.message, 10000 );
+                        Notification.error( response.message, 10000 );
                         // 1120 - Already activated account
                         if ( response.data.errorKey == 1120 ) {
                             $location.path( '/signin' );
@@ -70,7 +70,7 @@ function Activate( $rootScope, $location, $routeParams, ApiService, Authenticati
     function confirmSignUp( ) {
         // console.log(vm.captcha_response);
         if( vm.captcha_response === '' || !vm.captcha_response ){ //if string is empty
-            FlashService.Error( 'Please, resolve Captcha' );
+            Notification.error( 'Please, resolve Captcha' );
         } else {
             vm.loading = true;
             //prepare payload for request
@@ -83,7 +83,7 @@ function Activate( $rootScope, $location, $routeParams, ApiService, Authenticati
                         AuthenticationService.setCredentials( response.data );
                         $location.path( '/rewards' );
                     } else {
-                        FlashService.Error( response.message );
+                        Notification.Error( response.message );
                     }
 
                     vm.loading = false;

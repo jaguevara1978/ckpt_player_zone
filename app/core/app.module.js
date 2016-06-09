@@ -108,6 +108,14 @@
     /*@ngInject*/
 //     function run( $rootScope, $location, $cookies, $http, config, $injector, $translate, $window ) {
     function run( $rootScope, $location, $cookies, $http, config, $injector, $window ) {
+        // Keep the title saved on the routing configuration of each module,
+        // This title will be shown on the Page header Title tag
+        $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+            $rootScope.title = current.$$route.title;
+            //Capitalize first character and to lower the rest of them
+            $rootScope.title = $rootScope.title.charAt( 0 ).toUpperCase( ) + $rootScope.title.slice( 1 ).toLowerCase( );
+            //console.log( 'Title', $rootScope.title );
+        }); 
         
 /*
         // ******** i18n Stuff - it is working but better use it later, Not Yet **********

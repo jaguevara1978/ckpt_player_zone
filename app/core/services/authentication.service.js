@@ -57,7 +57,7 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
                 
             } catch ( error ) {
                 console.log( error );
-                FlashService.Error( error );
+                Notification.error( error );
             }
         }
 

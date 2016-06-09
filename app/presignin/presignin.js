@@ -13,7 +13,7 @@ angular.module('app.presignin').controller('PreSignIn', PreSignIn);
 /*@ngInject*/
 
 /*@ngInject*/
-function PreSignIn($rootScope, $scope, $location, AuthenticationService, FlashService, UserService, $routeParams, $timeout) {
+function PreSignIn($rootScope, $scope, $location, AuthenticationService, Notification, UserService, $routeParams, $timeout) {
     var vm = this;
 
     vm.login = login;
@@ -47,10 +47,10 @@ function PreSignIn($rootScope, $scope, $location, AuthenticationService, FlashSe
                     AuthenticationService.SetCredentials(response.data);
                     $rootScope.matootLoggedIn = true;
                     $location.path('/signin');
-                    //FlashService.Success('Sign In successful', true);
+                    //Notification.Success('Sign In successful', true);
                     //$location.path('/main');
                 } else {
-                    FlashService.Error(response.message);
+                    Notification.error(response.message);
                     vm.dataLoading = false;
                 }
             }

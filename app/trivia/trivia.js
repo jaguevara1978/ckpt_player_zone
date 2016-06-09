@@ -17,6 +17,8 @@ function Trivia( ApiService, FireworksService, $location, $rootScope, Notificati
     var validatingAnswer = false;
     var challengeBoxHidden = false;
 
+//     $rootScope.showMainNavBar = false;
+
     var progressBar = document.getElementById( "count_down_bar" );
     var countDownTween;
     var pointsBar = document.getElementById( "points_bar" );

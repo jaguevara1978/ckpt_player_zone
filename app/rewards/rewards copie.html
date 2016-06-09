@@ -1,0 +1,80 @@
+<div class="reward_panel clearfix">
+        <h1 id='rewards_title' class="rewards_h1">My Rewards</h1>
+    
+        <div class="rewards_wrapper">
+            <div id='reward_item_{{reward.coupon_code}}' class="reward_item" ng-repeat="reward in vm.data.rewards">
+                <h4 ng-bind="reward.description"></h4>
+    
+                <div class="rewards_reward_img vertical-middle">
+                    <img ng-src="{{reward.img_uri}}" alt="{{reward.description}}">
+                </div>
+    
+<!--
+                <div id="reward_detail">
+                    <a id="reward_detail_btn" href="#" title="Reward details">Details</a>
+                </div>
+-->
+    
+                <div id="reward-dialog">
+                    <h4>{{reward.description}}</h4>
+    
+                    <p ng-bind="reward.details">{{reward.reward_detail}}</p>
+                </div>
+                
+                <a href="" class="btn_redeem" ng-bind='reward.button_text'></a>
+
+        		<div class="cd-modal-action">
+        			<a id='{{reward.coupon_code}}' class="btn" ng-click='vm.redeemClicked( reward )' data-type="modal-trigger" href="">How to Redeem</a>
+        			<span id='cd-modal-bg_{{reward.coupon_code}}' class="cd-modal-bg"></span>
+        		</div> <!-- cd-modal-action -->
+        
+        		<div class="cd-modal">
+        			<div class="cd-modal-content">
+        				<p>
+        					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
+        				</p>
+        			</div> <!-- cd-modal-content -->
+        		</div> <!-- cd-modal -->
+        
+<!--         		<a href="" class="cd-modal-close">Close</a> -->
+            </div>
+        </div>
+</div>
+
+
+<script >
+jQuery(document).ready(function($){
+
+	//trigger the animation - open modal window
+// 	$('[data-type="modal-trigger"]').on('click', function(){
+/*
+	$('.howto').on('click', function(){
+        console.log( 'entro' );
+
+		var actionBtn = $(this),
+			scaleValue = retrieveScale(actionBtn.next('.cd-modal-bg'));
+		
+		actionBtn.addClass('to-circle');
+		actionBtn.next('.cd-modal-bg').addClass('is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
+		});
+
+		//if browser doesn't support transitions...
+		if(actionBtn.parents('.no-csstransitions').length > 0 ) animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
+	});
+*/
+
+	//trigger the animation - close modal window
+	$('.cd-section .cd-modal-close').on('click', function(){
+		closeModal();
+	});
+	$(document).keyup(function(event){
+		if(event.which=='27') closeModal();
+	});
+
+	$(window).on('resize', function(){
+		//on window resize - update cover layer dimention and position
+		if($('.cd-section.modal-is-visible').length > 0) window.requestAnimationFrame(updateLayer);
+	});
+});
+</script>

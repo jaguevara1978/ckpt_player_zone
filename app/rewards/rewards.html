@@ -1,29 +1,40 @@
-<div class="reward_panel clearfix">
+<!--     <div class="main"> -->
         <h1 id='rewards_title' class="rewards_h1">My Rewards</h1>
-    
-        <div class="rewards_wrapper">
-            <div class="reward_item" ng-repeat="reward in vm.data.rewards">
-                <h4 ng-bind="reward.description"></h4>
-    
-                <div class="rewards_reward_img vertical-middle">
-                    <img ng-src="{{reward.img_uri}}" alt="{{reward.description}}">
+        <ul id="og-grid" class="og-grid">
+            <!--        ng-class="'color' + ( $index % 3 )"  Three different colors -->
+            <li id='li_{{reward.coupon_code}}' ng-repeat='reward in vm.data.rewards' class="reward_item_li">
+                <a id='anchor_{{reward.coupon_code}}' ng-click='vm.clickedItem( reward )' href="" data-largesrc="{{reward.img_uri}}" data-title="{{reward.description}}" data-description="{{reward.detail}}">
+                    <img class="responsive" ng-src="https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/resize=fit:clip,width:195,height:195/{{reward.img_uri}}" alt="{{reward.description}}">
+                </a>
+                <div id='preview_{{reward.coupon_code}}' class="og-expander" print-section>
+                    <div class="og-expander-inner">
+                        <span ng-click='vm.closePreview( )' class="og-close" print-remove></span>
+                        <div class="og-fullimg">
+                            <div class="og-loading" style="display: none;"></div>
+                            <img ng-src="{{reward.img_uri}}" style="display: inline;">
+                        </div>
+
+                        <div class="og-details">
+                            <h3>{{reward.description}}</h3>
+                            <p>{{reward.detail}}</p>
+                            <div class='og_details_options' print-remove>
+                                <a id="qrcode" ng-class="{ 'selected': vm.detailView == 0 }" ng-click="vm.couponOptions( 0 )" href="" >QR Code</a>
+                                <a id="barcode" ng-class="{ 'selected': vm.detailView == 1 }" ng-click="vm.couponOptions( 1 )" href="">Bar Code</a>
+                                <a id="print" ng-class="{ 'selected': vm.detailView == 2 }" ng-click="vm.couponOptions( )" href="" print-btn>Print</a>
+                            </div>
+                            <div class="og_details_code" print-remove>
+                                <qrcode ng-show='vm.detailView == 0' version="2" error-correction-level="M" size="200" data="{{reward.coupon_code}}"></qrcode>
+                                <io-barcode ng-show='vm.detailView == 1' options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
+                            </div>
+                            <div class="og_details_code" print-only>
+                                <io-barcode options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-    
-<!--
-                <div id="reward_detail">
-                    <a id="reward_detail_btn" href="#" title="Reward details">Details</a>
-                </div>
--->
-    
-                <div id="reward-dialog">
-                    <h4>{{reward.description}}</h4>
-    
-                    <p ng-bind="reward.details">{{reward.reward_detail}}</p>
-                </div>
-                
-                <a href="" class="btn_redeem" ng-bind='reward.button_text'></a>
-            </div>
-        </div>
-</div>
-<script >
-</script>
+            </li>
+        </ul>
+<!--     </div> -->
+
+    <script type="text/javascript">
+    </script>

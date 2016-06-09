@@ -1,5 +1,6 @@
-<div class="profile_save_status">
+<!-- <div class="profile_save_status"> -->
     <!-- Information Ok -->
+<!--
     <svg ng-if="vm.savingStatus == 0" viewBox="0 0 104 103.95">
       <title>Info Ok-Saved</title>
       <g class="profile_save_status_icon profile_save_status_icon_{{vm.savingStatus}}">
@@ -10,8 +11,10 @@
         <path d="M299.35,401.91H315.6C311.85,405.43,302.87,405.65,299.35,401.91Z" transform="translate(-255 -345.05)"/>
       </g>
     </svg>
+-->
 
     <!-- Info Edited, pending for action -->
+<!--
     <svg ng-if="vm.savingStatus == 1" viewBox="0 0 100 99.88">
         <title>Pending for action</title>
         <g class="profile_save_status_icon profile_save_status_icon_{{vm.savingStatus}}">
@@ -21,8 +24,10 @@
             <path d="M300.1,367.18c2.91-2,4.47-3.85,6-3.82,1.28,0,3.49,2.22,3.53,3.51s-2,3.68-3.27,3.77C304.81,370.75,303.13,369,300.1,367.18Z" transform="translate(-244 -309.07)"/>
         </g>
     </svg>
+-->
 
     <!-- Saving, Processing -->
+<!--
     <svg ng-if="vm.savingStatus == 2" viewBox="0 0 50 50">
         <title>Saving processing</title>
         <g class="profile_save_status_icon_{{vm.savingStatus}}">
@@ -31,6 +36,7 @@
             </path>
         </g>
     </svg>
+-->
 
 <!--
     <svg ng-if="vm.savingStatus == 2" viewBox="0 0 511.81 511.9">
@@ -43,6 +49,7 @@
 -->
 
     <!-- Errors to fix -->
+<!--
     <svg ng-if="vm.savingStatus == -1" viewBox="0 0 512 511.89">
         <title>Errors on the form</title>
         <g class="profile_save_status_icon profile_save_status_icon_{{vm.savingStatus}}">
@@ -54,9 +61,10 @@
             <path d="M307,393.58c-7,0-14,.09-21,0-6.44-.11-10.92-4.45-11-10.43s4.56-10.69,11.27-10.73q20.72-.14,41.44,0c6.72,0,11.35,4.59,11.28,10.72-0.07,6-4.51,10.31-11,10.43C321,393.68,314,393.58,307,393.58Z" transform="translate(-51 -141.43)"/>
         </g>
     </svg>
-</div>
+-->
+<!-- </div> -->
 
-<form id"profile_form" name="profile_form" ng-submit="vm.update( )" class="cd-form floating-labels"   ><!-- auto-save-form="vm.update( )" -->
+<form id="profile_form" name="profile_form" ng-submit="vm.update( )" class="cd-form floating-labels"   ><!-- auto-save-form="vm.update( )" -->
 
 	<fieldset>
 		<legend>Interests <span ng-show="vm.countCategoriesSelected < 3"> ( Select at least 3 )</span> </legend>
@@ -180,11 +188,9 @@
 			</ul>
 		</div>
 
-<!--
 		<div>
 	      	<input type="submit" value="Save">
 	    </div>
--->
 	</fieldset>
 
 <!-- For Testing Only -->
@@ -198,9 +204,10 @@
     			Country
     		</label>
 			<p class="cd-select icon">
-				<select class="budget">
-					<option ng-repeat="country in vm.profile.form_extra.select_country" ng-value="country.country_id">{{ country.country_name }}</option>
-				</select>
+                <select class='world'
+                    ng-model="vm.profile.data.citizenship"
+                    ng-options="ctry.country_id as ctry.country_name for ctry in vm.profile.form_extra.select_country">
+                </select>
 			</p>
 		</div> 
 <!--
@@ -209,11 +216,9 @@
   			<textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
 		</div>
 -->
-<!--
 		<div>
 	      	<input type="submit" value="Save">
 	    </div>
--->
 	</fieldset>
 </form>
 

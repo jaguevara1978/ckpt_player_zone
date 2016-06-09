@@ -116,16 +116,14 @@ Form
 .cd-form textarea:focus,
 .cd-form select:focus {
     color: rgb( 0, 142, 175 );
-
+    
+    outline: none;
+    border-color: #2c97de;
+    
     -webkit-box-shadow: 4px 4px 10px -3px rgba( 55, 163, 189, 0.5 );
     -moz-box-shadow: 4px 4px 10px -3px rgba( 55, 163, 189, 0.5 );
     box-shadow: 4px 4px 10px -3px rgba( 55, 163, 189, 0.8 );
 
-/*
-    -webkit-box-shadow: 0px 0px 10px 3px rgba( 55, 163, 189, 0.5 );
-    -moz-box-shadow: 0px 0px 10px 3px rgba( 55, 163, 189, 0.5 );
-    box-shadow: 0px 0px 10px 3px rgba( 55, 163, 189, 0.5 );
-*/
     -moz-transition: all 0.5s; /* Firefox */
     -webkit-transition: all 0.5s; /* Safari and Chrome */
     -o-transition: all 0.5s; /* Opera */
@@ -426,6 +424,13 @@ Custom icons
 }
 .cd-form [required].message {
   background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-message.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+}
+
+.cd-form .world {
+  background: url(http://primg.checkpointchallenge.com:81/utils/form_icons/24px_world.svg) no-repeat 16px 16px;
+}
+.cd-form [required].world {
+  background: url(http://primg.checkpointchallenge.com:81/utils/form_icons/24px_world.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
 }
 
 /* -------------------------------- 
