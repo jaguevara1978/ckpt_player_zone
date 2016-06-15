@@ -413,7 +413,7 @@ module.exports = function (grunt) {
             expand: true,
             dot: true,
             cwd: '<%= yeoman.app %>/content',
-            src: ['js/angular-no-captcha.min.js','js/active.navbar.js'],
+            src: ['js/angular-no-captcha.min.js','js/custom.directives.js'],
             dest: '<%= yeoman.dist %>/content'
         }]
       },

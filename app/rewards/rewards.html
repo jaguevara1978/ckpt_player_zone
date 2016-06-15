@@ -18,16 +18,35 @@
                             <h3>{{reward.description}}</h3>
                             <p>{{reward.detail}}</p>
                             <div class='og_details_options' print-remove>
-                                <a id="qrcode" ng-class="{ 'selected': vm.detailView == 0 }" ng-click="vm.couponOptions( 0 )" href="" >QR Code</a>
-                                <a id="barcode" ng-class="{ 'selected': vm.detailView == 1 }" ng-click="vm.couponOptions( 1 )" href="">Bar Code</a>
-                                <a id="print" ng-class="{ 'selected': vm.detailView == 2 }" ng-click="vm.couponOptions( )" href="" print-btn>Print</a>
+                                <div ng-repeat='option in reward.redeem_options' class='rewards_details_options'>
+                                    <a ng-id="option.id" ng-class="{ 'selected': reward.selectedOption == option.id }" 
+                                        ng-click="vm.couponOptions( reward, option.id )" 
+                                        attributes='option.attrs'
+                                        href="">
+                                        {{option.description}}
+                                    </a>
+                                </div>
+
+<!--
+                                <a ng-if='vm.optionEnabled( reward, "qrcode" )' id="qrcode" ng-class="{ 'selected': vm.detailView == 'qrcode' }" ng-click="vm.couponOptions( 'qrcode' )" href="">QR Code</a>
+                                <a ng-if='vm.optionEnabled( reward, "barcode" )' id="barcode" ng-class="{ 'selected': vm.detailView == 'barcode' }" ng-click="vm.couponOptions( 'barcode' )" attributes='reward.redeem_options[ 1 ].attrs' href="">Bar Code</a>
+                                <a ng-if='vm.optionEnabled( reward, "copycode" )' id="copycode" ng-class="{ 'selected': vm.detailView == 'copycode' }" ng-click="vm.couponOptions( 'copycode' )" attributes='reward.redeem_options[ 2 ].attrs' data-clipboard-text='{{reward.coupon_code}}' href="">Copy</a>
+                                <a ng-if='vm.optionEnabled( reward, "print" )' id="print" ng-class="{ 'selected': vm.detailView == 'print' }" ng-click="vm.couponOptions( 'print' )" attributes='reward.redeem_options[ 3 ].attrs' href="">Print</a>
+-->
                             </div>
                             <div class="og_details_code" print-remove>
-                                <qrcode ng-show='vm.detailView == 0' version="2" error-correction-level="M" size="200" data="{{reward.coupon_code}}"></qrcode>
-                                <io-barcode ng-show='vm.detailView == 1' options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
+                                <qrcode ng-show='reward.selectedOption == "qrcode"' version="2" error-correction-level="M" size="200" data="{{reward.coupon_code}}"></qrcode>
+                                <io-barcode ng-show='reward.selectedOption == "barcode"' options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
+                                <div ng-show='reward.selectedOption == "copycode"' style='margin: 20px auto;'>
+                                    <span style="color: #000; font-size: 18px; display: block;">The redemption code has been Copied!.</span>
+                                    <span style="color: #000; font-size: 22px; display: block; margin: 10px auto;"><strong >{{reward.coupon_code}}</strong ></span>
+                                    <span style="color: #000; font-size: 18px; display: block;">{{reward.copyText}}</span>
+                                </div>
+                                <img ng-show='reward.selectedOption == "print"' ng-src="http://primg.checkpointchallenge.com:81/utils/form_icons/printer.svg" style="max-width: 200px">
                             </div>
                             <div class="og_details_code" print-only>
-                                <io-barcode options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
+                                <qrcode ng-if='reward.print_option == "qrcode"' version="2" error-correction-level="M" size="200" data="{{reward.coupon_code}}"></qrcode>
+                                <io-barcode ng-if='reward.print_option == "barcode"' options="reward.barcode_options" code="{{reward.coupon_code}}" type="CODE128B"></io-barcode>
                             </div>
                         </div>
                     </div>

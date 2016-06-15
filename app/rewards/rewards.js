@@ -9,16 +9,16 @@
      */
     angular.module('app.rewards').controller('Rewards', Rewards); /*@ngInject*/
 
-    function Rewards( TriviaService, $rootScope, $timeout, ApiService, Notification ) {
+    function Rewards( $rootScope, $timeout, $window, Utils, ApiService, Notification ) {
         var vm = this;
         vm.couponOptions = couponOptions;
         vm.clickedItem = clickedItem;
         vm.closePreview = closePreview;
+        vm.optionEnabled = optionEnabled;
         vm.detailView = 0; // 0-QRCode, 1-BarCode
 
         vm.openItem = null;
-        var winsize;
-        var $window = $( window );
+        var winsize, $thisWindow = $( window );
         var rewards_title = document.getElementById( 'rewards_title' );
 		var preview = null;
 		var li = null;
@@ -41,191 +41,6 @@
     			easing : 'ease',
     			defaultItemHeight: 200
     		};
-
-        /** Window Resize Event */
-        var $event = $.event,
-        $special,
-        resizeTimeout;
-        
-        $special = $event.special.debouncedresize = {
-        	setup: function() {
-        		$( this ).on( "resize", $special.handler );
-        	},
-        	teardown: function() {
-        		$( this ).off( "resize", $special.handler );
-        	},
-        	handler: function( event, execAsap ) {
-        		// Save the context
-        		var context = this,
-        			args = arguments,
-        			dispatch = function() {
-        				// set correct event type
-        				event.type = "debouncedresize";
-        				$event.dispatch.apply( context, args );
-        			};
-        
-        		if ( resizeTimeout ) {
-        			clearTimeout( resizeTimeout );
-        		}
-        
-        		execAsap ?
-        			dispatch() :
-        			resizeTimeout = setTimeout( dispatch, $special.threshold );
-        	},
-        	threshold: 250
-        };
-        
-        // ======================= imagesLoaded Plugin ===============================
-        // https://github.com/desandro/imagesloaded
-        
-        // $('#my-container').imagesLoaded(myFunction)
-        // execute a callback when all images have loaded.
-        // needed because .load() doesn't work on cached images
-        
-        // callback function gets image collection as argument
-        //  this is the container
-        
-        // original: MIT license. Paul Irish. 2010.
-        // contributors: Oren Solomianik, David DeSandro, Yiannis Chatzikonstantinou
-        
-        // blank image data-uri bypasses webkit log warning (thx doug jones)
-        var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-        
-        $.fn.imagesLoaded = function( callback ) {
-        	var $this = this,
-        		deferred = $.isFunction($.Deferred) ? $.Deferred() : 0,
-        		hasNotify = $.isFunction(deferred.notify),
-        		$images = $this.find('img').add( $this.filter('img') ),
-        		loaded = [],
-        		proper = [],
-        		broken = [];
-        
-        	// Register deferred callbacks
-        	if ($.isPlainObject(callback)) {
-        		$.each(callback, function (key, value) {
-        			if (key === 'callback') {
-        				callback = value;
-        			} else if (deferred) {
-        				deferred[key](value);
-        			}
-        		});
-        	}
-        
-        	function doneLoading() {
-        		var $proper = $(proper),
-        			$broken = $(broken);
-        
-        		if ( deferred ) {
-        			if ( broken.length ) {
-        				deferred.reject( $images, $proper, $broken );
-        			} else {
-        				deferred.resolve( $images );
-        			}
-        		}
-        
-        		if ( $.isFunction( callback ) ) {
-        			callback.call( $this, $images, $proper, $broken );
-        		}
-        	}
-        
-        	function imgLoaded( img, isBroken ) {
-        		// don't proceed if BLANK image, or image is already loaded
-        		if ( img.src === BLANK || $.inArray( img, loaded ) !== -1 ) {
-        			return;
-        		}
-        
-        		// store element in loaded images array
-        		loaded.push( img );
-        
-        		// keep track of broken and properly loaded images
-        		if ( isBroken ) {
-        			broken.push( img );
-        		} else {
-        			proper.push( img );
-        		}
-        
-        		// cache image and its state for future calls
-        		$.data( img, 'imagesLoaded', { isBroken: isBroken, src: img.src } );
-        
-        		// trigger deferred progress method if present
-        		if ( hasNotify ) {
-        			deferred.notifyWith( $(img), [ isBroken, $images, $(proper), $(broken) ] );
-        		}
-        
-        		// call doneLoading and clean listeners if all images are loaded
-        		if ( $images.length === loaded.length ){
-        			setTimeout( doneLoading );
-        			$images.unbind( '.imagesLoaded' );
-        		}
-        	}
-        
-        	// if no images, trigger immediately
-        	if ( !$images.length ) {
-        		doneLoading();
-        	} else {
-        		$images.bind( 'load.imagesLoaded error.imagesLoaded', function( event ){
-        			// trigger imgLoaded
-        			imgLoaded( event.target, event.type === 'error' );
-        		}).each( function( i, el ) {
-        			var src = el.src;
-        
-        			// find out if this image has been already checked for status
-        			// if it was, and src has not changed, call imgLoaded on it
-        			var cached = $.data( el, 'imagesLoaded' );
-        			if ( cached && cached.src === src ) {
-        				imgLoaded( el, cached.isBroken );
-        				return;
-        			}
-        
-        			// if complete is true and browser supports natural sizes, try
-        			// to check for image status manually
-        			if ( el.complete && el.naturalWidth !== undefined ) {
-        				imgLoaded( el, el.naturalWidth === 0 || el.naturalHeight === 0 );
-        				return;
-        			}
-        
-        			// cached images don't fire load sometimes, so we reset src, but only when
-        			// dealing with IE, or image is complete (loaded) and failed manual check
-        			// webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-        			if ( el.readyState || el.complete ) {
-        				el.src = BLANK;
-        				el.src = src;
-        			}
-        		});
-        	}
-        
-        	return deferred ? deferred.promise( $this ) : $this;
-        };
-        
-        var Grid = (function() {
-            // list of items
-        	var $grid = $( '#og-grid' );
-    
-        	function init( config ) {
-                // list of items
-            	$grid = $( '#og-grid' );
-        		// the items
-        		//$items = $grid.children( 'li' );
-        
-        		// preload all images
-        		$grid.imagesLoaded( function() {
-        			// initialize some events
-        			initEvents();
-        		} );
-        	}
-        
-        	function initEvents() {
-        		// on window resize get the window큦 size again
-        		// reset some values..
-        		$window.on( 'debouncedresize', function() {
-      				closePreview( );
-        		} );
-        	}
-
-        	return { 
-        		init : init
-        	};
-        })();
 
         initController();
 
@@ -252,30 +67,44 @@
             //     }
             // );
             // ******* i18n Stuff *******
+
+       		// on window resize get the window큦 size again
+    		// reset some values..
+    		$thisWindow.on( 'debouncedresize', function() {
+  				closePreview( );
+    		} );
+
             getRewards();
         }
 
         function getRewards() {
-            ApiService.get('contact_rewards').then(function(response) {
-                if (response.success) {
+            ApiService.get( 'contact_rewards' ).then( function( response ) {
+                if ( response.success ) {
                     vm.data = response.data;
-                    // console.log( vm.data );
+                    vm.data.rewards.forEach( function( item, index ) {
+                        item.redeem_options = [ ];
+                        item.redeem_options.push( { id: 'qrcode', description: 'QR Code' } );
+                        item.redeem_options.push( { id: 'barcode', description: 'Bar Code' } );
+                        item.redeem_options.push( { id: 'copycode', description: 'Copy', attrs: { 'ngclipboard': null, 'data-clipboard-text': item.coupon_code } } );
+                        item.redeem_options.push( { id: 'print', description: 'Print', attrs: 'printBtn' } );
 
+                        item.print_option = 'qrcode';
+                        item.selectedOption = 'qrcode';
+                        item.copyText = "Paste it in the advertiser's website in the coupon code field before paying your invoice.";
+                    } );
+
+/*
                     // I use timeout to guarantee that the initialization
                     // Happens only after the Angular's digest process
                     $timeout(function(){
-                        Grid.init();
+                        //Utils.Grid.init();
                     },0,false);
+*/
                 } else {
                     Notification.error(response.message);
                 }
             });
         }
-
-    	function getWinSize( ) {
-    		winsize = { width : $window.width(), height : $window.height() };
-    	}
-
 
         function calcHeight( $item ) {
 			previewHeight = winsize.height - $item.height( ) - marginExpanded;
@@ -288,14 +117,26 @@
 			}
 		}
 
-        function couponOptions( data ) {
+        function couponOptions( item, data ) {
 //             console.log( 'print', data );
             if ( data == null || data == undefined ) {
                 return;
             }
             vm.detailView = data;
+            item.selectedOption = data;
+/*
+            if ( data == 'print' ) {
+                $window.print( );
+            }
+*/
         }
 
+        function optionEnabled( reward, option ) {
+            //console.log( option );
+            var result = _.findWhere( reward.redeem_options, { id: option } );
+            //console.log( result );
+            return result != undefined;
+        }
 
         function openPreview( item ) {
             var code = item.coupon_code;
@@ -319,7 +160,7 @@
                 $li.addClass( 'og-expanded' );
                 $anchor.addClass( 'clicked' );
 
-                console.log( 'noTransition', $li, 'itemHeight', itemHeight );
+                //console.log( 'noTransition', $li, 'itemHeight', itemHeight );
             } else {
                 $li.css( 'height', itemHeight );
                 $preview.css( 'height', previewHeight );
@@ -349,7 +190,6 @@
             } else if ( previewHeight < winsize.height ) {
 			// case 2 : preview height does not fit in window큦 height and preview height is smaller than window큦 height
                 scrollVal = previewOffsetT - ( winsize.height - previewHeight );
-            console.log( '2', 'position', position, 'scrollVal', scrollVal );
             } else {
 			// case 3 : preview height does not fit in window큦 height and preview height is bigger than window큦 height
 			    // In case there is not old values yet
@@ -368,8 +208,7 @@
                     scrollVal = previewOffsetT;
                 }
 
-            console.log( 'case 3 : preview height does not fit in window큦 height and preview height is bigger than window큦 height'
-                , 'scrollVal', scrollVal );
+//             console.log( 'case 3 : preview height does not fit in window큦 height and preview height is bigger than window큦 height', 'scrollVal', scrollVal );
             }
 
 			$body.animate( { scrollTop : scrollVal }, settings.speed );
@@ -429,7 +268,7 @@
         }
 
         function clickedItem( item ) {
-            getWinSize( );
+            winsize = Utils.getWinSize( );
 
             var code = item.coupon_code;
             

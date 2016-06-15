@@ -11,7 +11,7 @@
 angular.module( 'app.trivia' ).controller( 'Trivia', Trivia );
 
 /*@ngInject*/
-function Trivia( ApiService, FireworksService, $location, $rootScope, Notification, $scope, $timeout, $interval, $sce ) {
+function Trivia( ApiService, FireworksService, Utils, $location, $rootScope, Notification, $scope, $timeout, $interval, $sce ) {
     var vm = this;
     var pointsAux = 0;
     var validatingAnswer = false;
@@ -94,7 +94,22 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
 	colors = [ "#003ed9","#00e6d7","#fb8100","#ef0000","#e849e0","#c7e105","#1bd51b","#2044e0" ];
     // Flying objects parameters
 
+    var isEnabledAnimations;
+
     initialize( );
+    
+    function animationsEnabled( ) {
+        console.log( 'Variable', isEnabledAnimations );
+        if ( isEnabledAnimations == undefined || isEnabledAnimations == null ) {
+            isEnabledAnimations = !Utils.isMobile.any( );
+/*
+            //isEnabledAnimations = false; // Just for testing
+            if ( isEnabledAnimations ) console.log( 'Animated' );
+            else console.log( 'NOT Animated' );
+*/
+        }
+        return isEnabledAnimations;
+    }
  
  /* COINS FLYING TO THE POINTS BAR */
     function getPosition( element ) {
@@ -152,8 +167,9 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
         greyOut.onclick = function( ) {
             toggleTrivia( );
         };
-        
-        FireworksService.initialize( greyOut );
+
+        if ( animationsEnabled( ) )
+            FireworksService.initialize( greyOut );
     }
 
     function trustSrc( src ) {
@@ -164,10 +180,13 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
         vm.showReward = false;
         vm.feedback = false;
 
-        TweenLite.to( triviaContainer, 0, { bottom: "-500px" } );
-        // TweenLite.to( progressBar, 0.1, { opacity: 0 } );
-        TweenLite.to( greyOut, 0.1, { opacity: 0 } );
-        TweenLite.to( scoreBarCKPT, 0.1, { opacity: 0 } );
+//         if ( animationsEnabled( ) ) {
+            TweenLite.to( triviaContainer, 0, { bottom: "-500px" } );
+            // TweenLite.to( progressBar, 0.1, { opacity: 0 } );
+            TweenLite.to( greyOut, 0.1, { opacity: 0 } );
+            TweenLite.to( scoreBarCKPT, 0.1, { opacity: 0 } );
+//         }
+
 
         ApiService.get( 'challenge', 0 )
             .then( function( response ) {
@@ -289,8 +308,10 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
             tr_id: option
         }
 
-        var shakeTween = TweenLite.fromTo( triviaContainer, vm.data.validation_time, { scale: 1 }, 
-            { scale: 1.1, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
+        if ( animationsEnabled( ) ) {
+            var shakeTween = TweenLite.fromTo( triviaContainer, vm.data.validation_time, { scale: 1 }, 
+                { scale: 1.1, ease:RoughEase.ease.config( { strength: 2, points: 30, template:Bounce.easeIn, randomize:false } ), clearProps: "x" } );
+        }
 
         ApiService.post( 'challenge_process', data )
             .then( function( response ) {
@@ -308,8 +329,11 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                     $timeout( function( ) {
                         //To show hide Feedback object
                         vm.feedback = true;
-                        shakeTween.kill( );
-                        TweenLite.from( feedBackBox, 1, { ease: Expo.easeOut, scale: 0 } );
+
+                        if ( animationsEnabled( ) ) {
+                            shakeTween.kill( );
+                            TweenLite.from( feedBackBox, 1, { ease: Expo.easeOut, scale: 0 } );
+                        }
                         if ( vm.data.correct == 0 ) {
                             badFeedBack( );
                         } else {
@@ -373,19 +397,25 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
 
 
     function animatePoints( ) {
-        if ( vm.data.earned_points > 0 ) {
-            var repeat = Math.floor( vm.data.earned_points / 100 );
-
-            if ( vm.data.correct ) {
-                FireworksService.shoot( repeat );
-            }
+        if ( animationsEnabled( ) ) {
+            if ( vm.data.earned_points > 0 ) {
+                var repeat = Math.floor( vm.data.earned_points / 100 );
     
-            animate( repeat );
+                if ( vm.data.correct ) {
+                    FireworksService.shoot( repeat );
+                }
+        
+                animate( repeat );
+            }
         }
+
         TweenLite.to( pointsBar, 3, { delay:2, value: vm.data.player_stats.accumulated_points } );
-        var tlpb = new TimelineLite( { } );
-        tlpb.to( pointsBar, 1.5, { delay:1, ease: Circ.easeOut, height: '200%' } )
-            .to( pointsBar, 1, { ease: Elastic.easeOut.config( 2, 0.2 ), height: '100%' } );
+
+        if ( animationsEnabled( ) ) {
+            var tlpb = new TimelineLite( { } );
+            tlpb.to( pointsBar, 1.5, { delay:1, ease: Circ.easeOut, height: '200%' } )
+                .to( pointsBar, 1, { ease: Elastic.easeOut.config( 2, 0.2 ), height: '100%' } );
+        }
     }
     
     // Returns a random number between min (inclusive) and max (exclusive)
@@ -394,30 +424,30 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
     }
 
     function animateRewards( ) {
-        TweenLite.from( rewardBox, 2, { scale: 0, ease: Elastic.easeOut.config( 1, 0.3 ) } );
-
-        var element = document.createElement( 'div' );
-        element.className += "flying-reward";
-        container.appendChild( element );
-        TweenLite.set( element, { x:rectButtonToggle.left, y:rectButtonToggle.bottom } );
-        //create a semi-random tween 
-        var bezTween = new TweenMax( element, 2, {
-            delay: 2,
-            bezier:{
-                type:"soft", 
-                values:[ { x:rectRewardsBar.left + getRandomArbitrary( 3, 4 ) * rectRewardsBar.width, y:40 }, { x:rectRewardsBar.left, y:20 } ],
-                autoRotate:true
-            },
-            ease:Expo.easeOut
-            , onComplete:function( ) { container.removeChild( element ); }
-        } );
-
-        //TweenLite.to( rewardsBar, 3, { delay:2, value: vm.data.player_stats.accumulated_rewards } );
-        var tlpb = new TimelineLite( { } );
-        tlpb.to( rewardsBar, 1, { delay: 2, ease: Circ.easeOut, height: '150%' } )
-            .to( rewardsBar, 1, { ease: Elastic.easeOut.config( 2, 0.2 ), height: '100%' } );
-            
-
+        if ( animationsEnabled( ) ) {
+            TweenLite.from( rewardBox, 2, { scale: 0, ease: Elastic.easeOut.config( 1, 0.3 ) } );
+    
+            var element = document.createElement( 'div' );
+            element.className += "flying-reward";
+            container.appendChild( element );
+            TweenLite.set( element, { x:rectButtonToggle.left, y:rectButtonToggle.bottom } );
+            //create a semi-random tween 
+            var bezTween = new TweenMax( element, 2, {
+                delay: 2,
+                bezier:{
+                    type:"soft", 
+                    values:[ { x:rectRewardsBar.left + getRandomArbitrary( 3, 4 ) * rectRewardsBar.width, y:40 }, { x:rectRewardsBar.left, y:20 } ],
+                    autoRotate:true
+                },
+                ease:Expo.easeOut
+                , onComplete:function( ) { container.removeChild( element ); }
+            } );
+    
+            //TweenLite.to( rewardsBar, 3, { delay:2, value: vm.data.player_stats.accumulated_rewards } );
+            var tlpb = new TimelineLite( { } );
+            tlpb.to( rewardsBar, 1, { delay: 2, ease: Circ.easeOut, height: '150%' } )
+                .to( rewardsBar, 1, { ease: Elastic.easeOut.config( 2, 0.2 ), height: '100%' } );
+        }
     }
 
     function getObjectHeight( obj ) {
