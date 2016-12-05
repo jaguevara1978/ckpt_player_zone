@@ -80,8 +80,11 @@ function Activate( $rootScope, $location, $routeParams, ApiService, Authenticati
             ApiService.post( 'confirm_signup', vm.data )
                 .then( function( response ) {
                     if ( response.success ) {
+                        response.data.extra = {
+                            player_setup: false
+                        }
                         AuthenticationService.setCredentials( response.data );
-                        $location.path( '/rewards' );
+                        $location.path( '/profile' );
                     } else {
                         Notification.Error( response.message );
                     }

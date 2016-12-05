@@ -1,0 +1,38 @@
+<div id="container-ckpt" class="container-ckpt" ng-controller='Ckpt as vm'>
+    <!--Timer-->
+    <div id="timer-bar">
+	    <div class="count_down_bar" id="count_down_bar"></div>
+        <!-- <progress max="{{vm.data.display_time}}" value="{{vm.data.actual_time}}"></progress> -->
+    </div>
+
+    <!--Background Disable-->
+    <div id="grey-out" style='opacity: 0.5;'>
+        
+        <!-- Hiding library elements in the DOM is fun -->
+        <aside id="library">
+<!--             <img src="content/images/nightsky.png" id="nightsky" /> -->
+            <img src="content/images/big-glow.png" id="big-glow" />
+            <img src="content/images/small-glow.png" id="small-glow" />
+        </aside>
+        
+    </div>
+
+
+    <!--Control Panel-->
+<!--     <div id='control_panel_container' class="control_panel_container" ng-controller='Ckpt as vm'> -->
+        <div id="control_panel_menu" class='control_panel_menu'>
+            <ul class='panel_menu'>
+                <li class="fa-play li_panel_menu" ng-click="vm.clickedMenu( 'play' )"></li>
+                <li class="fa-user li_panel_menu" ng-click="vm.clickedMenu( 'profile' )"></li>
+                <li class="fa-gift li_panel_menu" ng-click="vm.clickedMenu( 'rewards' )"></li>
+                <li class="fa-sign-out li_panel_menu" ng-click="vm.clickedMenu( 'signin' )"></li>
+            </ul>
+        </div>
+
+        <div class='sub_panel_game' ng-if="vm.option == 'play'" ng-include="'trivia/trivia.html'"></div>
+        <div class='sub_panel' ng-if="vm.option == 'profile'" ng-include="'profile/profile.html'"></div>
+        <div class='sub_panel' ng-if="vm.option == 'rewards'" ng-include="'rewards/rewards.html'"></div>
+        <div class='sub_panel' ng-if="vm.option == 'signin'" ng-include="'signin/signin.html'"></div>
+
+<!--         </div> -->
+    </div>

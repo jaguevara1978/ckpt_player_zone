@@ -84,13 +84,20 @@ function Profile( $rootScope, Notification, ApiService, $scope )  {
         };
 
         vm.savingStatus = 2;
+        
+        // Just for testing purposes delete for production mode
+        for ( var i=0; i < vm.profile.form_extra.select_category.length; i++ ) {
+            vm.profile.form_extra.select_category[ i ].checked = true;
+        }
+
+        //console.log( 'vm.profile', vm.profile );
 
         ApiService.put( 'contact', vm.profile )
             .then( function ( response ) {
                 if ( response.success ) {
                     vm.data = response.data;
 
-                    //console.log( payload );
+                    //console.log( vm.data );
 
                     var birthdate = moment( vm.data.birthdate );
                     vm.data.birth = {
@@ -98,6 +105,9 @@ function Profile( $rootScope, Notification, ApiService, $scope )  {
                         month: birthdate.get( 'month' ) + 1,
                         year: birthdate.get( 'year' )
                     };
+  
+                   $rootScope.globals.currentUser.extra.player_setup = true;
+                    
                     Notification.success( 'Your profile has been successfully updated' );
                     vm.savingStatus = 0;
                 } else {

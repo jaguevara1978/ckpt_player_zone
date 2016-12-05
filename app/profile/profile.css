@@ -56,6 +56,10 @@ Form
     font-size: 2rem;
     border-bottom: 1px solid #ecf0f1;
     color: #FF8C89;
+
+    text-align: left;
+    text-align: -webkit-left;
+    text-align: -moz-left;
 }
 .cd-form div {
   /* form element wrapper */
@@ -148,7 +152,7 @@ Form
   display: block;
   width: 16px;
   height: 16px;
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-arrow.svg) no-repeat center center;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-arrow.svg) no-repeat center center;
   pointer-events: none;
 }
 .cd-form select {
@@ -243,12 +247,12 @@ Form
 */
 .cd-form input[type="radio"] + label::after {
   /* custom image for radio button */
-/*   background-image: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-radio.svg); */
+/*   background-image: url(http://primg.checkpointchallenge.com/profile/cd-icon-radio.svg); */
 }
 
 .cd-form input[type="checkbox"] + label::after {
   /* custom image for checkbox */
-/*   background-image: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-check.svg); */
+/*   background-image: url(http://primg.checkpointchallenge.com/profile/cd-icon-check.svg); */
 }
 .cd-form input[type="radio"]:focus + label::before,
 .cd-form input[type="checkbox"]:focus + label::before {
@@ -307,7 +311,7 @@ Form
   transform: scale(0.9);
 }
 .cd-form [required] {
-    background: url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+    background: url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 .cd-form .error-message p {
   background: #e94b35;
@@ -393,44 +397,44 @@ Custom icons
   padding-left: 54px !important;
 }
 .cd-form .user {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-user.svg) no-repeat 16px center;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-user.svg) no-repeat 16px center;
 }
 .cd-form [required].user {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-user.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-user.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 .cd-form .login_userid {
-  background: url(http://primg.checkpointchallenge.com:81/profile/icon-user-id.svg) no-repeat 16px center;
+  background: url(http://primg.checkpointchallenge.com/profile/icon-user-id.svg) no-repeat 16px center;
 }
 .cd-form [required].login_userid {
-  background: url(http://primg.checkpointchallenge.com:81/profile/icon-user-id.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/profile/icon-user-id.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 .cd-form .company {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-company.svg) no-repeat 16px center;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-company.svg) no-repeat 16px center;
 }
 .cd-form [required].company {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-company.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-company.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 .cd-form .email {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-email.svg) no-repeat 16px center;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-email.svg) no-repeat 16px center;
 }
 .cd-form [required].email {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-email.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-email.svg) no-repeat 16px center, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 .cd-form .budget {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-budget.svg) no-repeat 16px center;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-budget.svg) no-repeat 16px center;
 }
 .cd-form .message {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-message.svg) no-repeat 16px 16px;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-message.svg) no-repeat 16px 16px;
 }
 .cd-form [required].message {
-  background: url(http://primg.checkpointchallenge.com:81/profile/cd-icon-message.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/profile/cd-icon-message.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 
 .cd-form .world {
-  background: url(http://primg.checkpointchallenge.com:81/utils/form_icons/24px_world.svg) no-repeat 16px 16px;
+  background: url(http://primg.checkpointchallenge.com/utils/form_icons/24px_world.svg) no-repeat 16px 16px;
 }
 .cd-form [required].world {
-  background: url(http://primg.checkpointchallenge.com:81/utils/form_icons/24px_world.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com:81/profile/cd-required.svg) no-repeat top right;
+  background: url(http://primg.checkpointchallenge.com/utils/form_icons/24px_world.svg) no-repeat 16px 16px, url(http://primg.checkpointchallenge.com/profile/cd-required.svg) no-repeat top right;
 }
 
 /* -------------------------------- 

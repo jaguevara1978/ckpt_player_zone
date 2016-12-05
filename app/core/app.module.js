@@ -55,7 +55,8 @@
         ,'app.signin'
         ,'app.signup'
         ,'app.welcome'
-        ,'app.rewards'
+        ,'app.ckpt'
+//         ,'app.rewards'
         ,'app.suconf'
         ,'app.profile'
         ,'app.trivia'
@@ -169,6 +170,13 @@
                 if ( restrictedPage && !$rootScope.loggedIn ) {
                     $location.path( '/signin' );
                 }
+
+                if ( restrictedPage && $rootScope.loggedIn && $location.path( ).indexOf( '/profile' ) < 0 ) {
+                    if ( $rootScope.globals.currentUser.extra.player_setup == false ) {
+                        $location.path( '/profile' );
+                    }
+                }
+                
 
 //                 $rootScope.showMainNavBar = $location.path( ) !== "/trivia";
                 $rootScope.showMainNavBar = true;

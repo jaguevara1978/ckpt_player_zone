@@ -5,6 +5,7 @@
     <title ng-bind="'CKPT, ' + title">CKPT</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta name="google-signin-client_id" content="725628481775-4v43b48gpffckkcl4di1gcvsr3k3utcl.apps.googleusercontent.com">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) content/css/vendor.css -->
     <!-- bower:css -->
@@ -24,7 +25,6 @@
     <link rel="stylesheet" href="content/css/animate.css" />
     <link rel="stylesheet" href="content/css/nga.all.css" />
     <link rel="stylesheet" href="content/css/loading.css" />
-<!--     <link rel="stylesheet" href="trivia/tpl/css/feedback.css" /> -->
     <link rel="stylesheet" href="trivia/trivia.css" media="all"/>
     <link rel="stylesheet" href="signin/signin.css" media="all"/>
     <link rel="stylesheet" href="rewards/rewards.css" media="all"/>
@@ -32,12 +32,16 @@
 	<link rel="stylesheet" href="layout/shell_reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="layout/shell.css"> <!-- Resource style -->
 	<link rel="stylesheet" href="profile/profile.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="ckpt/ckpt.css"> <!-- Resource style -->
+	
+	
 
     <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400italic,700,700italic,300italic,300,800,800italic' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
 </head>
 
 <body>
+
     <!-- Any other content and or templates or views should be inside the shell html -->
     <div data-ng-include="'layout/shell.html'" 
         style="position: relative;
@@ -144,6 +148,12 @@
     <script src="welcome/welcome.js"></script>
     <script src="welcome/config.route.js"></script>
 
+    <!—- GAME -->
+    <script src="ckpt/ckpt.module.js"></script>
+    <script src="ckpt/ckpt.js"></script>
+    <script src="ckpt/config.route.js"></script>
+
+
     <!—- rewards -->
     <script src="rewards/rewards.module.js"></script>
     <script src="rewards/rewards.js"></script>
@@ -197,6 +207,7 @@
     <script src="content/js/angular-no-captcha.min.js"></script>
     <script src="content/js/custom.directives.js"></script>
 <!--     <script src="content/js/auto.save.directive.js"></script> -->
+<script src="https://apis.google.com/js/platform.js"></script>
 
 
 </body>

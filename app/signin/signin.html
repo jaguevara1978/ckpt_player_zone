@@ -3,13 +3,18 @@
 <!-- This is the sign in form -->
 <div id="signin_wrapper" class="signin_wrapper" ng-show="vm.signin">
 	<h1>Sign In</h1>
-	<form name="signin_form" role="form" class="signin_form">
-		<input ng-model="vm.user.id" type="text" placeholder="Username" tabindex="10" required>
+
+	<form id="signin_form" name="signin_form" role="form" class="signin_form" ng-submit="vm.login( )">
+<!--         <google-sign-in-button button-id="uniqueid" options="options"></google-sign-in-button> -->
+
+		<input ng-model="vm.user.id" type="text" placeholder="Username" tabindex="10" id='userid' name='userid' type='text' required>
 		<input ng-model="vm.user.pwd" type="password" placeholder="Password" tabindex="20" required>
-        <button id="signin_submit" type="submit" class="login_submit ng-class: { login_submit_enabled: signin_form.$invalid == false, login_submit_disabled: signin_form.$invalid == true };" ng-click="vm.login( )" ng-disabled="signin_form.$invalid">
+
+        <!--  ng-disabled="signin_form.$invalid" -->
+        <button id="signin_submit" type="submit" class="login_submit ng-class: { login_submit_enabled: signin_form.$invalid == false, login_submit_disabled: signin_form.$invalid == true };">
             Sign In  <i class="fa fa-sign-in"></i>
         </button>
-        <button id="signup_button" type="submit" class="signup_change" ng-click="vm.rotate( )">
+        <button id="signup_button" class="signup_change" ng-click="vm.rotate( )">
             Sign Up  <i class="fa fa-pencil"></i>
         </button>
 
@@ -49,12 +54,13 @@
 <!-- This is the sign up form -->
 <div id="signup_wrapper" class="signin_wrapper" ng-hide="vm.signin">
 	<h1>Register</h1>
-	<form id="signup_form" name="signup_form" role="form" class="signin_form">
+	<form id="signup_form" name="signup_form" role="form" class="signin_form" ng-submit="vm.signup( )">
         <input ng-model='vm.user.data.fname' id="fname" name="fname" type="text" placeholder="First name" required>
         <input ng-model='vm.user.data.lname' id="lname" name="lname" type="text" placeholder="Last name" required>
         <input ng-model="vm.user.data.primary_email" type="email" name="email" id="email" placeholder="E-Mail" required>
         <input type="{{ vm.showPassword ? 'text' : 'password' }}" ng-model='vm.user.extra.password' id="password" name="password" class="form-control input-lg" type="text" placeholder="Password" required>
-        <button id="signup_submit" type="submit"  class="login_submit ng-class: { login_submit_enabled: signup_form.$invalid == false, login_submit_disabled: signup_form.$invalid == true };" ng-click="vm.signup( )" ng-disabled="signup_form.$invalid">
+        <!-- ng-disabled="signup_form.$invalid" -->
+        <button id="signup_submit" type="submit"  class="login_submit ng-class: { login_submit_enabled: signup_form.$invalid == false, login_submit_disabled: signup_form.$invalid == true };">
             Sign Up  <i class="fa fa-pencil"></i>
         </button>
         <button type="submit" class="signup_change" ng-click="vm.rotate( )">
@@ -94,9 +100,13 @@
 	</form>
 </div>
 
+<!--     <google-sign-in-button on-sign-in="onSignIn(response)" g-client-id="CLIENTID.apps.googleusercontent.com"></google-sign-in-button> -->
+
+
+
 <canvas id="signin_canvas" class="signin_canvas"></canvas>
 
-<img id='img_bottom' src="http://primg.checkpointchallenge.com:81/utils/mean_monkey.png" 
+<img id='img_bottom' src="http://primg.checkpointchallenge.com/utils/mean_monkey.png" 
 style="max-width: 50%;min-width: 200px;height: auto;opacity: 0.8;position: fixed;"></img>
 
 <script >
@@ -401,6 +411,5 @@ Particles.prototype.clearCanvas = function( ) {
  
 // go go go!
 var particle = new Particles( ).init( ); 
-
 
 </script>

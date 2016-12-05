@@ -13,9 +13,13 @@ angular.module( 'app.trivia' ).controller( 'Trivia', Trivia );
 /*@ngInject*/
 function Trivia( ApiService, FireworksService, Utils, $location, $rootScope, Notification, $scope, $timeout, $interval, $sce ) {
     var vm = this;
+    vm.toggleTrivia = toggleTrivia;
+
+    vm.triviaStatus = 0; //0-Ready, 1-Go, 2-Minimized
     var pointsAux = 0;
     var validatingAnswer = false;
     var challengeBoxHidden = false;
+    
 
 //     $rootScope.showMainNavBar = false;
 
@@ -41,6 +45,7 @@ function Trivia( ApiService, FireworksService, Utils, $location, $rootScope, Not
     var rectRewardsBar = rewardsBar.getBoundingClientRect( );
     var rectTriviaBox = triviaBox.getBoundingClientRect( );
     var fa_button_toggle = document.getElementById( "fa_button_toggle" );
+    var control_panel_menu = document.getElementById( 'control_panel_menu' );
 
 /* ********* HourGlass ********** */
 var xmlns="http://www.w3.org/2000/svg", 
@@ -99,7 +104,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
     initialize( );
     
     function animationsEnabled( ) {
-        console.log( 'Variable', isEnabledAnimations );
+        //console.log( 'Variable', isEnabledAnimations );
         if ( isEnabledAnimations == undefined || isEnabledAnimations == null ) {
             isEnabledAnimations = !Utils.isMobile.any( );
 /*
@@ -162,6 +167,8 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
  /* COINS FLYING TO THE POINTS BAR */
 
     function initialize( ) {
+//         control_panel_menu.style.bottom = '100px';
+        
         getQuestion( );
 
         greyOut.onclick = function( ) {
@@ -197,6 +204,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                    } catch( error ) { }
 
                     vm.data = response.data;
+                    $rootScope.advertiserSite = vm.data.site;
                     
                     //TODO Send from Service
                     vm.data.validation_time = 2;
@@ -213,6 +221,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                     vm.data.actual_time = vm.data.display_time;
                     
                     // Show progress of delay time before showing the question
+/*
                     TweenLite.from( { }, vm.data.delay, {
                             //yoyo:true,
                             //repeat:-1,
@@ -225,25 +234,37 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                                 });	
                         	}
                         });
+*/
 
                     // This timeout will control the time before showing the question
-                    $timeout( function( ) {
+//                     $timeout( function( ) {
                         TweenLite.to( triviaContainer, 1, { ease: Expo.easeOut, bottom: 0 } );
                         // TweenLite.to( progressBar, 0.1, { opacity: 1 } );
                         TweenLite.to( greyOut, 0.5, { opacity: 0.3 } );
                         TweenLite.to( scoreBarCKPT, 0.5, {opacity: 1 } );
                         TweenMax.staggerFrom( ".trivia-options", 2, { scale: 0.5, opacity: 0, delay: 0.5, ease: Elastic.easeOut, force3D: true }, 0.2);
                         TweenLite.from( challengeText, 0.5, { scale: 0.5, opacity: 0, delay: 0.5, ease: Elastic.easeOut, force3D: true } );
+
+                    TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-up fa-2x fa_button_toggle" } );
+                    TweenLite.to( buttonToggle, 0.2, { className:"btn btn-toggle chevron-up btn_toggle_ready" } );
+                    TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0, display: 'none' } );
+                    TweenLite.to( progressBar, 0.5, { opacity: 0 } );
+
+                    vm.triviaStatus = 0;
+
                         
+/*
                         // vm.data.display_time: after this number of seconds I will validate the 
                         // answer as -1, which means unaswered
                         vm.timeout_promise = $timeout( function( ) {
                             validateAnswer( -1 );
                         }, vm.data.display_time * 1000 )
+*/
                         
-                        hourGlass( vm.data.display_time );
-                        reset( );
+//                         hourGlass( vm.data.display_time );
+//                         reset( );
                         
+/*
                         //// Count down
                         countDownTween = TweenLite.from( { }, vm.data.display_time, {
                             //yoyo:true,
@@ -258,6 +279,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                         	}
                         });
                         //// Count down
+*/
 
                         validatingAnswer = false
                         
@@ -265,7 +287,7 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                         // I do this to make it look more friendly just the first time the game loads, after taht
                         // THe navigation will be gone.
                         $rootScope.showMainNavBar = false;
-                    },  vm.data.delay * 1000 );//vm.data.delay * 1000
+//                     },  vm.data.delay * 1000 );//vm.data.delay * 1000
 /*
                     console.log( 'Get Question:' );
                     console.log(vm.data);
@@ -449,41 +471,6 @@ var hourGlassTl = new TimelineMax( { repeat:0, onComplete: pauseGrains } );
                 .to( rewardsBar, 1, { ease: Elastic.easeOut.config( 2, 0.2 ), height: '100%' } );
         }
     }
-
-    function getObjectHeight( obj ) {
-        var divHeight;
-        if ( obj.offsetHeight ) {
-            divHeight=obj.offsetHeight;
-        } else if ( obj.style.pixelHeight ) {
-            divHeight=obj.style.pixelHeight;
-        }
-        return divHeight;
-    }
-
-    function toggleTrivia( ) {
-        if ( challengeBoxHidden ) {
-            challengeBoxHidden = false;
-            buttonToggleTL.kill( );
-            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-down fa-2x fa_button_toggle" } );
-            TweenLite.to( buttonToggle, 0.3, { className:"btn btn-toggle chevron-down" } );
-            TweenLite.to( triviaContainer, 1, { bottom: 0 } );
-            TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0.5, display: 'block' } );
-            TweenLite.to( scoreBarCKPT, 1, { opacity: 1, display: 'block' } );
-        } else {          
-            challengeBoxHidden = true;
-            triviaContainerHeight = getObjectHeight( triviaContainer );
-            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-up fa-2x fa_button_toggle_up" } );
-            TweenLite.to( buttonToggle, 0.2, { className:"btn btn-toggle-up chevron-up fa-2x" } );
-            TweenLite.to( triviaContainer, 1, { ease: Elastic.easeOut.config( 1, 0.3 ), bottom: -triviaContainerHeight + getObjectHeight( buttonToggle ) - 1 } );
-            TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0, display: 'none' } );
-            TweenLite.to( scoreBarCKPT, 1, { opacity: 0, display: 'none' } );
-
-            buttonToggleTL = new TimelineMax( { repeat: 50, repeatDelay: 0.5 } );
-            buttonToggleTL.to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1.1 } )
-                .to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1 } );
-        }
-    }
-    
     
     // Some Animation when wrong or no answer
     function badFeedBack( ) {
@@ -626,6 +613,117 @@ function hourGlass( sandTime ) {
     }
 /* ********* END - HourGlass ********** */
 
+
+
+
+    function getObjectHeight( obj ) {
+        var divHeight;
+        if ( obj.offsetHeight ) {
+            divHeight=obj.offsetHeight;
+        } else if ( obj.style.pixelHeight ) {
+            divHeight=obj.style.pixelHeight;
+        }
+        return divHeight;
+    }
+
+    function startCountDown( ) {
+        //// Count down
+        vm.triviaStatus = 1;
+        countDownTween = TweenLite.from( { }, vm.data.display_time, {
+            //yoyo:true,
+            //repeat:-1,
+            force3D:true,
+            onUpdateParams: [ "{self}" ],
+            onUpdate: function( timeline ) {
+                TweenLite.set( progressBar, {
+                    scaleX:timeline.progress( ),
+                    transformOrigin: "100%"
+                });	
+        	}
+        });
+        //// Count down
+
+        // vm.data.display_time: after this number of seconds I will validate the 
+        // answer as -1, which means unaswered
+        vm.timeout_promise = $timeout( function( ) {
+            validateAnswer( -1 );
+        }, vm.data.display_time * 1000 )
+
+        hourGlass( vm.data.display_time );
+        reset( );
+    }
+
+
+    function toggleTrivia( ) {
+        console.log( 'clicked' );
+        switch( vm.triviaStatus ) {
+            case 0:
+                // If we click the toggle button when status = 0
+                // It means we want to answer the question, then 
+                // We start the countdown and show the answer options
+                startCountDown( );
+                TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-down fa-2x fa_button_toggle" } );
+                TweenLite.to( buttonToggle, 0.3, { className:"btn btn-toggle chevron-down" } );
+                TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0.5, display: 'block' } );
+                TweenLite.to( progressBar, 0.1, { opacity: 1 } );
+
+                break;
+            case 1:
+                // If we click the toggle button when status = 1
+                // It means we want to minize the trivia box
+                challengeBoxHidden = true;
+                triviaContainerHeight = getObjectHeight( triviaContainer );
+                TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-up fa-2x fa_button_toggle_up" } );
+                TweenLite.to( buttonToggle, 0, { className:"btn btn-toggle-up chevron-up fa-2x" } );
+                TweenLite.to( triviaContainer, 1, { ease: Elastic.easeOut.config( 1, 0.3 ), bottom: -triviaContainerHeight + getObjectHeight( buttonToggle ) - 1 } );
+                TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0, display: 'none' } );
+//                 TweenLite.to( scoreBarCKPT, 1, { opacity: 0, display: 'none' } );
+    
+                buttonToggleTL = new TimelineMax( { repeat: 50, repeatDelay: 0.5 } );
+                buttonToggleTL.to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1.1 } )
+                    .to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1 } );
+
+                vm.triviaStatus = 2;
+                break;
+            case 2:
+                // If we click the toggle button when status = 2
+                // It means we want to show the trivia box
+                challengeBoxHidden = false;
+                buttonToggleTL.kill( );
+                TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-down fa-2x fa_button_toggle" } );
+                TweenLite.to( buttonToggle, 0.3, { className:"btn btn-toggle chevron-down" } );
+                TweenLite.to( triviaContainer, 1, { bottom: 0 } );
+                TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0.5, display: 'block' } );
+//                 TweenLite.to( scoreBarCKPT, 1, { opacity: 1, display: 'block' } );
+                vm.triviaStatus = 1;
+                break;
+            default:
+                vm.triviaStatus = 0;
+        }
+/*
+        if ( challengeBoxHidden ) {
+            challengeBoxHidden = false;
+            buttonToggleTL.kill( );
+            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-down fa-2x fa_button_toggle" } );
+            TweenLite.to( buttonToggle, 0.3, { className:"btn btn-toggle chevron-down" } );
+            TweenLite.to( triviaContainer, 1, { bottom: 0 } );
+            TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0.5, display: 'block' } );
+            TweenLite.to( scoreBarCKPT, 1, { opacity: 1, display: 'block' } );
+        } else {          
+            challengeBoxHidden = true;
+            triviaContainerHeight = getObjectHeight( triviaContainer );
+            TweenLite.set( fa_button_toggle, { className:"fa fa-chevron-up fa-2x fa_button_toggle_up" } );
+            TweenLite.to( buttonToggle, 0.2, { className:"btn btn-toggle-up chevron-up fa-2x" } );
+            TweenLite.to( triviaContainer, 1, { ease: Elastic.easeOut.config( 1, 0.3 ), bottom: -triviaContainerHeight + getObjectHeight( buttonToggle ) - 1 } );
+            TweenLite.to( greyOut, 1, { ease: Circ.easeOut, opacity: 0, display: 'none' } );
+            TweenLite.to( scoreBarCKPT, 1, { opacity: 0, display: 'none' } );
+
+            buttonToggleTL = new TimelineMax( { repeat: 50, repeatDelay: 0.5 } );
+            buttonToggleTL.to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1.1 } )
+                .to( buttonToggle, 0.5, { ease: Elastic.easeOut.config( 1, 0.3 ), scale: 1 } );
+        }
+*/
+    }
 
 }
 })();

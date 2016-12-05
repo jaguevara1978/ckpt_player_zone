@@ -1,0 +1,222 @@
+/*
+body {
+  background-color: #33325D;
+}
+*/
+
+ul.panel_menu {
+  display: block;
+  margin: 15px auto 0;
+  width: 70px;
+  height: 35px;
+  padding: 0;
+  position: relative;
+  z-index: 9999;
+/*   top: -50px; */
+}
+
+li.li_panel_menu {
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-color: blue;
+  border-radius: 50%;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.12s ease-out, opacity 0.12s ease-out, color 0.12s ease-out;
+  cursor: pointer;
+  text-align: center;
+  line-height: 70px;
+  color: white;
+  font-family: 'fontawesome';
+  color: transparent;
+}
+
+/*
+li.li_panel_menu:after{
+  content: "";
+  display: block; 
+  bottom: 100%; 
+  left: 50%; 
+  height: ($offsetAmount*100%)-100; 
+  margin-left: -1px; 
+  position: absolute; 
+  width: 4px; 
+  background-color: inherit; 
+  opacity: 0; 
+  transition: opacity $transitionTime ease-out; 
+}
+*/
+li.li_panel_menu:first-child:after {
+  display: none;
+}
+
+li.li_panel_menu:nth-child(1) {
+  background-color: #004DB3;
+  transform: translate(0, -20%);
+  z-index: 3;
+  transition-duration: 0.12s;
+}
+
+li.li_panel_menu:nth-child(2) {
+  background-color: #26B85A;
+  transform: translate(20%, 0);
+  z-index: 2;
+  transition-duration: 0.24s;
+}
+
+li.li_panel_menu:nth-child(3) {
+  background-color: #FFCB00;
+  transform: translate(0, 20%);
+  z-index: 1;
+  transition-duration: 0.36s;
+}
+
+li.li_panel_menu:nth-child(4) {
+  background-color: #D88E8E;
+  transform: translate(-20%, 0);
+  z-index: 0;
+  transition-duration: 0.48s;
+}
+
+ul.panel_menu:hover {
+  height: 308px;
+}
+ul.panel_menu:hover li.li_panel_menu {
+  color: white;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(1) {
+  transform: translate(0, 0%);
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(1):hover {
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  transform: translate(0, 0%) scale(1.15, 1.15);
+  transition-duration: 0.24s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(1):after {
+  opacity: 1;
+  transition-delay: 0.08s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(2) {
+  transform: translate(0, 110%);
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(2):hover {
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  transform: translate(0, 110%) scale(1.15, 1.15);
+  transition-duration: 0.24s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(2):after {
+  opacity: 1;
+  transition-delay: 0.16s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(3) {
+  transform: translate(0, 220%);
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(3):hover {
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  transform: translate(0, 220%) scale(1.15, 1.15);
+  transition-duration: 0.24s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(3):after {
+  opacity: 1;
+  transition-delay: 0.24s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(4) {
+  transform: translate(0, 330%);
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(4):hover {
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+  transform: translate(0, 330%) scale(1.15, 1.15);
+  transition-duration: 0.24s;
+}
+ul.panel_menu:hover li.li_panel_menu:nth-child(4):after {
+  opacity: 1;
+  transition-delay: 0.32s;
+}
+
+
+/*Trivia Box*/
+.control_panel_container {
+    position: fixed;
+    display: block;
+/*     overflow-y: scroll; */
+    z-index: 9001;
+    padding: 0;
+    max-height: 70%;
+    min-height: 10%;
+    width: 100%;
+}
+
+.sub_panel {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    align-content: center;
+    align-items: center;
+}
+
+.sub_panel_game {
+/*
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    align-content: center;
+    align-items: center;
+*/
+}
+
+.control_panel_menu {
+    display:block;
+/*     width:100%; */
+    background:transparent;
+    z-index: 9999;
+  
+    position: fixed;
+    top: 10px;
+    right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+/*   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s; */
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+/*   opacity:0; */
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+/*   opacity:1; */
+}

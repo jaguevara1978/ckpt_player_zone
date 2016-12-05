@@ -42,7 +42,7 @@
                                     <span style="color: #000; font-size: 22px; display: block; margin: 10px auto;"><strong >{{reward.coupon_code}}</strong ></span>
                                     <span style="color: #000; font-size: 18px; display: block;">{{reward.copyText}}</span>
                                 </div>
-                                <img ng-show='reward.selectedOption == "print"' ng-src="http://primg.checkpointchallenge.com:81/utils/form_icons/printer.svg" style="max-width: 200px">
+                                <img ng-show='reward.selectedOption == "print"' ng-src="http://primg.checkpointchallenge.com/utils/form_icons/printer.svg" style="max-width: 200px">
                             </div>
                             <div class="og_details_code" print-only>
                                 <qrcode ng-if='reward.print_option == "qrcode"' version="2" error-correction-level="M" size="200" data="{{reward.coupon_code}}"></qrcode>

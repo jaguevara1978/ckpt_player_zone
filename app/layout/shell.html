@@ -1,56 +1,17 @@
-﻿        	<div id="cd-header" class="cd-header animate-show" ng-show="showMainNavBar"  ng-controller="Shell as vm">
-                <!--Account Panel-->
-        <!--         <div class="account-panel clearfix vertical-middle"> -->
-                <div class="account-panel shell_player_stats">
-                    <!--profile-->
-                    <div class="shell_playerstats_user" ng-click="vm.goPlay( )">
-                        <div class="svg_wrapper_account_panel">
-                            <svg viewBox="0 0 100 100">
-                                <title>Play-100</title>
-                                <path class="shell_menu_play" d="M277.09,436.44V357.57L344.15,397Zm4.23-71.74v64.6L336.15,397Z" transform="translate(-257 -347)"/>
-                                <path class="shell_menu_play" d="M281.33,364.7L336.15,397l-54.82,32.3V364.7Z" transform="translate(-257 -347)"/>
-                            </svg>
-                        </div>
-                        <div class="account_panel_play_now_text">
-                  			Play Now!
-                        </div>
-                    </div>
-                    
-                    <!--Points-->
-                    <div id="shell_playerstats_points" class="shell_playerstats_points">
-                        <div class="shell_playerstats_points_number">
-                            Points <span class="point_text"> {{vm.data.player_stats.accumulated_points}}</span> 
-                        </div>
-                        <div class="shell_playerstats_points_bar">
-                            <progress max="100000" value="{{vm.data.player_stats.accumulated_points}}"></progress>
-                            <div class="points_to_win">{{100000 - vm.data.player_stats.accumulated_points}} more points left to win a Lexus</div>
-                        </div>
-                    </div>
-        
-                    <div id="shell_playerstats_points_big_prize" class="shell_playerstats_points_big_prize">
-                        <img src="http://primg.checkpointchallenge.com:81/utils/big_prize_lexus.png">
-                    </div>
-        
-                    <!--rewards-->
-                    <div id="shell_playerstats_rewards" class="shell_playerstats_rewards">
-                        <div class="reward-number">
-                            <span class="reward-text">{{vm.data.player_stats.accumulated_rewards}}</span> Rewards
-                        </div>
-                    </div>
+﻿<!--iframe-->
+<div class="iframe-custom" ng-controller="Shell as vm">
+    <iframe id="iframe-sites" ng-src="{{ vm.trustSrc( advertiserSite ) }}" scrolling="yes"></iframe>
+</div>
+<div data-ng-view style="height: 100%; width: 100%; position: fixed;"></div>
 
-                    <div class="shell_playerstats_toggle">
-                		<a id="nav_trigger" class="cd-3d-nav-trigger">
-                			Menu
-                			<span></span>
-                		</a>
-                    </div>
-                </div>
-            </div> <!-- .cd-header -->
 
+<!--
     <main id='main_content'>
-        <div data-ng-view style="height: 100%; width: 100%;"></div>
-    </main>
 
+    </main>
+-->
+
+<!--
     <nav class="nav cd-3d-nav-container" ng-show="showMainNavBar">
     	<ul class="cd-3d-nav ul_nav_menu" bs-active-link>
     		<li>
@@ -101,93 +62,8 @@
     		</li>
     	</ul>
         <span class="cd-marker color-1"></span>	
-    </nav> <!-- .cd-3d-nav-container -->
+    </nav> 
+-->
 
 <script>
-    var main_content = document.getElementById( 'main_content' );
-    var shell_playerstats_points = document.getElementById( 'shell_playerstats_points' );
-    var shell_playerstats_points_big_prize = document.getElementById( 'shell_playerstats_points_big_prize' );
-    var shell_playerstats_rewards = document.getElementById( 'shell_playerstats_rewards' );
-
-	//toggle 3d navigation
-    var navTrigger = document.getElementById( 'cd-header' );
-    navTrigger.addEventListener( 'click', function( ){
-    	//toggle 3d navigation
-		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
-    });
-
-    shell_playerstats_points.addEventListener( 'mouseover', function( ){
-    	//toggle 3d navigation
-    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
-    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
-    	}
-    });
-    shell_playerstats_points_big_prize.addEventListener( 'mouseover', function( ){
-    	//toggle 3d navigation
-    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
-    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
-    	}
-    });
-    shell_playerstats_rewards.addEventListener( 'mouseover', function( ){
-    	//toggle 3d navigation
-    	if ( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
-    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
-    	}
-    });
-
-    main_content.addEventListener( 'mouseover', function( ){
-    	//toggle 3d navigation
-    	if ( $( '#cd-header' ).hasClass( 'nav-is-visible' ) ) {
-    		toggle3dBlock( !$( '#cd-header' ).hasClass( 'nav-is-visible' ) );
-    	}
-    });
-
-	//select a new item from the 3d navigation
-	$('.cd-3d-nav').on('click', 'a', function(){
-		var selected = $(this);
-		selected.parent('li').addClass('cd-selected').siblings('li').removeClass('cd-selected');
-		updateSelectedNav( 'close' );
-	});
-
-	$(window).on('resize', function(){
-		window.requestAnimationFrame(updateSelectedNav);
-	});
-
-	function toggle3dBlock( addOrRemove ) {
-		if( typeof( addOrRemove )==='undefined' ) addOrRemove = true;	
-		$('.cd-header').toggleClass('nav-is-visible', addOrRemove);
-		$('.cd-3d-nav-container').toggleClass('nav-is-visible', addOrRemove);
-		$('main').toggleClass('nav-is-visible', addOrRemove).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-			//fix marker position when opening the menu (after a window resize)
-			addOrRemove && updateSelectedNav( );
-		});
-	}
-
-	//this function update the .cd-marker position
-	function updateSelectedNav( type ) {
-		var selectedItem = $( '.cd-selected' ),
-			selectedItemPosition = selectedItem.index( ) + 1, 
-			leftPosition = selectedItem.offset( ).left,
-			backgroundColor = selectedItem.data( 'color' ),
-			marker = $( '.cd-marker' );
-
-		marker.removeClassPrefix( 'color' ).addClass( 'color-' + selectedItemPosition ).css( {
-			'left': leftPosition,
-		} );
-		if( type == 'close' ) {
-			marker.one( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function( ) {
-				toggle3dBlock( false );
-			});
-		}
-	}
-
-	$.fn.removeClassPrefix = function(prefix) {
-	    this.each(function(i, el) {
-	        var classes = el.className.split(" ").filter(function(c) {
-	            return c.lastIndexOf(prefix, 0) !== 0;
-	        });
-	        el.className = $.trim(classes.join(" "));
-	    });
-	    return this;
-	};
 </script>

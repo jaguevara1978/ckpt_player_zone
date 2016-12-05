@@ -42,6 +42,9 @@ angular.module('app').factory( 'AuthenticationService', AuthenticationService );
                     currentUser: {
                         oauth: data.oauth,
                         user: data.user,
+                        extra: {
+                            player_setup: data.extra.player_setup
+                        }
                     }
                 };
     

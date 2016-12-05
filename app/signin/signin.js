@@ -45,6 +45,13 @@ function SignIn( $rootScope, $scope, $location, $timeout, AuthenticationService,
 
     initController( );
 
+  //for more options visit https://developers.google.com/identity/sign-in/web/reference#gapisignin2renderwzxhzdk114idwzxhzdk115_wzxhzdk116optionswzxhzdk117
+  $scope.options = {
+    'onsuccess': function(response) {
+      console.log(response);
+    }
+}
+    
     function initController( ) {
         //console.log(vm.user);
         // reset login status
@@ -86,7 +93,11 @@ function SignIn( $rootScope, $scope, $location, $timeout, AuthenticationService,
 
                     if ( response.success ) {
                         AuthenticationService.setCredentials( response.data );
-                        $location.path( '/rewards' );
+                        if ( response.data.extra.player_setup == null || response.data.extra.player_setup == false ) {
+                            $location.path( '/profile' );
+                        } else {
+                            $location.path( '/rewards' );
+                        }
                         Notification.info( { message: 'Welcome to the Challenge', delay: 800 } );
                     } else {
                         Notification.error( { message: response.message, delay: 5000 } );

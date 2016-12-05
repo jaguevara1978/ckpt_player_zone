@@ -13,6 +13,17 @@
     width: 90%;
     left: 50%;
     transform: translate(-50%, 0);
+
+    position: fixed;
+    display:block;
+    overflow: hidden;
+    z-index: 9001;
+    padding: 0;
+
+    bottom:-500px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 370px;
   }
 
 #trivia-box {
@@ -21,11 +32,13 @@
 #timer-bar progress {
   height: 5px;
   }
+/*
   #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
     width:90%;
+*/
  }
 
   .home-ckpt  {
@@ -93,33 +106,28 @@ font-size: .7em;
 font-size: .7em;
 }
 
-@media (min-width: 600px) {
-
+@media ( max-width: 370px ) {
   #trivia-container {
     bottom:-500px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 300px;
+    width: 100%;
   }
+}    
+
+
+@media (min-width: 600px) {
+
 
   #timer-bar progress {
     height: 3px;
   }
+/*
   #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
     width:300px;
   }
-
-  .home-ckpt  {
-    width:7%;
-    top:-5px;
-  }
-  
-  #trivia-box {
-    padding:10px 10px 10px;
-  }
+*/
 
   .right-answer-text {
   font: normal 110px/1 "aclonica", Helvetica, sans-serif;
@@ -150,47 +158,56 @@ font-size: .7em;
 
 @media (min-width: 800px) {
 
+/*
   #trivia-container {
     bottom:-500px;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 370px;
+    width: 390px;
   }
+*/
 
   #timer-bar progress {
     height: 3px;
   }
 
+/*
   #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
     width:370px;
   }
+*/
 
+/*
   .home-ckpt  {
-    width:8%;
+    width:20%;
     top:-5px;
   }
 
   .point-ckpt  {
-      width:65%;
+      width:60%;
       height:20px;
     }
 
   .reward-ckpt  {
-      width:20%;
+      width:10%;
       height:20px;
       margin-left:5px;
     }
+*/
 
+/*
   .point-ckpt .icon,
   .reward-ckpt .icon{
       position:relative;
       top:-8px;
       right:0;
     }
+*/
 
+/*
   .point-ckpt progress {
       width: 95%;
       height: 20px;
@@ -200,10 +217,7 @@ font-size: .7em;
       width: 80%;
       height: 20px;
     }
-  
-  #trivia-box {
-    padding:10px 10px 10px;
-  }
+*/
 
   .reward-img img{
     max-width: 350px;
@@ -250,57 +264,27 @@ font-size: .7em;
 
 @media (min-width: 1366px) {
 
+/*
   #trivia-container {
         bottom:-500px;
         left: 50%;
         transform: translate(-50%, 0);
       width: 420px;
     }
+*/
 
   #timer-bar progress {
   height: 3px;
   }
-    #score-bar-ckpt {
+
+/*
+  #score-bar-ckpt {
     top:20px;
     left: 50%;
     transform: translate(-50%, 0);
     width:420px;
   }
-
-  .home-ckpt  {
-  width:8%;
-  top:-5px;
-  }
-  .point-ckpt  {
-      width:68%;
-      height:20px;
-    }
-
-  .reward-ckpt  {
-      width:20%;
-      height:20px;
-      margin-left:5px;
-    }
-
-  .point-ckpt .icon,
-  .reward-ckpt .icon{
-      position:relative;
-      top:-8px;
-      right:0;
-    }
-
-  .point-ckpt progress {
-      width: 95%;
-      height: 20px;
-    }
-
-  .reward-ckpt progress {
-      width: 80%;
-      height: 20px;
-    }
-  #trivia-box {
-    padding:10px 10px 10px;
-  }
+*/
 
 
  .reward-img img{
@@ -355,56 +339,24 @@ font-size: .7em;
     height: 5px;
   }
 
+/*
   #score-bar-ckpt {
       top:20px;
       left: 50%;
       transform: translate(-50%, 0);
       width:500px;
    }
+*/
 
-    .home-ckpt  {
-      width:7%;
-      top:-5px;
-      }
 
-    .point-ckpt  {
-      width:70%;
-      height:20px;
-    }
-
-    .reward-ckpt  {
-      width:20%;
-      height:20px;
-      margin-left:5px;
-    }
-
-    .point-ckpt .icon,
-    .reward-ckpt .icon{
-      position:relative;
-      top:-8px;
-      right:0;
-    }
-
-    .point-ckpt progress {
-      width: 95%;
-      height: 20px;
-    }
-
-    .reward-ckpt progress {
-      width: 80%;
-      height: 20px;
-    }
-
+/*
     #trivia-container {
         bottom:-500px;
         left: 50%;
         transform: translate(-50%, 0);
       width: 500px;
     }
-
-    #trivia-box {
-    padding:15px 10px 10px;
-    }
+*/
 
   .reward-img img{
     max-width: 450px;
@@ -465,11 +417,11 @@ font-size: .7em;
 }
 
 .iframe-custom {
-position:fixed; 
-left:0; 
-top:0; 
-height:100%;
-	}
+    position: relative; 
+    left:0; 
+    top:0; 
+    height:100%;
+}
 
 iframe {
 display: block; 
@@ -512,16 +464,20 @@ border: none;
 }
 
 /* Chrome */
+/*
 #score-bar-ckpt {
-  position: fixed;
-  opacity:0;
-  z-index: 9001;
+    position: relative;
+    z-index: 9001;
+    margin: auto;
 }
+*/
 
 .home-ckpt  {
-  position:relative;
-  float:left;
-  display:block;
+    position:relative;
+    float:left;
+    display:block;
+    width: 20%;
+    top:-20px;
 }
 
 .home-ckpt .fa-home {
@@ -534,7 +490,7 @@ border: none;
   position:relative;
   float:left;
   display:block;
-  width:70%;
+  width:60%;
   height:20px;
   align-items:center;
 }
@@ -543,7 +499,7 @@ border: none;
   position:relative;
   float:left;
   display:block;
-  width:20%;
+  width:10%;
   height:20px;
   margin-left:5px;
   align-items:center;
@@ -642,13 +598,6 @@ width:100%;}
 }
 
 /*Trivia Box*/
-#trivia-container {
-  position: fixed;
-  display:block;
-  overflow: hidden;
-  z-index: 9001;
-  padding:0;
-}
 
 /*Trivia Toggle Button*/
 #trivia-toggle {
@@ -664,36 +613,60 @@ width:100%;}
 }
 
 .btn-toggle {
-  width: 70px;
-  height: 70px;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-  padding:2px;
-  background-color: rgba(167, 162, 162, 0.74);
-  color: rgba( 255, 255, 255, 0 );
-  text-align:center;
+    width: 70px;
+    height: 35px;
+    display:block;
+/*
+    background: rgba( 0, 0, 0, 0.5 );
+    color: rgba( 255, 255, 255, 0 );
+*/
+    background-color: rgba( 255, 255, 255, 0.7 );
+	color: rgba( 0, 0, 0, 0.8 );
+
+
 
     /* Circle */
+/*
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
+*/
+     border-radius: 70px 70px 0 0;
+     -moz-border-radius: 70px 70px 0 0;
+     -webkit-border-radius: 70px 70px 0 0;
 
     text-shadow:none !important;
     
     /*Align to the bottom of the trivia-toggle parent div*/
     position: relative;
-    margin: auto;
-    top: 20px
+/*     margin: auto; */
+    top: 35px;
+/*     left: 15px; */
 }
 
 .btn-toggle:hover {
+/*
     background-color: rgba( 255, 255, 255, 0.7 );
 	color: rgba( 0, 0, 0, 0.8 );
+*/
+/*
     -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
     -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
     box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
-    background-color: rgba( 255, 255, 255, 0.8 );
+*/
+    background-color: rgba( 255, 255, 255, 1 );
+    -moz-transition: all 0.5s; /* Firefox */
+    -webkit-transition: all 0.5s; /* Safari and Chrome */
+    -o-transition: all 0.5s; /* Opera */
+    transition: all 0.5s;
+}
+
+.btn_toggle_ready {
+    background-color: rgba( 255, 255, 255, 1 );
+	color: rgba( 241, 76, 56, 0.8 );
+    -webkit-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    -moz-box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
+    box-shadow: 0px 0px 24px 6px rgba( 255, 255, 255, 0.8 );
     -moz-transition: all 0.5s; /* Firefox */
     -webkit-transition: all 0.5s; /* Safari and Chrome */
     -o-transition: all 0.5s; /* Opera */
@@ -738,12 +711,14 @@ width:100%;}
 /* Q&A Box */
 #trivia-box {
     display:block;
-    width:100%;
+/*     width:100%; */
+    width: 100%;
+/*     max-height: 400px; */
 /*     background: #34A6C1; */
 /*     background:rgba(52,166,193,0.9); */
-    background: rgba( 0, 0, 0, 0.2 );
+    background: rgba( 0, 0, 0, 0.5 );
     border: 0.5px solid rgba( 4, 4, 4, 0 );
-    border-radius: 8px;
+    border-radius: 0;
 /*
     -webkit-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 6px 42px 2px rgba(0,0,0,0.75);
@@ -1026,7 +1001,7 @@ text-align:center;
 }
 
 .flying-coin {
-    background:url(http://primg.checkpointchallenge.com:81/utils/icon-points.png);
+    background:url(http://primg.checkpointchallenge.com/utils/icon-points.png);
     width:27px;
     height:29px;
     position:absolute;
@@ -1038,7 +1013,7 @@ text-align:center;
 }
 
 .flying-reward {
-    background:url(http://primg.checkpointchallenge.com:81/utils/icon-rewards.png);
+    background:url(http://primg.checkpointchallenge.com/utils/icon-rewards.png);
     width:27px;
     height:29px;
     position:absolute;
@@ -1060,4 +1035,12 @@ canvas {
 
 .hourglassSVG {
     max-width: 100%;
+}
+
+
+.player_stats_trivia_box {
+    position:relative;
+    width:100%;
+    z-index: 9001;
+    margin: 20px 0px 60px 0px;
 }
